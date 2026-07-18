@@ -54,6 +54,7 @@ Each protocol module (`spring-integration-<protocol>`) follows a consistent inte
 - `core/` — core abstractions (present in `jpa`, `mqtt`, `xmpp`, `event`)
 - `session/` — remote session management (present in `sftp`, `smb`)
 - `filters/` — file filtering strategies (present in `file`, `smb`)
+- `aot/` — GraalVM native-image `RuntimeHintsRegistrar` implementations (present in `file`, `http`, `jdbc`, `kafka`, `mqtt`; see `CoreRuntimeHints` in core for the base pattern)
 
 Not all modules contain every subdirectory. Modules with simple functionality may have only a few (e.g. `syslog`: `inbound/`, `config/`; `graphql`: `outbound/`, `dsl/`). The `ip` module has deeper nesting with `tcp/` and `udp/` subpackages, each containing their own `inbound/` and `outbound/`.
 
