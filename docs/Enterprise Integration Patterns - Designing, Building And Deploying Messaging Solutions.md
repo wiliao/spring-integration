@@ -348,7 +348,7 @@ The core of the book contains 65 patterns that form a pattern language. Books su
 
 ### Acknowledgements
 
-Like most books, Enterprise Integration Patterns has been a long time in the making. The idea of writing about message-based integration patterns dates back to the summer of 2001 when Martin was working on Patterns of Enterprise Application Architecture. At that time, it struck Kyle that while P of EAA talked a lot about how to create applications, it touches only briefly on how to integrate them. This idea was the starting point for a series of meetings between Martin and Kyle that also included Rachel Reinitz and John Crupi. Bobby joined these discussions in the fall of 2001, followed by Gregor in early 2002. The following summer the group submitted two papers for review at the Pattern Languages of Programs (PLoP) conference, one authored jointly by Bobby and Kyle and the other by Gregor. After the conference, Kyle and Martin refocused on their own book projects while Gregor and Bobby merged their papers to form the basis for the book. At the same time, the www.enterpriseintegrationpatterns.com site went live to allow integration architects and developers around the world to participate in the rapid evolution of the content. As they worked on the book, Gregor and Bobby invited contributors to help round out the book’s content. About two years after Kyle's original idea, the final manuscript arrived at the publisher. This book would not have been possible without the help from a long list of contributors. Names here...
+Like most books, Enterprise Integration Patterns has been a long time in the making. The idea of writing about message-based integration patterns dates back to the summer of 2001 when Martin was working on Patterns of Enterprise Application Architecture. At that time, it struck Kyle that while P of EAA talked a lot about how to create applications, it touches only briefly on how to integrate them. This idea was the starting point for a series of meetings between Martin and Kyle that also included Rachel Reinitz and John Crupi. Bobby joined these discussions in the fall of 2001, followed by Gregor in early 2002. The following summer the group submitted two papers for review at the Pattern Languages of Programs (PLoP) conference, one authored jointly by Bobby and Kyle and the other by Gregor. After the conference, Kyle and Martin refocused on their own book projects while Gregor and Bobby merged their papers to form the basis for the book. At the same time, the [www.enterpriseintegrationpatterns.com](http://www.enterpriseintegrationpatterns.com) site went live to allow integration architects and developers around the world to participate in the rapid evolution of the content. As they worked on the book, Gregor and Bobby invited contributors to help round out the book’s content. About two years after Kyle's original idea, the final manuscript arrived at the publisher. This book would not have been possible without the help from a long list of contributors. Names here...
 
 ### About the Cover Picture
 
@@ -500,11 +500,7 @@ from scratch and using a commercial tool. We presented those example in such a w
 
 #### Relationship of Root Patterns and Chapters
 
-The most fundamental pattern is Messaging; that’s what this whole book is about. It leads to the six root patterns—which are in the Messaging Systems chapter—namely Message Channel, Message, Pipes and Filters, Message Router, Message Translator, and Message Endpoint. In turn, each of these
-
-### Getting Started
-
-root patterns leads to its own chapter in the book (except Pipes and Filters, which is not specific to messaging but is the basis of the routing and transformation patterns). The pattern language is divided into eight chapters, which follow the hierarchy described above:
+The most fundamental pattern is Messaging; that’s what this whole book is about. It leads to the six root patterns—which are in the Messaging Systems chapter—namely Message Channel, Message, Pipes and Filters, Message Router, Message Translator, and Message Endpoint. In turn, each of these root patterns leads to its own chapter in the book (except Pipes and Filters, which is not specific to messaging but is the basis of the routing and transformation patterns). The pattern language is divided into eight chapters, which follow the hierarchy described above:
 
 - Chapter 1: Integration Styles – This chapter reviews the different approaches available for integrating applications, including Messaging.
 - Chapter 2: Messaging Systems – This chapter reviews the six root messaging patterns, giving an overview of the entire pattern language.
@@ -513,30 +509,63 @@ root patterns leads to its own chapter in the book (except Pipes and Filters, wh
 - Chapter 5: Message Routing – As a messaging topography becomes more complex, senders know less and less about who should receive their messages. Rather, they send the messages to intermediate applications that send them to others until the messages finally find their way to their final destination. This chapter teaches you the responsibilities of these routing applications.
 - Chapter 6: Message Transformation – Independently developed applications often don’t agree on messages’ formats, on the form and meaning of supposedly unique identifiers, and even the character encoding to be used. Therefore, intermediate components are needed to convert messages from the form one application produced to that which other applications will consume. This chapter shows how to design these transformer applications.
 - Chapter 7: Messaging Endpoints – Many applications were not designed to participate in a messaging solution. As a result, they must be explicitly connected to the messaging system. This section describes a messaging layer in the applications that is responsible for sending and receiving the messages, making your application an endpoint for messages.
-- Chapter 8: System Management – Once we have a messaging system in place to integrate our applications, how do we make sure that it’s running correctly and doing what we want? This chapter explores how to test and monitor a running messaging system. These eight chapters go together to teach you what you need to know about connecting applications using messaging. With any book that has a lot to teach, it’s hard to know where to start, both for the authors and the readers. Reading all of the pages straight through assures covering the entire subject area, but isn’t the quickest way to get to the issues that are of the most help. Starting with a pattern in the middle of the language can be like starting to watch a movie that’s half over; you see what’s happening but don’t understand what it means.
+- Chapter 8: System Management – Once we have a messaging system in place to integrate our applications, how do we make sure that it’s running correctly and doing what we want? This chapter explores how to test and monitor a running messaging system.
 
-Luckily, the pattern language is formed around root patterns (as described earlier). These root patterns collectively provide an overview of the pattern language, and individually provide starting points for delving deep into the details of messaging. To get an overall survey of the language without reviewing all of the patterns, start with reviewing the root patterns. To jump into the middle of the language, jump in at a root pattern, a place where the language has finished discussing one major topic and is now starting another. Chapter 1: Integration Styles provides an overview of the four main application integration techniques and settles on Messaging as being the best overall for many integration opportunities. Read this chapter if you are unfamiliar with issues involved in application integration and the pros and cons of the various approaches that are available. If you just want to know what’s so great about messaging, go straight to that pattern. If you’re already convinced that messaging is the way to go and want to get started with how to use messaging, you can skip the first chapter completely. Chapter 2: Messaging Systems contains all of this pattern language’s root patterns (except Messaging, which is in the first chapter). For an overview of the pattern language, read (or at least skim) all of the patterns in this chapter. To dive deep on a particular topic, read its root pattern, then go to the patterns mentioned in its next section at the end of the pattern; those next patterns will all be in a chapter named after the root pattern. The root patterns in this language are:
+These eight chapters go together to teach you what you need to know about connecting applications using messaging.
 
-- Messaging – This is the #1 root pattern for the entire book: What is messaging, what problem does it solve, and how does it solve it? - Message Channel – What is the structure in a messaging system that conveys messages from the sender to the receiver? How do you know which ones your applications need? - Message – How does information get communicated from a sender to a receiver? - Pipes and Filters – How can intermediate steps be performed after a message is sent but before it is received? - Message Router – If the sender does not know ultimately where the message should go, how can the messaging system get it there? - Message Translator – If the sender and receiver do not agree on the message format, how can they communicate? - Message Endpoint – How do the applications that send and receive messages connect to the messaging system? After the first two chapters, different types of messaging developers may be most interested in different chapters, based on the specifics of how each group uses messaging to perform integration:
+### Getting Started
+
+With any book that has a lot to teach, it’s hard to know where to start, both for the authors and the readers. Reading all of the pages straight through assures covering the entire subject area, but isn’t the quickest way to get to the issues that are of the most help. Starting with a pattern in the middle of the language can be like starting to watch a movie that’s half over; you see what’s happening but don’t understand what it means.
+
+Luckily, the pattern language is formed around root patterns (as described earlier). These root patterns collectively provide an overview of the pattern language, and individually provide starting points for delving deep into the details of messaging. To get an overall survey of the language without reviewing all of the patterns, start with reviewing the root patterns. To jump into the middle of the language, jump in at a root pattern, a place where the language has finished discussing one major topic and is now starting another.
+
+Chapter 1: Integration Styles provides an overview of the four main application integration techniques and settles on Messaging as being the best overall for many integration opportunities. Read this chapter if you are unfamiliar with issues involved in application integration and the pros and cons of the various approaches that are available. If you just want to know what’s so great about messaging, go straight to that pattern. If you’re already convinced that messaging is the way to go and want to get started with how to use messaging, you can skip the first chapter completely.
+
+Chapter 2: Messaging Systems contains all of this pattern language’s root patterns (except Messaging, which is in the first chapter). For an overview of the pattern language, read (or at least skim) all of the patterns in this chapter. To dive deep on a particular topic, read its root pattern, then go to the patterns mentioned in its next section at the end of the pattern; those next patterns will all be in a chapter named after the root pattern.
+
+The root patterns in this language are:
+
+- Messaging – This is the #1 root pattern for the entire book: What is messaging, what problem does it solve, and how does it solve it?
+- Message Channel – What is the structure in a messaging system that conveys messages from the sender to the receiver? How do you know which ones your applications need?
+- Message – How does information get communicated from a sender to a receiver? - Pipes and Filters – How can intermediate steps be performed after a message is sent but before it is received?
+- Message Router – If the sender does not know ultimately where the message should go, how can the messaging system get it there?
+- Message Translator – If the sender and receiver do not agree on the message format, how can they communicate?
+- Message Endpoint – How do the applications that send and receive messages connect to the messaging system?
+
+After the first two chapters, different types of messaging developers may be most interested in different chapters, based on the specifics of how each group uses messaging to perform integration:
+
 - System Administrators may be most interested in Chapter 3: Messaging Channels, the guidelines for what channels to create, and Chapter 8: System Management, guidance on how to maintain a running messaging system.
+- Application Developers should look at Chapter 7: Messaging Endpoints to learn how integrate an application with a messaging system, and Chapter 4: Message Construction to learn what messages to send when.
+- System Integrators will gain the most from Chapter 5: Message Routing—how to direct messages to the proper receivers—and Chapter 6: Message Transformation—how to convert messages from the sender’s format to the receiver’s.
+
+Keep in mind that when reading a pattern, if you’re in a hurry, start by just reading the problem and solution (the two sentences in bold). This will give you enough information to determine if the pattern is of interest to you right now, and if you already know the pattern. If you do not know the pattern and it sounds interesting, go ahead and read the other parts.
+
+Also remember that this is a pattern language, so the patterns are not necessarily meant to be read in the order they’re presented in the book. The book’s order teaches you about messaging by considering all of the relevant topics in turn and discussing related issues together. To use the patterns to solve a particular problem, start with an appropriate root pattern. Its context explains what patterns need to be applied before this one, even if they’re not the ones immediately preceding this one in the book. Likewise, the next section (the last paragraph of the pattern) describes what patterns to consider applying after this one, even if they’re not the ones immediately following this one in the book. Use the web of interconnected patterns, not the linear list of book pages, to guide you through the material.
 
 ### Supporting Web Site
 
+Please look for companion information to this book plus related information on enterprise integration at our Web site: [www.enterpriseintegrationpatterns.com](http://www.enterpriseintegrationpatterns.com). You can also e-mail your comments, suggestions and feedback to us at authors@enterpriseintegrationpatterns.com.
+
 ### Summary
 
-- Application Developers should look at Chapter 7: Messaging Endpoints to learn how integrate an application with a messaging system, and Chapter 4: Message Construction to learn what messages to send when.
-- System Integrators will gain the most from Chapter 5: Message Routing—how to direct messages to the proper receivers—and Chapter 6: Message Transformation—how to convert messages from the sender’s format to the receiver’s. Keep in mind that when reading a pattern, if you’re in a hurry, start by just reading the problem and solution (the two sentences in bold). This will give you enough information to determine if the pattern is of interest to you right now, and if you already know the pattern. If you do not know the pattern and it sounds interesting, go ahead and read the other parts. Also remember that this is a pattern language, so the patterns are not necessarily meant to be read in the order they’re presented in the book. The book’s order teaches you about messaging by considering all of the relevant topics in turn and discussing related issues together. To use the patterns to solve a particular problem, start with an appropriate root pattern. Its context explains what patterns need to be applied before this one, even if they’re not the ones immediately preceding this one in the book. Likewise, the next section (the last paragraph of the pattern) describes what patterns to consider applying after this one, even if they’re not the ones immediately following this one in the book. Use the web of interconnected patterns, not the linear list of book pages, to guide you through the material. Please look for companion information to this book plus related information on enterprise integration at our Web site: www.enterpriseintegrationpatterns.com. You can also e-mail your comments, suggestions and feedback to us at authors@enterpriseintegrationpatterns.com. You should now have a good understanding of the following concepts which are fundamental to the material in this book:
+You should now have a good understanding of the following concepts which are fundamental to the material in this book:
+
 - What messaging is
 - What a messaging system is
 - Why to use messaging
 - How asynchronous programming is different
 - How application integration is different from application distribution
-- What types of commercial products contain messaging systems You should also have a feel for how this book is going to teach you how to use messaging:
+- What types of commercial products contain messaging systems
+
+You should also have a feel for how this book is going to teach you how to use messaging:
+
 - The role patterns have in structuring the material
 - The meaning of the custom notation used in the diagrams
 - The purpose and scope of the examples
 - The organization of the material
-- How to get started learning the material Now that you understand the basic concepts and how the material will be presented, you are now ready to start learning how to integrate applications using messaging.
+- How to get started learning the material
+
+Now that you understand the basic concepts and how the material will be presented, you are now ready to start learning how to integrate applications using messaging.
 
 ## 1. Solving Integration Problems using Patterns
 
