@@ -12,6 +12,8 @@ Enterprise Integration Patterns
 
 ## Table of Contents
 
+- [Designing, Building, and Deploying Messaging Solutions](#designing-building-and-deploying-messaging-solutions)
+- [Table of Contents](#table-of-contents)
 - [Foreword](#foreword)
   - [Foreword by John Crupi](#foreword-by-john-crupi)
   - [Foreword by Martin Fowler](#foreword-by-martin-fowler)
@@ -28,26 +30,67 @@ Enterprise Integration Patterns
   - [Why Use Messaging?](#why-use-messaging)
   - [Challenges of Asynchronous Messaging](#challenges-of-asynchronous-messaging)
   - [Thinking Asynchronously](#thinking-asynchronously)
+    - [Synchronous and Asynchronous Call Semantics](#synchronous-and-asynchronous-call-semantics)
   - [Distributed Applications vs. Integration](#distributed-applications-vs-integration)
   - [Commercial Messaging Systems](#commercial-messaging-systems)
+    - [Messaging Product Feature Mapping (JMS, MSMQ, WebSphere MQ)](#messaging-product-feature-mapping-jms-msmq-websphere-mq)
+    - [Messaging Product Feature Mapping (TIBCO, WebMethods, SeeBeyond, Vitria)](#messaging-product-feature-mapping-tibco-webmethods-seebeyond-vitria)
   - [Pattern Form](#pattern-form)
   - [Diagram Notation](#diagram-notation)
+    - [Visual Notation for Messaging Solutions](#visual-notation-for-messaging-solutions)
   - [Examples and Interludes](#examples-and-interludes)
   - [Organization of this Book](#organization-of-this-book)
+    - [Relationship of Root Patterns and Chapters](#relationship-of-root-patterns-and-chapters)
   - [Getting Started](#getting-started)
   - [Supporting Web Site](#supporting-web-site)
   - [Summary](#summary)
-- [1 Solving Integration Problems using Patterns](#1-solving-integration-problems-using-patterns)
+- [1. Solving Integration Problems using Patterns](#1-solving-integration-problems-using-patterns)
   - [The Need for Integration](#the-need-for-integration)
   - [Integration Challenges](#integration-challenges)
   - [How Integration Patterns Can Help](#how-integration-patterns-can-help)
   - [The Wide World of Integration](#the-wide-world-of-integration)
+    - [Information Portal](#information-portal)
+    - [Data Replication](#data-replication)
+    - [Shared Business Function](#shared-business-function)
+    - [Service-Oriented Architecture](#service-oriented-architecture)
+    - [Distributed Business Process](#distributed-business-process)
   - [Loose Coupling](#loose-coupling)
+    - [Business-to-Business Integration](#business-to-business-integration)
   - [1 Minute EAI](#1-minute-eai)
+    - [Tightly Coupled Interaction](#tightly-coupled-interaction)
   - [A Loosely Coupled Integration Solution](#a-loosely-coupled-integration-solution)
-  - [Widget-Gadget Corp -- An Example](#widget--gadget-corp----an-example)
+    - [Loosely Coupled Interaction](#loosely-coupled-interaction)
+    - [Basic Elements of an Integration Solution](#basic-elements-of-an-integration-solution)
+  - [Widget-Gadget Corp -- An Example](#widget-gadget-corp----an-example)
+    - [WGRUS Ecosystem](#wgrus-ecosystem)
+    - [Internal Systems](#internal-systems)
+    - [WGRUS IT Infrastructure](#wgrus-it-infrastructure)
+    - [Taking Orders](#taking-orders)
+    - [Taking Orders From Three Different Channels](#taking-orders-from-three-different-channels)
+    - [Processing Orders](#processing-orders)
+    - [Activity Diagram for Order Processing](#activity-diagram-for-order-processing)
+    - [Order Processing Implementation using Asynchronous Messaging](#order-processing-implementation-using-asynchronous-messaging)
+    - [Routing the Inventory Request](#routing-the-inventory-request)
+    - [Processing Order Items Individually](#processing-order-items-individually)
+    - [Taking Orders With Enricher](#taking-orders-with-enricher)
+    - [Revised Order Process Implementation](#revised-order-process-implementation)
+    - [Checking Status](#checking-status)
+    - [Adding a Message Store To Track Order Status](#adding-a-message-store-to-track-order-status)
+    - [Tracking Messages with a Wire Tap](#tracking-messages-with-a-wire-tap)
+    - [Processing Orders With a Process Manager](#processing-orders-with-a-process-manager)
+    - [Inserting a Smart Proxy to Turn a Legacy System Into a Shared Service](#inserting-a-smart-proxy-to-turn-a-legacy-system-into-a-shared-service)
+    - [Change Address](#change-address)
+    - [Including Address Data in the New Order Message](#including-address-data-in-the-new-order-message)
+    - [Propagating Address Changes via a Separate Publish-Subscribe Channel](#propagating-address-changes-via-a-separate-publish-subscribe-channel)
+    - [New Catalog](#new-catalog)
+    - [Updating Catalog Data via File Transfer](#updating-catalog-data-via-file-transfer)
+    - [Announcements](#announcements)
+    - [Sending Announcements With a Dynamic Recipient List](#sending-announcements-with-a-dynamic-recipient-list)
+    - [Testing and Monitoring](#testing-and-monitoring)
+    - [Inserting a Smart Proxy to Track Response Times](#inserting-a-smart-proxy-to-track-response-times)
+    - [Inserting Test Messages to Verify Accurate Results](#inserting-test-messages-to-verify-accurate-results)
   - [Summary](#summary-1)
-- [2 Integration Styles](#2-integration-styles)
+- [2. Integration Styles](#2-integration-styles)
   - [Introduction](#introduction-1)
   - [Application Integration Criteria](#application-integration-criteria)
   - [Application Integration Options](#application-integration-options)
@@ -55,44 +98,141 @@ Enterprise Integration Patterns
   - [Shared Database](#shared-database)
   - [Remote Procedure Invocation](#remote-procedure-invocation)
   - [Messaging](#messaging)
-- [3 Messaging Systems](#3-messaging-systems)
+- [3. Messaging Systems](#3-messaging-systems)
   - [Introduction](#introduction-2)
+    - [Basic Messaging Concepts](#basic-messaging-concepts)
   - [Message Channel](#message-channel)
+    - [Book Organization](#book-organization)
+    - [Relationship of Root Patterns and Chapters](#relationship-of-root-patterns-and-chapters-1)
+    - [Applications Magically Connected](#applications-magically-connected)
+    - [A Little Bit of Messaging Vocabulary](#a-little-bit-of-messaging-vocabulary)
+    - [Channel Names](#channel-names)
   - [Message](#message)
   - [Pipes and Filters](#pipes-and-filters)
+    - [Pipeline Processing](#pipeline-processing)
+    - [Parallel Processing](#parallel-processing)
+    - [History of Pipes-and-Filters](#history-of-pipes-and-filters)
+    - [Vocabulary](#vocabulary)
   - [Message Router](#message-router)
+    - [Variants](#variants)
+    - [Example: Commercial EAI Tools](#example-commercial-eai-tools)
   - [Message Translator](#message-translator)
+    - [Levels of Transformation](#levels-of-transformation)
+    - [Levels of Decoupling](#levels-of-decoupling)
+    - [Chaining Transformations](#chaining-transformations)
+    - [Example: Structural Transformation with XSL](#example-structural-transformation-with-xsl)
+    - [Example: Visual Transformation Tools](#example-visual-transformation-tools)
+    - [Creating Transformations the Drag-Drop Style](#creating-transformations-the-drag-drop-style)
   - [Message Endpoint](#message-endpoint)
-- [4 Messaging Channels](#4-messaging-channels)
+    - [Applications disconnected from a message channel](#applications-disconnected-from-a-message-channel)
+    - [Example: JMS Producer and Consumer](#example-jms-producer-and-consumer)
+    - [Example: .NET MessageQueue](#example-net-messagequeue)
+- [4. Messaging Channels](#4-messaging-channels)
   - [Introduction](#introduction-3)
-  - [Point-to-Point Channel](#point-to-point-channel)
-  - [Publish-Subscribe Channel](#publish-subscribe-channel)
+    - [Message Channel Themes](#message-channel-themes)
+    - [Fixed set of channels](#fixed-set-of-channels)
+    - [Determining the set of channels](#determining-the-set-of-channels)
+    - [Unidirectional channels](#unidirectional-channels)
+    - [Message Channel Decisions](#message-channel-decisions)
+    - [One-to-one or one-to-many](#one-to-one-or-one-to-many)
+    - [What type of data](#what-type-of-data)
+    - [Invalid and dead messages](#invalid-and-dead-messages)
+    - [Crash proof](#crash-proof)
+    - [Non-messaging clients](#non-messaging-clients)
+    - [Communications backbone](#communications-backbone)
+  - [Point- to- Point Channel](#point--to--point-channel)
+    - [Point-to-Point Channel](#point-to-point-channel)
+    - [Example: Stock Trading](#example-stock-trading)
+    - [Example: JMS Queue](#example-jms-queue)
+  - [Publish- Subscribe Channel](#publish--subscribe-channel)
+    - [Example: .NET MessageQueue](#example-net-messagequeue-1)
+    - [Publish-Subscribe Channel](#publish-subscribe-channel)
+    - [Wildcard Subscribers](#wildcard-subscribers)
+    - [Example: Stock Trading](#example-stock-trading-1)
+    - [Example: JMS Topic](#example-jms-topic)
   - [Datatype Channel](#datatype-channel)
+    - [Example: MSMQ One-to-Many Messaging](#example-msmq-one-to-many-messaging)
+    - [Datatype Channel](#datatype-channel-1)
+    - [Mixed Data Types](#mixed-data-types)
+    - [Example: Stock Trading](#example-stock-trading-2)
   - [Invalid Message Channel](#invalid-message-channel)
+    - [Example: Purchasing System](#example-purchasing-system)
+    - [Invalid Message Channel](#invalid-message-channel-1)
+    - [Invalid Message](#invalid-message)
+    - [Example: Stock Trading](#example-stock-trading-3)
   - [Dead Letter Channel](#dead-letter-channel)
+    - [Example: JMS Specification](#example-jms-specification)
+    - [Dead Letter Channel](#dead-letter-channel-1)
+    - [Example: Stock Trading](#example-stock-trading-4)
   - [Guaranteed Delivery](#guaranteed-delivery)
+    - [Guaranteed Delivery](#guaranteed-delivery-1)
+    - [Example: Stock Trading](#example-stock-trading-5)
+    - [Example: JMS Persistent Messages](#example-jms-persistent-messages)
+    - [Example: IBM WebSphere MQ](#example-ibm-websphere-mq)
   - [Channel Adapter](#channel-adapter)
+    - [Example: .NET Persistent Messages](#example-net-persistent-messages)
+    - [Channel Adapter](#channel-adapter-1)
+    - [Example: Stock Trading](#example-stock-trading-6)
+    - [Example: Commercial EAI Tools](#example-commercial-eai-tools-1)
   - [Messaging Bridge](#messaging-bridge)
+    - [Example: Web Services Adapters](#example-web-services-adapters)
+    - [Messaging Bridge](#messaging-bridge-1)
+    - [Example: Stock Trading](#example-stock-trading-7)
+    - [Example: MSMQ Bridges](#example-msmq-bridges)
+    - [Example: SonicMQ Bridges](#example-sonicmq-bridges)
   - [Message Bus](#message-bus)
-- [5 Message Construction](#5-message-construction)
+    - [Insurance Company EAI Scenario](#insurance-company-eai-scenario)
+    - [Insurance Company Message Bus](#insurance-company-message-bus)
+    - [Example: Stock Trading](#example-stock-trading-8)
+- [5. Message Construction](#5-message-construction)
   - [Introduction](#introduction-4)
+    - [Message intent](#message-intent)
+    - [Returning a response](#returning-a-response)
+    - [Huge amounts of data](#huge-amounts-of-data)
   - [Command Message](#command-message)
+    - [Slow messages](#slow-messages)
   - [Document Message](#document-message)
+    - [Example: Java and XML](#example-java-and-xml)
   - [Event Message](#event-message)
-  - [Request-Reply](#request-reply)
+    - [Example: SOAP and WSDL](#example-soap-and-wsdl)
+    - [Event Message](#event-message-1)
+  - [Request- Reply](#request--reply)
+    - [Request-Reply](#request-reply)
+    - [Example: SOAP 1.1 Messages](#example-soap-11-messages)
+    - [Example: SOAP 1.2 Response Message Exchange Pattern](#example-soap-12-response-message-exchange-pattern)
+    - [Example: JMS Requestor Objects](#example-jms-requestor-objects)
   - [Return Address](#return-address)
+    - [Return Address](#return-address-1)
+    - [Uncertain Where to Send Replies](#uncertain-where-to-send-replies)
+    - [Example: JMS Reply-To Property](#example-jms-reply-to-property)
   - [Correlation Identifier](#correlation-identifier)
+    - [Correlation Identifier](#correlation-identifier-1)
+    - [Cannot Match Reply to Request](#cannot-match-reply-to-request)
+    - [Request-Reply Chaining](#request-reply-chaining)
+    - [Example: JMS Correlation-ID Property](#example-jms-correlation-id-property)
+    - [Example: .NET Correlation-Id Property](#example-net-correlation-id-property)
+    - [Example: Web Services Request/Response](#example-web-services-requestresponse)
+    - [Example: SOAP request message containing a message identifier](#example-soap-request-message-containing-a-message-identifier)
   - [Message Sequence](#message-sequence)
+    - [Message Sequence](#message-sequence-1)
+    - [with End Indicator](#with-end-indicator)
+    - [Example: Large Document Transfer](#example-large-document-transfer)
+    - [Example: Multi-Item Query](#example-multi-item-query)
+    - [Example: JMS and .NET](#example-jms-and-net)
+    - [Example: Web Services Architecture Usage Scenarios](#example-web-services-architecture-usage-scenarios)
   - [Message Expiration](#message-expiration)
+    - [Message Expiration](#message-expiration-1)
+    - [Example: JMS Time-To-Live Parameter](#example-jms-time-to-live-parameter)
   - [Format Indicator](#format-indicator)
-- [6 Interlude Simple Messaging](#6-interlude-simple-messaging)
+    - [Example: XML](#example-xml)
+- [6. Interlude Simple Messaging](#6-interlude-simple-messaging)
   - [Introduction](#introduction-5)
-  - [JMS Request/Reply Example](#jms-request-reply-example)
-  - [.NET Request/Reply Example](#net-request-reply-example)
-  - [JMS Publish/Subscribe Example](#jms-publish-subscribe-example)
-- [7 Message Routing](#7-message-routing)
+  - [JMS Request/ Reply Example](#jms-request-reply-example)
+  - [.NET Request/ Reply Example](#net-request-reply-example)
+  - [JMS Publish/ Subscribe Example](#jms-publish-subscribe-example)
+- [7. Message Routing](#7-message-routing)
   - [Introduction](#introduction-6)
-  - [Content-Based Router](#content-based-router)
+  - [Content- Based Router](#content--based-router)
   - [Message Filter](#message-filter)
   - [Dynamic Router](#dynamic-router)
   - [Recipient List](#recipient-list)
@@ -100,11 +240,11 @@ Enterprise Integration Patterns
   - [Aggregator](#aggregator)
   - [Resequencer](#resequencer)
   - [Composed Message Processor](#composed-message-processor)
-  - [Scatter-Gather](#scatter-gather)
+  - [Scatter- Gather](#scatter--gather)
   - [Routing Slip](#routing-slip)
   - [Process Manager](#process-manager)
   - [Message Broker](#message-broker)
-- [8 Message Transformation](#8-message-transformation)
+- [8. Message Transformation](#8-message-transformation)
   - [Introduction](#introduction-7)
   - [Envelope Wrapper](#envelope-wrapper)
   - [Content Enricher](#content-enricher)
@@ -112,26 +252,25 @@ Enterprise Integration Patterns
   - [Claim Check](#claim-check)
   - [Normalizer](#normalizer)
   - [Canonical Data Model](#canonical-data-model)
-- [9 Interlude Composed Messaging](#9-interlude-composed-messaging)
+- [9. Interlude Composed Messaging](#9-interlude-composed-messaging)
   - [Introduction](#introduction-8)
   - [Synchronous Implementation using Web Services](#synchronous-implementation-using-web-services)
   - [Asynchronous Implementation with MSMQ](#asynchronous-implementation-with-msmq)
-  - [Asynchronous Implementation with TIBCO](#asynchronous-implementation-with-tibco)
-  - [ActiveEnterprise](#activeenterprise)
-- [10 Messaging Endpoints](#10-messaging-endpoints)
+  - [Asynchronous Implementation with TIBCO ActiveEnterprise](#asynchronous-implementation-with-tibco-activeenterprise)
+- [10. Messaging Endpoints](#10-messaging-endpoints)
   - [Introduction](#introduction-9)
   - [Messaging Gateway](#messaging-gateway)
   - [Messaging Mapper](#messaging-mapper)
   - [Transactional Client](#transactional-client)
   - [Polling Consumer](#polling-consumer)
-  - [Event-Driven Consumer](#event-driven-consumer)
+  - [Event- Driven Consumer](#event--driven-consumer)
   - [Competing Consumers](#competing-consumers)
   - [Message Dispatcher](#message-dispatcher)
   - [Selective Consumer](#selective-consumer)
   - [Durable Subscriber](#durable-subscriber)
   - [Idempotent Receiver](#idempotent-receiver)
   - [Service Activator](#service-activator)
-- [11 System Management](#11-system-management)
+- [11. System Management](#11-system-management)
   - [Introduction](#introduction-10)
   - [Control Bus](#control-bus)
   - [Detour](#detour)
@@ -141,14 +280,13 @@ Enterprise Integration Patterns
   - [Smart Proxy](#smart-proxy)
   - [Test Message](#test-message)
   - [Channel Purger](#channel-purger)
-- [12 Interlude System Management Example](#12-interlude-system-management-example)
+- [12. Interlude System Management Example](#12-interlude-system-management-example)
   - [Loan Broker System Management](#loan-broker-system-management)
-- [13 Integration Patterns in Practice](#13-integration-patterns-in-practice)
+- [13. Integration Patterns in Practice](#13-integration-patterns-in-practice)
   - [Case Study: Bond Trading System](#case-study-bond-trading-system)
   - [Architecture with Patterns](#architecture-with-patterns)
-- [14 Concluding Remarks](#14-concluding-remarks)
-  - [Emerging Standards and Futures in Enterprise](#emerging-standards-and-futures-in-enterprise)
-  - [Integration](#integration)
+- [14. Concluding Remarks](#14-concluding-remarks)
+  - [Emerging Standards and Futures in Enterprise Integration](#emerging-standards-and-futures-in-enterprise-integration)
 - [Bibliography](#bibliography)
 
 ---
@@ -400,7 +538,7 @@ Luckily, the pattern language is formed around root patterns (as described earli
 - The organization of the material
 - How to get started learning the material Now that you understand the basic concepts and how the material will be presented, you are now ready to start learning how to integrate applications using messaging.
 
-## 1 Solving Integration Problems using Patterns
+## 1. Solving Integration Problems using Patterns
 
 ### The Need for Integration
 
@@ -501,11 +639,7 @@ Mechanisms such as a common data format, queuing channels, and transformers help
 
 #### Basic Elements of an Integration Solution
 
-Now that we can send messages across channels we can establish a very basic form of integration. However, we promised that simple integration is an oxymoron, so let’s see what is missing. We mentioned before that integration solutions often have limited control over the applications they are integrating, such as the internal data formats used by the applications. For example, one data format may store the customer name in two fields, called FIRST_NAME and LAST_NAME, while the other system may use a single field called Customer_Name. Likewise, one system may support multiple customer addresses while the other system only supports a single address. Because the internal data format of an application can often not be changed the middleware needs to provide some mechanism to convert one application’s data format in the other’s. We call this step translation. So far we can send data from one system to another and accommodate differences in data formats. What happens if we integrate more than two systems? Where does the data have to be moved? We could expect each application to specify the target system(s) for the data it is sending over the channel. For example, if the customer address changes in the customer care system we could make that system responsible for sending the data to all other systems that store copies of the customer address. As the number of systems increases this becomes very tedious and requires the sending system to have knowledge about all other systems. Every time a new system is added, the customer care system would have to be adjusted to the new environment. Things would be a lot easier of the middleware could take care of sending messages to the correct places. This is the role of a routing component such as a message broker. Integration solutions can quickly become complex because they deal with multiple applications, data formats, channels, routing and transformation. All these elements may be spread across multiple operating platforms and geographic locations. In order to have any idea what is going on inside the system we need a systems management function. This subsystem monitors the flow of data, makes sure that all applications and components are available and reports error conditions to a central location. Our integration solution is now almost complete. We can move data from one system from another, accommodate differences in the data format, route the data to the required systems and monitor the performance of the solution. So far we assumed that an application sends data as a
-
-### Widget-Gadget Corp -- An Example
-
-message to the channel. However, most packaged and legacy applications and many custom applications are not prepared to participate in an integration solution. We need a message endpoint to connect the system explicitly to the integration solution. The endpoint can be a special piece of code or a Channel Adapter provided by an integration software vendor.
+Now that we can send messages across channels we can establish a very basic form of integration. However, we promised that simple integration is an oxymoron, so let’s see what is missing. We mentioned before that integration solutions often have limited control over the applications they are integrating, such as the internal data formats used by the applications. For example, one data format may store the customer name in two fields, called FIRST_NAME and LAST_NAME, while the other system may use a single field called Customer_Name. Likewise, one system may support multiple customer addresses while the other system only supports a single address. Because the internal data format of an application can often not be changed the middleware needs to provide some mechanism to convert one application’s data format in the other’s. We call this step translation. So far we can send data from one system to another and accommodate differences in data formats. What happens if we integrate more than two systems? Where does the data have to be moved? We could expect each application to specify the target system(s) for the data it is sending over the channel. For example, if the customer address changes in the customer care system we could make that system responsible for sending the data to all other systems that store copies of the customer address. As the number of systems increases this becomes very tedious and requires the sending system to have knowledge about all other systems. Every time a new system is added, the customer care system would have to be adjusted to the new environment. Things would be a lot easier of the middleware could take care of sending messages to the correct places. This is the role of a routing component such as a message broker. Integration solutions can quickly become complex because they deal with multiple applications, data formats, channels, routing and transformation. All these elements may be spread across multiple operating platforms and geographic locations. In order to have any idea what is going on inside the system we need a systems management function. This subsystem monitors the flow of data, makes sure that all applications and components are available and reports error conditions to a central location. Our integration solution is now almost complete. We can move data from one system from another, accommodate differences in the data format, route the data to the required systems and monitor the performance of the solution. So far we assumed that an application sends data as a message to the channel. However, most packaged and legacy applications and many custom applications are not prepared to participate in an integration solution. We need a message endpoint to connect the system explicitly to the integration solution. The endpoint can be a special piece of code or a Channel Adapter provided by an integration software vendor.
 
 ### Widget-Gadget Corp -- An Example
 
@@ -661,15 +795,24 @@ check the fact that a reply was received but also the accuracy of the message co
 
 Another effective strategy to detect malfunctioning services that return messages in a valid format but with bad data is to take a statistical sample. For example, we may expect to decline an average of less than one in 10 orders due to the customer’s poor standing. If we decline more than 5 orders in a row this may be an indication that an external service or some business logic is malfunctioning. The management console could e-mail the five orders to an administrator who can then take a quick look at the data to verify whether the rejections were justified.
 
-#### Summary
+### Summary
 
 We have walked through a fairly extensive integration scenario using different integration strategies such as File Transfer, Shared Database and asynchronous Messaging. We routed, split and aggregated messages. We also added functions to monitor the correct operation of the solution. While the requirements for this example were admittedly simplified the issues and design trade-offs we had to consider are very real. The solution diagrams and descriptions highlight how we can describe a solution in a vendor-and technology-neutral language that is much more accurate than a high-level sequence diagram. The integration scenario in this chapter focused primarly on how to connect existing applications. For a detailed description on how to publish and consume messages from inside a custom application see the examples in Chapter 6 and Chapter 9 (see Introduction to Simple Messaging Examples and Introduction to Composed Messaging Examples) The remainder of the book contains detailed descriptions and code examples for each of the patterns that we used in our solution design. The patterns are categorized by their primary intent
 
 between base patterns, channel patterns, message patterns, routing patterns, transformation patterns, endpoint patterns and system management patterns. This arrangement makes it easy to read all patterns in sequence or look up individual patterns as a reference.
 
-## 2 Integration Styles
+## 2. Integration Styles
 
 ### Introduction
+
+Enterprise integration is the task of making separate applications work together to produce a
+unified set of functionality. Some applications may be custom developed in-house while others
+are bought from third-party vendors. The applications probably run on multiple computers,
+which may represent multiple platforms, and may be geographically dispersed. Some of the
+applications may be run outside of the enterprise by business partners or customers. Some
+applications may need to be integrated even though they were not designed for integration and
+cannot be changed. These issues and others like them are what make application integration
+difficult. This chapter will explore the options available for application integration.
 
 ### Application Integration Criteria
 
@@ -715,7 +858,7 @@ Asynchronous messaging is fundamentally a pragmatic reaction to the problems of 
 
 This book is about Messaging, so you can therefore assume that we consider Messaging to be generally the best approach to enterprise application integration. But you shouldn't assume that we think it's free of problems. The high frequency of messages in Messaging reduces many of the inconsistency problems that bedevil File Transfer, but it doesn't entirely remove them. There is still going to be some lag problems with systems not being updated quite simultaneously. Asynchronous design is not the way most software people are taught, and as a result there's a whole host of different rules and techniques in place. The messaging context makes this a bit easier than programming in a asynchronous application environment like X windows, but asynchrony still has a learning curve. Testing and debugging are also harder in this environment. The ability to transform messages has the nice benefit of allowing applications to be much more decoupled from each other than in Remote Procedure Invocation and File Transfer. But this independence does mean that integrators are often left with writing a lot of messy glue code to fit everything together. Once you decide that you want to use Messaging for system integration, there are a number of new issues to consider and practices you can employ. How do you transfer packets of data? A sender sends data to a receiver by sending a Message via a Message Channel that connects the sender and receiver. How do you know where to send the data? If the sender does not know where to address the data to, it can send the data to a Message Router, which will direct the data to the proper receiver. How do you know what data format to use? If the sender and receiver do not agree on the data format, the sender can direct the data to a Message Translator that will convert the data to the receiver's format and then forward the data to the receiver. If you're an application developer, how do you connect your application to the messaging system? An application that wishes to use messaging will implement Message Endpoints to perform the actual sending and receiving. Related patterns: Remote Procedure Invocation, File Transfer, Message, Message Channel, Message Endpoint, Message Router, Message Translator, Shared Database
 
-## 3 Messaging Systems
+## 3. Messaging Systems
 
 ### Introduction
 
@@ -942,9 +1085,9 @@ In JMS, the two main endpoint types are MessageProducer, for sending messages, a
 
 In .NET, the main endpoint class is the same as the main Message Channel class, MessageQueue. A Message Endpoint uses an instance of MessageQueue to send or receive messages to/from a particular channel. Related patterns: Channel Adapter, Competing Consumers, Durable Subscriber, Event-Driven Consumer, Idempotent Receiver, Message, Message Channel, Message Dispatcher, Selective Consumer, Service Activator, Messaging Gateway, Messaging Mapper, Polling Consumer, Transactional Client
 
-## 4 Messaging Channels
+## 4. Messaging Channels
 
-#### Introduction
+### Introduction
 
 In Introduction to Messaging Systems, we discussed Message Channel. When two applications wish to exchange data, they do so by sending the data through a channel that connects the two. The application sending the data may not know which application will receive the data, but by selecting a particular channel to send the data on, the sender knows that the receiver will be one that is looking for that sort of data by looking for it on that channel. In this way, the applications that produce shared data have a way to communicate with those that wish to consume it.
 
@@ -1251,9 +1394,9 @@ A stock trading system may wish to offer a unified suite of services including s
 
 Related patterns: Canonical Data Model, Channel Adapter, Command Message, Datatype Channel, Message Router, Service Activator, Publish-Subscribe Channel
 
-## 5 Message Construction
+## 5. Message Construction
 
-#### Introduction
+### Introduction
 
 In Introduction to Messaging Systems, we discussed Message. When two applications wish to exchange a piece of data, they do so by wrapping it in a message. Whereas a Message Channel cannot transmit raw data per se, it can transmit the data wrapped in a message. Deciding to create a Message and send it raises several other issues:
 
@@ -1516,7 +1659,7 @@ Several applications are communicating via Messages that follow an agreed upon d
 
 XML documents have examples of all three approaches. One example is an XML declaration, like this: <?xml version="1.0"?> Here, 1.0 is a version number that indicates the document’s conformance to that version of the XML specification. Another example is the document type declaration, which can take two forms. It can be an external ID containing a system identifier like this: <!DOCTYPE greeting SYSTEM "hello.dtd"> The system identifier, hello.dtd, is a foreign key that indicates the file containing the DTD document that describes this XML document’s format. The declaration can also be included locally, like this: <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]> The markup declaration, [<!ELEMENT greeting (#PCDATA)>], is a format document, an embedded schema document that describes the XML’s format. [XML 1.0] Related patterns: Canonical Data Model, Message
 
-## 6 Interlude Simple Messaging
+## 6. Interlude Simple Messaging
 
 ### Introduction
 
@@ -2711,7 +2854,7 @@ The problem with this approach is that it can lead to a channel explosion. Consi
 
 ```
 
-## 7 Message Routing
+## 7. Message Routing
 
 ### Introduction
 
@@ -3254,7 +3397,7 @@ of translators required to translate between each and every recipient in a syste
 - Visual Design tools. These tools allow the developer to compose the functionality of a Message Broker using visual components, such as Routers, Decision Points, Transformers. These tools make the flow of message visually intuitive and can reduce the coding effort for many of these components to single-lines of code, e.g. an evaluation function or a rule.
 - Runtime support. Most EAI packages also provide sophisticated run-time support in both deploying the solution and monitoring the traffic flowing through the Message Broker. Related patterns: Canonical Data Model, Event-Driven Consumer, Message Channel, Message Endpoint, Message Router, Pipes and Filters, Point-to-Point Channel, Publish-Subscribe Channel, Recipient List
 
-## 8 Message Transformation
+## 8. Message Transformation
 
 ### Introduction
 
@@ -3356,7 +3499,7 @@ The TIBCO Designer
 
 - A UI Tool to Maintain a Canonical Data Model Related patterns: Format Indicator, Message Channel, Message Router, Introduction to Message Routing, Message Translator, Messaging, Messaging Mapper, Shared Database
 
-## 9 Interlude Composed Messaging
+## 9. Interlude Composed Messaging
 
 ### Introduction
 
@@ -4172,9 +4315,7 @@ public MessageQueue GetQueue() { return null; }
 - Transactions
 - Thread Safety The example has no managed mechanism to handle errors. At this point, components simple spit out messages into the various console windows -- not a suitable solution for a production system. For a real implementation error messages should be routed to a central console so they can notify an operator in a unified way. The systems management patterns in the following chapter (e.g., the Control Bus address these requirements. This example does not use transactional queues. For example, if the MessageRouter crashes after sending 2 out of 4 quote request messages to the banks, some banks will process a quite request while others will not. Likewise, if the loan broker crashes after it receives all bank quote replies but before it sends a reply to the client the client will never receive a reply. In a real-life system, actions like this need to be encapsulated inside transactions so that incoming messages are not consumed until the corresponding outbound message had been sent.
 
-### Asynchronous Implementation with TIBCO
-
-### ActiveEnterprise
+### Asynchronous Implementation with TIBCO ActiveEnterprise
 
 The loan broker implementation executes only in a single thread and does not worry about thread safety. For example, the BeginReceive method on an inbound message queue (hidden away in MessageReceiverGateway) is not called until the processing of the previous message has been completed. This is just fine for an example application (and a lot faster than the synchronous implementation) but for a high-throughput environment we would want to use a Message Dispatcher that manages multiple performer threads. Summary This chapter walked us through the implementation of the loan broker application using asynchronous message queues and MSMQ. I intentionally did not shy away from showing implementation details in order to bring the real issues inherent in building asynchronous messaging applications to light. I tried to focus on the design trade-offs more so than the vendor-specific messaging API so that the example is also valuable for non-C# developers. This example reminds us of the complexities of implementing even a simple messaging application. Many things that can be taken for granted in a monolithic application (e.g. invoking a method) can require a significant amount of coding effort when using asynchronous messaging. Luckily, the design patterns provide us with a language to describe some of the design trade-offs without having to descend too deeply into the vendor jargon. ActiveEnterprise (By Michael J. Rettig) The previous two implementations of the Loan Broker used integration frameworks that provided basic Message Channel functionality. For example, both Axis and MSMQ provided APIs to send messages to or receive messages from a Message Channel while the application had to take care of pretty much everything else. We chose this type of implementation intentionally to demonstrate how an integration solution can be built from the ground up, using commonly available Java or C# libraries. Many commercial EAI product suites offer substantially more functionality to streamline the development of integration solutions. These product suites typically include visual development environments that allow for "drag-drop" configuration of Message Translators and Process Managers. Many also provide sophisticated system management and metadata management functions. We chose the TIBCO ActiveEnterprise integration suite for this example implementation. As with the previous implementations, we focus primarily on design decisions and trade-offs and only introduce as much product-specific language as is necessary to understand the solution. Therefore, this section should be useful even if you have not worked
 
@@ -4265,7 +4406,7 @@ The next message represents the request from the loan broker to the credit servi
 
 integration tasks without worrying about what happens behind the scenes. However, ignorance of messaging infrastructure has led to the death of more than one project.
 
-## 10 Messaging Endpoints
+## 10. Messaging Endpoints
 
 ### Introduction
 
@@ -4822,7 +4963,7 @@ service executes. When the service completes and returns a value, the activator 
 
 Related patterns: Command Message, Competing Consumers, Event-Driven Consumer, Invalid Message Channel, Message Dispatcher, Message Endpoint, Messaging Gateway, Polling Consumer, Request-Reply, Transactional Client
 
-## 11 System Management
+## 11. System Management
 
 ### Introduction
 
@@ -5044,7 +5185,7 @@ while (consumer.receiveNoWait() != null) System.out.print("."); connection.stop(
 
 ```
 
-## 12 Interlude System Management Example
+## 12. Interlude System Management Example
 
 ### Loan Broker System Management
 
@@ -5286,7 +5427,7 @@ Propagation of Events Inside the Management Console Using a user-interface conso
 
 the tool can draw a connecting line between the two components. Storing this information in a central repository (as supported by many EAI tool suites, for example TIBCO ActiveEnterprise) is a huge benefit for this type of analysis. In the absence of such a repository, we can inspect individual messages and reverse-engineer connections between components based on the origin of messages arriving at a particular component. This task is greatly simplified if the participating components support the creation of a Message History. Without the help of a Message History, we can still reconstruct the flow of messages if each message contains a field specifying the sender of the message (many systems include such a field for authentication purposes). Limitations of This Example Unfortunately, in order to fit this example into the scope of a single chapter, we had to make some simplifying assumptions. For example, our failover mechanism does not deal with the messages that are already queued up when the primary Credit Bureau service fails -- these messages remain queued up until the service is reinstated. The Loan Broker is able to continue functioning because it correlates incoming response message to reply messages, but the loan quote requests associated with the 'stuck' message will not be processed until the primary Credit Bureau comes back on-line. In order to improve response times in a fail-over scenario we should implement a re-send function that allows the Loan Broker to re-issue request messages for those messages that are queued up indefinitely in front of a failed service. Alternatively, the fail-over router could store all request messages that have arrived since the correct function of the service was last confirmed. If a service failure is detected, the router could re-send all these messages because some of them might not have been processed correctly. This approach can lead to duplicate request messages (and associated reply messages), but since both the Credit Bureau service and the Loan Broker messages are Idempotent Receivers this does not cause any problems -- duplicate reply messages are simply ignored. This example demonstrated only a small subset of the system management functions that can be implemented with the patterns in this section. For example, we could monitor message traffic across all components, set performance thresholds, have each component send "heartbeat" messages and more, In fact, adding robust system management to a distributed messaging solution can require as much (or more) design and implementation effort as the original solution.
 
-## 13 Integration Patterns in Practice
+## 13. Integration Patterns in Practice
 
 ### Case Study: Bond Trading System
 
@@ -5359,11 +5500,9 @@ The Message Dispatcher in context Implementing this in our system is simple. We 
 
 production crash with patterns. We also saw these patterns as they already exist in third party product, legacy components, and our JMS and TIBCO messaging systems. Most importantly, these are real problems with the same types of architectural, technical and business problems we experience as we design and maintain our own systems. Hopefully reading about applying patterns to this system helps give you a better understanding of the patterns as well as how to apply them to your own systems.
 
-## 14 Concluding Remarks
+## 14. Concluding Remarks
 
-### Emerging Standards and Futures in Enterprise
-
-### Integration
+### Emerging Standards and Futures in Enterprise Integration
 
 Integration By Sean Neville As data flows across system and domain boundaries through messaging conduits, and as developers and architects become more proficient in the patterns that govern messaging systems, new standards and products will emerge to extend the tactical reach of those patterns. Over time, patterns tend to strengthen but otherwise change little if at all; but their implementation strategies often evolve rapidly to allow developers to apply them to much broader scales of sophistication. The fundamental Message Pattern, for example, finds its reach and applicability extended as implementation artifacts grow from EDI to proprietary MOM to open XML and SOAP-based web services to global BPEL and beyond. This chapter takes a look at the future of message-based enterprise integration in terms of the emerging standards that application developers will encounter in the mid 00's. Many of these standards are not currently in common use, but are coalescing with broad industry support, and are likely to serve as the foundation of integration pattern implementations particularly in service-oriented architectures. Most of them extend nascent web services technologies to support the types of patterns presented in this book. We'll take a look at why these standards are important in relation to design patterns, which organizations are creating them and how they're going about it, and offer a brief summary of the technical solutions for business process integration that a few of the most promising web services and Java standards aim to provide. The Relationship between Standards and Design Patterns Two mental artifacts provide the highest levels of abstraction in software architecture today: Programming orientations, which include object-oriented programming, service-oriented programming, generative programming and the like; and pattern languages, such as that documented in this book. If a particular orientation or design pattern proves useful, and if its context proves to recur frequently, the tactics and strategies used to implement the pattern often become very similar. Pattern solutions on multiple platforms, products and applications end up owning very few differences -- but those few differences are often frustrating growth inhibitors, typically semantic in nature, and produce interoperability that hinders sophistication of scale. To extend the reach of applications and the patterns on which they're based, such differences tend to be eliminated from products and platforms through formally agreed-upon standards.
 
