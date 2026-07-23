@@ -1,6 +1,6 @@
-Enterprise Integration Patterns
+# Enterprise Integration Patterns
 
-Designing, Building, and Deploying Messaging Solutions
+**Designing, Building, and Deploying Messaging Solutions**
 
 **By Gregor Hohpe and Bobby Woolf**
 
@@ -10,7 +10,7 @@ Designing, Building, and Deploying Messaging Solutions
 
 ---
 
-Table of Contents
+**Table of Contents**
 
 - [Foreword](#foreword)
   - [Foreword by John Crupi](#foreword-by-john-crupi)
