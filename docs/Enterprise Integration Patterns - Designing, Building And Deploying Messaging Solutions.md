@@ -1,6 +1,6 @@
-# Enterprise Integration Patterns
+Enterprise Integration Patterns
 
-## Designing, Building, and Deploying Messaging Solutions
+Designing, Building, and Deploying Messaging Solutions
 
 **By Gregor Hohpe and Bobby Woolf**
 
@@ -10,254 +10,265 @@
 
 ---
 
-## Table of Contents
+Table of Contents
 
-- [Enterprise Integration Patterns](#enterprise-integration-patterns)
-  - [Designing, Building, and Deploying Messaging Solutions](#designing-building-and-deploying-messaging-solutions)
-  - [Table of Contents](#table-of-contents)
-  - [Foreword](#foreword)
-    - [Foreword by John Crupi](#foreword-by-john-crupi)
-    - [Foreword by Martin Fowler](#foreword-by-martin-fowler)
-  - [Preface](#preface)
-    - [Who Should Read This Book](#who-should-read-this-book)
-    - [What You Will Learn](#what-you-will-learn)
-    - [What This Book Does Not Cover](#what-this-book-does-not-cover)
-    - [How This Book Is Organized](#how-this-book-is-organized)
-    - [Acknowledgements](#acknowledgements)
-    - [About the Cover Picture](#about-the-cover-picture)
-  - [Introduction](#introduction)
-    - [What is Messaging?](#what-is-messaging)
-    - [What is a Messaging System?](#what-is-a-messaging-system)
-    - [Why Use Messaging?](#why-use-messaging)
-    - [Challenges of Asynchronous Messaging](#challenges-of-asynchronous-messaging)
-    - [Thinking Asynchronously](#thinking-asynchronously)
-    - [Distributed Applications vs. Integration](#distributed-applications-vs-integration)
-    - [Commercial Messaging Systems](#commercial-messaging-systems)
-      - [Messaging Product Feature Mapping (JMS, MSMQ, WebSphere MQ)](#messaging-product-feature-mapping-jms-msmq-websphere-mq)
-      - [Messaging Product Feature Mapping (TIBCO, WebMethods, SeeBeyond, Vitria)](#messaging-product-feature-mapping-tibco-webmethods-seebeyond-vitria)
-    - [Pattern Form](#pattern-form)
-    - [Diagram Notation](#diagram-notation)
-    - [Examples and Interludes](#examples-and-interludes)
-    - [Organization of this Book](#organization-of-this-book)
-    - [Getting Started](#getting-started)
-    - [Supporting Web Site](#supporting-web-site)
-    - [Summary](#summary)
-  - [1. Solving Integration Problems using Patterns](#1-solving-integration-problems-using-patterns)
-    - [The Need for Integration](#the-need-for-integration)
-    - [Integration Challenges](#integration-challenges)
-    - [How Integration Patterns Can Help](#how-integration-patterns-can-help)
-    - [The Wide World of Integration](#the-wide-world-of-integration)
-    - [Loose Coupling](#loose-coupling)
-    - [1 Minute EAI](#1-minute-eai)
-    - [A Loosely Coupled Integration Solution](#a-loosely-coupled-integration-solution)
-    - [Widget-Gadget Corp -- An Example](#widget-gadget-corp----an-example)
-      - [Internal Systems](#internal-systems)
-      - [Taking Orders](#taking-orders)
-      - [Processing Orders](#processing-orders)
-      - [Checking Status](#checking-status)
-      - [Change Address](#change-address)
-      - [New Catalog](#new-catalog)
-      - [Announcements](#announcements)
-      - [Testing and Monitoring](#testing-and-monitoring)
-    - [Summary](#summary-1)
-  - [2. Integration Styles](#2-integration-styles)
-    - [Introduction](#introduction-1)
-    - [Application Integration Criteria](#application-integration-criteria)
-    - [Application Integration Options](#application-integration-options)
-    - [File Transfer](#file-transfer)
-    - [Shared Database](#shared-database)
-    - [Remote Procedure Invocation](#remote-procedure-invocation)
-    - [Messaging](#messaging)
-  - [3. Messaging Systems](#3-messaging-systems)
-    - [Introduction](#introduction-2)
-      - [Basic Messaging Concepts](#basic-messaging-concepts)
+- [Foreword](#foreword)
+  - [Foreword by John Crupi](#foreword-by-john-crupi)
+  - [Foreword by Martin Fowler](#foreword-by-martin-fowler)
+- [Preface](#preface)
+  - [Who Should Read This Book](#who-should-read-this-book)
+  - [What You Will Learn](#what-you-will-learn)
+  - [What This Book Does Not Cover](#what-this-book-does-not-cover)
+  - [How This Book Is Organized](#how-this-book-is-organized)
+  - [Acknowledgements](#acknowledgements)
+  - [About the Cover Picture](#about-the-cover-picture)
+- [Introduction](#introduction)
+  - [What is Messaging?](#what-is-messaging)
+  - [What is a Messaging System?](#what-is-a-messaging-system)
+  - [Why Use Messaging?](#why-use-messaging)
+  - [Challenges of Asynchronous Messaging](#challenges-of-asynchronous-messaging)
+  - [Thinking Asynchronously](#thinking-asynchronously)
+  - [Distributed Applications vs. Integration](#distributed-applications-vs-integration)
+  - [Commercial Messaging Systems](#commercial-messaging-systems)
+    - [Messaging Product Feature Mapping (JMS, MSMQ, WebSphere MQ)](#messaging-product-feature-mapping-jms-msmq-websphere-mq)
+    - [Messaging Product Feature Mapping (TIBCO, WebMethods, SeeBeyond, Vitria)](#messaging-product-feature-mapping-tibco-webmethods-seebeyond-vitria)
+  - [Pattern Form](#pattern-form)
+  - [Diagram Notation](#diagram-notation)
+  - [Examples and Interludes](#examples-and-interludes)
+  - [Organization of this Book](#organization-of-this-book)
+  - [Getting Started](#getting-started)
+  - [Supporting Web Site](#supporting-web-site)
+  - [Summary](#summary)
+- [1. Solving Integration Problems using Patterns](#1-solving-integration-problems-using-patterns)
+  - [The Need for Integration](#the-need-for-integration)
+  - [Integration Challenges](#integration-challenges)
+  - [How Integration Patterns Can Help](#how-integration-patterns-can-help)
+  - [The Wide World of Integration](#the-wide-world-of-integration)
+  - [Loose Coupling](#loose-coupling)
+  - [1 Minute EAI](#1-minute-eai)
+  - [A Loosely Coupled Integration Solution](#a-loosely-coupled-integration-solution)
+  - [Widget-Gadget Corp -- An Example](#widget-gadget-corp----an-example)
+    - [Internal Systems](#internal-systems)
+    - [Taking Orders](#taking-orders)
+    - [Processing Orders](#processing-orders)
+    - [Checking Status](#checking-status)
+    - [Change Address](#change-address)
+    - [New Catalog](#new-catalog)
+    - [Announcements](#announcements)
+    - [Testing and Monitoring](#testing-and-monitoring)
+  - [Summary](#summary-1)
+- [2. Integration Styles](#2-integration-styles)
+  - [Introduction](#introduction-1)
+  - [Application Integration Criteria](#application-integration-criteria)
+  - [Application Integration Options](#application-integration-options)
+    - [File Transfer (By Martin Fowler)](#file-transfer-by-martin-fowler)
+      - [How can I integrate multiple applications so that they work together and can exchange information?](#how-can-i-integrate-multiple-applications-so-that-they-work-together-and-can-exchange-information)
+  - [Shared Database](#shared-database)
+    - [How can I integrate multiple applications so that they work together and can exchange information?](#how-can-i-integrate-multiple-applications-so-that-they-work-together-and-can-exchange-information-1)
+  - [Remote Procedure Invocation (By Martin Fowler)](#remote-procedure-invocation-by-martin-fowler)
+    - [How can I integrate multiple applications so that they work together and can exchange information?](#how-can-i-integrate-multiple-applications-so-that-they-work-together-and-can-exchange-information-2)
+  - [Messaging](#messaging)
+    - [How can I integrate multiple applications so that they work together and can exchange information?](#how-can-i-integrate-multiple-applications-so-that-they-work-together-and-can-exchange-information-3)
+- [3. Messaging Systems](#3-messaging-systems)
+  - [Introduction](#introduction-2)
+    - [Basic Messaging Concepts](#basic-messaging-concepts)
+    - [Book Organization](#book-organization)
     - [Message Channel](#message-channel)
-      - [Book Organization](#book-organization)
-      - [Relationship of Root Patterns and Chapters](#relationship-of-root-patterns-and-chapters)
-      - [Applications Magically Connected](#applications-magically-connected)
-      - [A Little Bit of Messaging Vocabulary](#a-little-bit-of-messaging-vocabulary)
-      - [Channel Names](#channel-names)
-    - [Message](#message)
+    - [How does one application communicate with another using messaging?](#how-does-one-application-communicate-with-another-using-messaging)
+    - [A Little Bit of Messaging Vocabulary](#a-little-bit-of-messaging-vocabulary)
+    - [Channel Names](#channel-names)
+    - [Example: Stock Trading](#example-stock-trading)
+    - [Example: J2EE JMS Reference Implementation](#example-j2ee-jms-reference-implementation)
+    - [Example: Microsoft MSMQ](#example-microsoft-msmq)
+  - [Message](#message)
+    - [How can two applications connected by a message channel exchange a piece of information?](#how-can-two-applications-connected-by-a-message-channel-exchange-a-piece-of-information)
+    - [Example: JMS Message](#example-jms-message)
+    - [Example: .NET Message](#example-net-message)
+    - [Example: SOAP Message](#example-soap-message)
     - [Pipes and Filters](#pipes-and-filters)
-      - [Pipeline Processing](#pipeline-processing)
-      - [Parallel Processing](#parallel-processing)
-      - [History of Pipes-and-Filters](#history-of-pipes-and-filters)
-      - [Vocabulary](#vocabulary)
-    - [Message Router](#message-router)
-      - [Variants](#variants)
-      - [Example: Commercial EAI Tools](#example-commercial-eai-tools)
-    - [Message Translator](#message-translator)
-      - [Levels of Transformation](#levels-of-transformation)
-      - [Levels of Decoupling](#levels-of-decoupling)
-      - [Chaining Transformations](#chaining-transformations)
-      - [Example: Structural Transformation with XSL](#example-structural-transformation-with-xsl)
-      - [Example: Visual Transformation Tools](#example-visual-transformation-tools)
-      - [Creating Transformations the Drag-Drop Style](#creating-transformations-the-drag-drop-style)
-    - [Message Endpoint](#message-endpoint)
-      - [Applications disconnected from a message channel](#applications-disconnected-from-a-message-channel)
-      - [Example: JMS Producer and Consumer](#example-jms-producer-and-consumer)
-      - [Example: .NET MessageQueue](#example-net-messagequeue)
-  - [4. Messaging Channels](#4-messaging-channels)
-    - [Introduction](#introduction-3)
-      - [Message Channel Themes](#message-channel-themes)
-      - [Fixed set of channels](#fixed-set-of-channels)
-      - [Determining the set of channels](#determining-the-set-of-channels)
-      - [Unidirectional channels](#unidirectional-channels)
-      - [Message Channel Decisions](#message-channel-decisions)
-      - [One-to-one or one-to-many](#one-to-one-or-one-to-many)
-      - [What type of data](#what-type-of-data)
-      - [Invalid and dead messages](#invalid-and-dead-messages)
-      - [Crash proof](#crash-proof)
-      - [Non-messaging clients](#non-messaging-clients)
-      - [Communications backbone](#communications-backbone)
-    - [Point- to- Point Channel](#point--to--point-channel)
-      - [Point-to-Point Channel](#point-to-point-channel)
-      - [Example: Stock Trading](#example-stock-trading)
-      - [Example: JMS Queue](#example-jms-queue)
-    - [Publish- Subscribe Channel](#publish--subscribe-channel)
-      - [Example: .NET MessageQueue](#example-net-messagequeue-1)
-      - [Publish-Subscribe Channel](#publish-subscribe-channel)
-      - [Wildcard Subscribers](#wildcard-subscribers)
-      - [Example: Stock Trading](#example-stock-trading-1)
-      - [Example: JMS Topic](#example-jms-topic)
-    - [Datatype Channel](#datatype-channel)
-      - [Example: MSMQ One-to-Many Messaging](#example-msmq-one-to-many-messaging)
-      - [Datatype Channel](#datatype-channel-1)
-      - [Mixed Data Types](#mixed-data-types)
-      - [Example: Stock Trading](#example-stock-trading-2)
-    - [Invalid Message Channel](#invalid-message-channel)
-      - [Example: Purchasing System](#example-purchasing-system)
-      - [Invalid Message Channel](#invalid-message-channel-1)
-      - [Invalid Message](#invalid-message)
-      - [Example: Stock Trading](#example-stock-trading-3)
-    - [Dead Letter Channel](#dead-letter-channel)
-      - [Example: JMS Specification](#example-jms-specification)
-      - [Dead Letter Channel](#dead-letter-channel-1)
-      - [Example: Stock Trading](#example-stock-trading-4)
-    - [Guaranteed Delivery](#guaranteed-delivery)
-      - [Guaranteed Delivery](#guaranteed-delivery-1)
-      - [Example: Stock Trading](#example-stock-trading-5)
-      - [Example: JMS Persistent Messages](#example-jms-persistent-messages)
-      - [Example: IBM WebSphere MQ](#example-ibm-websphere-mq)
-    - [Channel Adapter](#channel-adapter)
-      - [Example: .NET Persistent Messages](#example-net-persistent-messages)
-      - [Channel Adapter](#channel-adapter-1)
-      - [Example: Stock Trading](#example-stock-trading-6)
-      - [Example: Commercial EAI Tools](#example-commercial-eai-tools-1)
-    - [Messaging Bridge](#messaging-bridge)
-      - [Example: Web Services Adapters](#example-web-services-adapters)
-      - [Messaging Bridge](#messaging-bridge-1)
-      - [Example: Stock Trading](#example-stock-trading-7)
-      - [Example: MSMQ Bridges](#example-msmq-bridges)
-      - [Example: SonicMQ Bridges](#example-sonicmq-bridges)
-    - [Message Bus](#message-bus)
-      - [Insurance Company EAI Scenario](#insurance-company-eai-scenario)
-      - [Insurance Company Message Bus](#insurance-company-message-bus)
-      - [Example: Stock Trading](#example-stock-trading-8)
-  - [5. Message Construction](#5-message-construction)
-    - [Introduction](#introduction-4)
-      - [Message intent](#message-intent)
-      - [Returning a response](#returning-a-response)
-      - [Huge amounts of data](#huge-amounts-of-data)
-    - [Command Message](#command-message)
-      - [Slow messages](#slow-messages)
-    - [Document Message](#document-message)
-      - [Example: Java and XML](#example-java-and-xml)
-    - [Event Message](#event-message)
-      - [Example: SOAP and WSDL](#example-soap-and-wsdl)
-      - [Event Message](#event-message-1)
-    - [Request- Reply](#request--reply)
-      - [Request-Reply](#request-reply)
-      - [Example: SOAP 1.1 Messages](#example-soap-11-messages)
-      - [Example: SOAP 1.2 Response Message Exchange Pattern](#example-soap-12-response-message-exchange-pattern)
-      - [Example: JMS Requestor Objects](#example-jms-requestor-objects)
-    - [Return Address](#return-address)
-      - [Return Address](#return-address-1)
-      - [Uncertain Where to Send Replies](#uncertain-where-to-send-replies)
-      - [Example: JMS Reply-To Property](#example-jms-reply-to-property)
-    - [Correlation Identifier](#correlation-identifier)
-      - [Correlation Identifier](#correlation-identifier-1)
-      - [Cannot Match Reply to Request](#cannot-match-reply-to-request)
-      - [Request-Reply Chaining](#request-reply-chaining)
-      - [Example: JMS Correlation-ID Property](#example-jms-correlation-id-property)
-      - [Example: .NET Correlation-Id Property](#example-net-correlation-id-property)
-      - [Example: Web Services Request/Response](#example-web-services-requestresponse)
-      - [Example: SOAP request message containing a message identifier](#example-soap-request-message-containing-a-message-identifier)
-    - [Message Sequence](#message-sequence)
-      - [Message Sequence](#message-sequence-1)
-      - [with End Indicator](#with-end-indicator)
-      - [Example: Large Document Transfer](#example-large-document-transfer)
-      - [Example: Multi-Item Query](#example-multi-item-query)
-      - [Example: JMS and .NET](#example-jms-and-net)
-      - [Example: Web Services Architecture Usage Scenarios](#example-web-services-architecture-usage-scenarios)
-    - [Message Expiration](#message-expiration)
-      - [Message Expiration](#message-expiration-1)
-      - [Example: JMS Time-To-Live Parameter](#example-jms-time-to-live-parameter)
-    - [Format Indicator](#format-indicator)
-      - [Example: XML](#example-xml)
-  - [6. Interlude Simple Messaging](#6-interlude-simple-messaging)
-    - [Introduction](#introduction-5)
-    - [JMS Request/ Reply Example](#jms-request-reply-example)
-    - [.NET Request/ Reply Example](#net-request-reply-example)
-    - [JMS Publish/ Subscribe Example](#jms-publish-subscribe-example)
-  - [7. Message Routing](#7-message-routing)
-    - [Introduction](#introduction-6)
-    - [Content- Based Router](#content--based-router)
-    - [Message Filter](#message-filter)
-    - [Dynamic Router](#dynamic-router)
-    - [Recipient List](#recipient-list)
-    - [Splitter](#splitter)
-    - [Aggregator](#aggregator)
-    - [Resequencer](#resequencer)
-    - [Composed Message Processor](#composed-message-processor)
-    - [Scatter- Gather](#scatter--gather)
-    - [Routing Slip](#routing-slip)
-    - [Process Manager](#process-manager)
-    - [Message Broker](#message-broker)
-  - [8. Message Transformation](#8-message-transformation)
-    - [Introduction](#introduction-7)
-    - [Envelope Wrapper](#envelope-wrapper)
-    - [Content Enricher](#content-enricher)
-    - [Content Filter](#content-filter)
-    - [Claim Check](#claim-check)
-    - [Normalizer](#normalizer)
-    - [Canonical Data Model](#canonical-data-model)
-  - [9. Interlude Composed Messaging](#9-interlude-composed-messaging)
-    - [Introduction](#introduction-8)
-    - [Synchronous Implementation using Web Services](#synchronous-implementation-using-web-services)
-    - [Asynchronous Implementation with MSMQ](#asynchronous-implementation-with-msmq)
-    - [Asynchronous Implementation with TIBCO ActiveEnterprise](#asynchronous-implementation-with-tibco-activeenterprise)
-  - [10. Messaging Endpoints](#10-messaging-endpoints)
-    - [Introduction](#introduction-9)
-    - [Messaging Gateway](#messaging-gateway)
-    - [Messaging Mapper](#messaging-mapper)
-    - [Transactional Client](#transactional-client)
-    - [Polling Consumer](#polling-consumer)
-    - [Event- Driven Consumer](#event--driven-consumer)
-    - [Competing Consumers](#competing-consumers)
-    - [Message Dispatcher](#message-dispatcher)
-    - [Selective Consumer](#selective-consumer)
-    - [Durable Subscriber](#durable-subscriber)
-    - [Idempotent Receiver](#idempotent-receiver)
-    - [Service Activator](#service-activator)
-  - [11. System Management](#11-system-management)
-    - [Introduction](#introduction-10)
-    - [Control Bus](#control-bus)
-    - [Detour](#detour)
-    - [Wire Tap](#wire-tap)
-    - [Message History](#message-history)
-    - [Message Store](#message-store)
-    - [Smart Proxy](#smart-proxy)
-    - [Test Message](#test-message)
-    - [Channel Purger](#channel-purger)
-  - [12. Interlude System Management Example](#12-interlude-system-management-example)
-    - [Loan Broker System Management](#loan-broker-system-management)
-  - [13. Integration Patterns in Practice](#13-integration-patterns-in-practice)
-    - [Case Study: Bond Trading System](#case-study-bond-trading-system)
-    - [Architecture with Patterns](#architecture-with-patterns)
-  - [14. Concluding Remarks](#14-concluding-remarks)
-    - [Emerging Standards and Futures in Enterprise Integration](#emerging-standards-and-futures-in-enterprise-integration)
-  - [Bibliography](#bibliography)
+    - [How can we perform complex processing on a message while maintaining independence and flexibility?](#how-can-we-perform-complex-processing-on-a-message-while-maintaining-independence-and-flexibility)
+    - [Pipeline Processing](#pipeline-processing)
+    - [Parallel Processing](#parallel-processing)
+    - [History of Pipes-and-Filters](#history-of-pipes-and-filters)
+    - [Vocabulary](#vocabulary)
+    - [Example: Simple Filter in C# and MSMQ](#example-simple-filter-in-c-and-msmq)
+  - [Message Router](#message-router)
+    - [How can you decouple individual processing steps so that messages can be passed to different filters depending on a set of conditions?](#how-can-you-decouple-individual-processing-steps-so-that-messages-can-be-passed-to-different-filters-depending-on-a-set-of-conditions)
+    - [Message Router Variants](#message-router-variants)
+    - [Example: Commercial EAI Tools](#example-commercial-eai-tools)
+    - [Example: Simple Router with C# and MSMQ](#example-simple-router-with-c-and-msmq)
+  - [Message Translator](#message-translator)
+    - [How can systems using different data formats communicate with each other using messaging?](#how-can-systems-using-different-data-formats-communicate-with-each-other-using-messaging)
+    - [Levels of Transformation](#levels-of-transformation)
+    - [Levels of Decoupling](#levels-of-decoupling)
+    - [Chaining Transformations](#chaining-transformations)
+    - [Example: Structural Transformation with XSL](#example-structural-transformation-with-xsl)
+    - [Example: Visual Transformation Tools](#example-visual-transformation-tools)
+  - [Message Endpoint](#message-endpoint)
+    - [How does an application connect to a messaging channel to send and receive messages?](#how-does-an-application-connect-to-a-messaging-channel-to-send-and-receive-messages)
+    - [Example: JMS Producer and Consumer](#example-jms-producer-and-consumer)
+    - [Example: .NET MessageQueue](#example-net-messagequeue)
+- [4. Messaging Channels](#4-messaging-channels)
+  - [Introduction](#introduction-3)
+    - [Message Channel Themes](#message-channel-themes)
+    - [Fixed set of channels](#fixed-set-of-channels)
+    - [Determining the set of channels](#determining-the-set-of-channels)
+    - [Unidirectional channels](#unidirectional-channels)
+    - [Message Channel Decisions](#message-channel-decisions)
+    - [One-to-one or one-to-many](#one-to-one-or-one-to-many)
+    - [What type of data](#what-type-of-data)
+    - [Invalid and dead messages](#invalid-and-dead-messages)
+    - [Crash proof](#crash-proof)
+    - [Non-messaging clients](#non-messaging-clients)
+    - [Communications backbone](#communications-backbone)
+  - [Point- to- Point Channel](#point--to--point-channel)
+    - [Point-to-Point Channel](#point-to-point-channel)
+    - [Example: Stock Trading](#example-stock-trading-1)
+    - [Example: JMS Queue](#example-jms-queue)
+  - [Publish- Subscribe Channel](#publish--subscribe-channel)
+    - [Example: .NET MessageQueue](#example-net-messagequeue-1)
+    - [Publish-Subscribe Channel](#publish-subscribe-channel)
+    - [Wildcard Subscribers](#wildcard-subscribers)
+    - [Example: Stock Trading](#example-stock-trading-2)
+    - [Example: JMS Topic](#example-jms-topic)
+  - [Datatype Channel](#datatype-channel)
+    - [Example: MSMQ One-to-Many Messaging](#example-msmq-one-to-many-messaging)
+    - [Datatype Channel](#datatype-channel-1)
+    - [Mixed Data Types](#mixed-data-types)
+    - [Example: Stock Trading](#example-stock-trading-3)
+  - [Invalid Message Channel](#invalid-message-channel)
+    - [Example: Purchasing System](#example-purchasing-system)
+    - [Invalid Message Channel](#invalid-message-channel-1)
+    - [Invalid Message](#invalid-message)
+    - [Example: Stock Trading](#example-stock-trading-4)
+  - [Dead Letter Channel](#dead-letter-channel)
+    - [Example: JMS Specification](#example-jms-specification)
+    - [Dead Letter Channel](#dead-letter-channel-1)
+    - [Example: Stock Trading](#example-stock-trading-5)
+  - [Guaranteed Delivery](#guaranteed-delivery)
+    - [Guaranteed Delivery](#guaranteed-delivery-1)
+    - [Example: Stock Trading](#example-stock-trading-6)
+    - [Example: JMS Persistent Messages](#example-jms-persistent-messages)
+    - [Example: IBM WebSphere MQ](#example-ibm-websphere-mq)
+  - [Channel Adapter](#channel-adapter)
+    - [Example: .NET Persistent Messages](#example-net-persistent-messages)
+    - [Channel Adapter](#channel-adapter-1)
+    - [Example: Stock Trading](#example-stock-trading-7)
+    - [Example: Commercial EAI Tools](#example-commercial-eai-tools-1)
+  - [Messaging Bridge](#messaging-bridge)
+    - [Example: Web Services Adapters](#example-web-services-adapters)
+    - [Messaging Bridge](#messaging-bridge-1)
+    - [Example: Stock Trading](#example-stock-trading-8)
+    - [Example: MSMQ Bridges](#example-msmq-bridges)
+    - [Example: SonicMQ Bridges](#example-sonicmq-bridges)
+  - [Message Bus](#message-bus)
+    - [Insurance Company EAI Scenario](#insurance-company-eai-scenario)
+    - [Insurance Company Message Bus](#insurance-company-message-bus)
+    - [Example: Stock Trading](#example-stock-trading-9)
+- [5. Message Construction](#5-message-construction)
+  - [Introduction](#introduction-4)
+    - [Message intent](#message-intent)
+    - [Returning a response](#returning-a-response)
+    - [Huge amounts of data](#huge-amounts-of-data)
+  - [Command Message](#command-message)
+    - [Slow messages](#slow-messages)
+  - [Document Message](#document-message)
+    - [Example: Java and XML](#example-java-and-xml)
+  - [Event Message](#event-message)
+    - [Example: SOAP and WSDL](#example-soap-and-wsdl)
+    - [Event Message](#event-message-1)
+  - [Request- Reply](#request--reply)
+    - [Request-Reply](#request-reply)
+    - [Example: SOAP 1.1 Messages](#example-soap-11-messages)
+    - [Example: SOAP 1.2 Response Message Exchange Pattern](#example-soap-12-response-message-exchange-pattern)
+    - [Example: JMS Requestor Objects](#example-jms-requestor-objects)
+  - [Return Address](#return-address)
+    - [Return Address](#return-address-1)
+    - [Uncertain Where to Send Replies](#uncertain-where-to-send-replies)
+    - [Example: JMS Reply-To Property](#example-jms-reply-to-property)
+  - [Correlation Identifier](#correlation-identifier)
+    - [Correlation Identifier](#correlation-identifier-1)
+    - [Cannot Match Reply to Request](#cannot-match-reply-to-request)
+    - [Request-Reply Chaining](#request-reply-chaining)
+    - [Example: JMS Correlation-ID Property](#example-jms-correlation-id-property)
+    - [Example: .NET Correlation-Id Property](#example-net-correlation-id-property)
+    - [Example: Web Services Request/Response](#example-web-services-requestresponse)
+    - [Example: SOAP request message containing a message identifier](#example-soap-request-message-containing-a-message-identifier)
+  - [Message Sequence](#message-sequence)
+    - [Message Sequence](#message-sequence-1)
+    - [with End Indicator](#with-end-indicator)
+    - [Example: Large Document Transfer](#example-large-document-transfer)
+    - [Example: Multi-Item Query](#example-multi-item-query)
+    - [Example: JMS and .NET](#example-jms-and-net)
+    - [Example: Web Services Architecture Usage Scenarios](#example-web-services-architecture-usage-scenarios)
+  - [Message Expiration](#message-expiration)
+    - [Message Expiration](#message-expiration-1)
+    - [Example: JMS Time-To-Live Parameter](#example-jms-time-to-live-parameter)
+  - [Format Indicator](#format-indicator)
+    - [Example: XML](#example-xml)
+- [6. Interlude Simple Messaging](#6-interlude-simple-messaging)
+  - [Introduction](#introduction-5)
+  - [JMS Request/ Reply Example](#jms-request-reply-example)
+  - [.NET Request/ Reply Example](#net-request-reply-example)
+  - [JMS Publish/ Subscribe Example](#jms-publish-subscribe-example)
+- [7. Message Routing](#7-message-routing)
+  - [Introduction](#introduction-6)
+  - [Content- Based Router](#content--based-router)
+  - [Message Filter](#message-filter)
+  - [Dynamic Router](#dynamic-router)
+  - [Recipient List](#recipient-list)
+  - [Splitter](#splitter)
+  - [Aggregator](#aggregator)
+  - [Resequencer](#resequencer)
+  - [Composed Message Processor](#composed-message-processor)
+  - [Scatter- Gather](#scatter--gather)
+  - [Routing Slip](#routing-slip)
+  - [Process Manager](#process-manager)
+  - [Message Broker](#message-broker)
+- [8. Message Transformation](#8-message-transformation)
+  - [Introduction](#introduction-7)
+  - [Envelope Wrapper](#envelope-wrapper)
+  - [Content Enricher](#content-enricher)
+  - [Content Filter](#content-filter)
+  - [Claim Check](#claim-check)
+  - [Normalizer](#normalizer)
+  - [Canonical Data Model](#canonical-data-model)
+- [9. Interlude Composed Messaging](#9-interlude-composed-messaging)
+  - [Introduction](#introduction-8)
+  - [Synchronous Implementation using Web Services](#synchronous-implementation-using-web-services)
+  - [Asynchronous Implementation with MSMQ](#asynchronous-implementation-with-msmq)
+  - [Asynchronous Implementation with TIBCO ActiveEnterprise](#asynchronous-implementation-with-tibco-activeenterprise)
+- [10. Messaging Endpoints](#10-messaging-endpoints)
+  - [Introduction](#introduction-9)
+  - [Messaging Gateway](#messaging-gateway)
+  - [Messaging Mapper](#messaging-mapper)
+  - [Transactional Client](#transactional-client)
+  - [Polling Consumer](#polling-consumer)
+  - [Event- Driven Consumer](#event--driven-consumer)
+  - [Competing Consumers](#competing-consumers)
+  - [Message Dispatcher](#message-dispatcher)
+  - [Selective Consumer](#selective-consumer)
+  - [Durable Subscriber](#durable-subscriber)
+  - [Idempotent Receiver](#idempotent-receiver)
+  - [Service Activator](#service-activator)
+- [11. System Management](#11-system-management)
+  - [Introduction](#introduction-10)
+  - [Control Bus](#control-bus)
+  - [Detour](#detour)
+  - [Wire Tap](#wire-tap)
+  - [Message History](#message-history)
+  - [Message Store](#message-store)
+  - [Smart Proxy](#smart-proxy)
+  - [Test Message](#test-message)
+  - [Channel Purger](#channel-purger)
+- [12. Interlude System Management Example](#12-interlude-system-management-example)
+  - [Loan Broker System Management](#loan-broker-system-management)
+- [13. Integration Patterns in Practice](#13-integration-patterns-in-practice)
+  - [Case Study: Bond Trading System](#case-study-bond-trading-system)
+  - [Architecture with Patterns](#architecture-with-patterns)
+- [14. Concluding Remarks](#14-concluding-remarks)
+  - [Emerging Standards and Futures in Enterprise Integration](#emerging-standards-and-futures-in-enterprise-integration)
+- [Bibliography](#bibliography)
 
 ---
 
@@ -997,214 +1008,613 @@ difficult. This chapter will explore the options available for application integ
 
 ### Application Integration Criteria
 
-Enterprise integration is the task of making separate applications work together to produce a unified set of functionality. Some applications may be custom developed in-house while others are bought from third-party vendors. The applications probably run on multiple computers, which may represent multiple platforms, and may be geographically dispersed. Some of the applications may be run outside of the enterprise by business partners or customers. Some applications may need to be integrated even though they were not designed for integration and cannot be changed. These issues and others like them are what make application integration difficult. This chapter will explore the options available for application integration. What makes for good application integration? If integration needs were always the same, there would only be one integration style. Yet like any complex technological effort, application integration involves a range of considerations and consequences that should be taken into account for any integration opportunity. The first criterion is application integration itself. If you can develop a single, stand-alone application that doesn’t need to collaborate with any other applications, you can avoid the whole integration issue entirely. Realistically, though, even a simple enterprise has multiple applications, applications that need to work together to provide a unified experience for the enterprise’s employees, partners, and customers. The other main decision criteria are: Application coupling — Even integrated applications should minimize their dependencies on each other so that each can evolve without causing problems for the others. Tightly coupled applications make numerous assumptions about how the other applications work; when the applications change and break those assumptions, the integration breaks. The interface for integrating applications should be specific enough to implement useful functionality, but general enough to allow that implementation to change as needed. Integration simplicity — When integrating an application into an enterprise, developers should strive to minimize changing the application and minimize the amount of integration code needed. Yet changes and new code will usually be necessary to provide good integration functionality, and the approaches with the least impact on the application may not provide the best integration into the enterprise.
+What makes for good application integration? If integration needs were always the same, there would only be one integration style. Yet like any complex technological effort, application integration involves a range of considerations and consequences that should be taken into account for any integration opportunity.
+
+The first criterion is application integration itself. If you can develop a single, stand-alone application that doesn’t need to collaborate with any other applications, you can avoid the whole integration issue entirely. Realistically, though, even a simple enterprise has multiple applications, applications that need to work together to provide a unified experience for the enterprise’s employees, partners, and customers.
+
+The other main decision criteria are:
+
+`Application coupling` — Even integrated applications should minimize their dependencies on each other so that each can evolve without causing problems for the others. Tightly coupled applications make numerous assumptions about how the other applications work; when the applications change and break those assumptions, the integration breaks. The interface for integrating applications should be specific enough to implement useful functionality, but general enough to allow that implementation to change as needed.
+
+`Integration simplicity` — When integrating an application into an enterprise, developers should strive to minimize changing the application and minimize the amount of integration code needed. Yet changes and new code will usually be necessary to provide good integration functionality, and the approaches with the least impact on the application may not provide the best integration into the enterprise.
+
+`Integration technology` — Different integration techniques require varying amounts of specialized software and hardware. These special tools can be expensive, can lead to vendor lock-in, and increase the burden on developers to understand how to use the tools to integrate applications.
+
+`Data format` — Integrated applications must agree on the format of the data they exchange, or must have an intermediate traslator to unify applications that insist on different data formats. A related issue is data format evolution and extensibility—how the format can change over time and how that will affect the applications.
+
+`Data timeliness` — Integration should minimize the length of time between when one application decides to share some data and other applications have that data. Data should be exchanged frequently in small chunks, rather than waiting to exchange a large set of unrelated items. Applications should be informed as soon as shared data is ready for consumption. Latency in data sharing has to be factored into the integration design; the longer sharing can take, the more opportunity for shared data to become stale, and the more complex integration becomes.
+
+`Data or functionality` — Integrated applications may not want to simply share data, they may wish to share functionality such that each application can invoke the functionality in the others. Invoking functionality remotely can be difficult to achieve, and even though it may seem the same as invoking local functionality, it works quite differently, with significant consequences for how well the integration works.
+
+`Asynchronicity` — Computer processing is typically synchronous, such that a procedure waits while its subprocedure executes. It’s a given that the subprocedure is available when the procedure wants to invoke it. However, a procedure may not want to wait for the subprocedure to execute; it may want to invoke the subprocedure asynchronously, starting the subprocedure but then letting it execute in the background. This is especially true of integrated applications, where the remote application may not be running or the network may be unavailable—the source application may wish to simply make shared data available or log a request for a subprocedure call, but then go on to other work confident that the remote application will act sometime later.
+
+As you can see, there are several different criteria that must be considered when choosing and designing an integration approach. The question then becomes: Which integration approaches best address which of these criteria?
 
 ### Application Integration Options
 
-Integration technology — Different integration techniques require varying amounts of specialized software and hardware. These special tools can be expensive, can lead to vendor lock-in, and increase the burden on developers to understand how to use the tools to integrate applications. Data format — Integrated applications must agree on the format of the data they exchange, or must have an intermediate traslator to unify applications that insist on different data formats. A related issue is data format evolution and extensibility—how the format can change over time and how that will affect the applications. Data timeliness — Integration should minimize the length of time between when one application decides to share some data and other applications have that data. Data should be exchanged frequently in small chunks, rather than waiting to exchange a large set of unrelated items. Applications should be informed as soon as shared data is ready for consumption. Latency in data sharing has to be factored into the integration design; the longer sharing can take, the more opportunity for shared data to become stale, and the more complex integration becomes. Data or functionality — Integrated applications may not want to simply share data, they may wish to share functionality such that each application can invoke the functionality in the others. Invoking functionality remotely can be difficult to achieve, and even though it may seem the same as invoking local functionality, it works quite differently, with significant consequences for how well the integration works. Asynchronicity — Computer processing is typically synchronous, such that a procedure waits while its subprocedure executes. It’s a given that the subprocedure is available when the procedure wants to invoke it. However, a procedure may not want to wait for the subprocedure to execute; it may want to invoke the subprocedure asynchronously, starting the subprocedure but then letting it execute in the background. This is especially true of integrated applications, where the remote application may not be running or the network may be unavailable—the source application may wish to simply make shared data available or log a request for a subprocedure call, but then go on to other work confident that the remote application will act sometime later. As you can see, there are several different criteria that must be considered when choosing and designing an integration approach. The question then becomes: Which integration approaches best address which of these criteria? Application Integration Options There’s more than one approach for integrating applications. Each approach addresses some of the integration criteria better than others. The various approaches can be summed up in four main integration styles:
+There’s more than one approach for integrating applications. Each approach addresses some of the integration criteria better than others. The various approaches can be summed up in four main integration styles:
 
-### File Transfer
+`File Transfer` — Have each application produce files of shared data for others to consume, and consume files that others have produced.
 
-— Have each application produce files of shared data for others to consume, and consume files that others have produced. Shared Database — Have the applications store the data they wish to share in a common database. Remote Procedure Invocation — Have each application expose some of its procedures so that they can be invoked remotely, and have applications invoke those to run behavior and exchange data. Messaging — Have each application connect to a common messaging system, and exchange data and invoke behavior using messages. Each of the patterns has the same problem statement—the need to integrate applications—and very similar contexts. What differentiates them is different forces searching for a more elegant solution. Each pattern builds on the last, looking for a more sophisticated approach to address the shortcomings of its predecessors. Thus the pattern order reflects an increasing order of sophistication. The trick is not to choose the one style to use always, but to choose the best style for a particular integration opportunity. Each style has its advantages and disadvantages. Two applications may integrate using multiple styles such that each point of integration takes advantage of the style that suits it best. Likewise, an application may use different styles to integrate with different applications, so as to choose the style that works best for the other application. Some integration approaches can best be viewed as a hybrid of multiple styles. An integration product or EAI middleware may employ a combination of styles, all of which are effectively hidden in the product’s implementation. The remainder of this book will expand on the Messaging pattern. We focus on messaging in part because we believe it is often the best style for solving many integration opportunities. It is also the least well understood of the integration styles and a technology ripe with patterns that quickly explain how to make good use of it. Finally, messaging is the basis for many EAI products, so explaining how to use messaging well also goes a long way in teaching you how to use those products. Familiarize yourself with these patterns to better understand the issues involved with application integration, and to better understand how messaging fits into the mix. File Transfer (By Martin Fowler) An enterprise has multiple applications that are being built independently, with different languages and platforms.
+`Shared Database` — Have the applications store the data they wish to share in a common database.
 
-How can I integrate multiple applications so that they work together and can exchange information? In an ideal world, you might imagine an organization operating from a single cohesive piece of software, designed from the beginning to work in a unified and coherent way. Of course even the smallest operations don't work like that. Multiple pieces of software handle different aspects of the enterprise. This is due to a host of reasons. People buy packages that are developed by outside organizations Different system are built at different times, leading to different technology choices Different systems are built by different people, whose experience and preferences lead them to different approaches to building applications Getting an application out and delivering value is more important than ensuring that integration is addressed, especially when that integration isn't adding any value to the application under development. As a result, any organization has to worry about sharing information between very divergent applications. These can be written in different languages, based on different platforms, and with some different assumptions about how the business operates. Tying such applications together requires a lot of knowledge of understanding how to link together applications on both a business level and a technical level. To have any chance of getting your head around it, you must minimize what you need to know about how each application works. What is needed is a common data transfer mechanism that can be used by a variety of languages and platforms, yet seems natural to each. It should require a minimal amount of specialized hardware and software, making use of that the enterprise already has available. Files are a universal storage mechanism, built in to any enterprise operating system, available from any enterprise language. The simplest approach would be to somehow integrate the applications using files. Have each application produce files containing information that other applications need to consume. Integrators take the responsibility of transforming files into different formats. Produce the files at regular intervals according to the nature of the business.
+`Remote Procedure Invocation` — Have each application expose some of its procedures so that they can be invoked remotely, and have applications invoke those to run behavior and exchange data.
 
-An important decision with files is what format to use. Very rarely will the output of one application be exactly what's needed for another, so you'll have to do a fair bit of processing of files along the way. Not just do all the applications that use a file have to read it, you also have to
+`Messaging` — Have each application connect to a common messaging system, and exchange data and invoke behavior using messages.
 
-be able to use processing tools on it. As a result, standard file formats have grown up over time. Mainframe systems commonly use data feeds based on the file system formats of COBOL. Unix systems use text based files. The modern fashion is to use XML. An industry of readers, writers, and transformation tools has built up around each of these formats. Another issue with files is when to produce them and consume them. Since there's a certain amount of effort required to produce and process a file, you usually don't want to work with them too frequently. Typically you have some regular business cycle that drives the decision: nightly, weekly, quarterly, etc. Applications get used to when a new file is available and processes it at its time. The great advantage of files is that integrators need no knowledge of the internals of an application. The application team itself usually provides the file. The file's contents and format are negotiated with integrators, although if a package is used there's often limited choices. The integrators then deal with the transformations required for other applications, or they leave it up the consuming applications to decide how they want to manipulate and read the file. As a result the different applications are quite nicely decoupled from each other. Each application can make internal changes freely without affecting other applications, providing they still produce the same data in the files in the same format. The files effectively become the interface of each application. Part of what makes File Transfer simple is that no extra tools or integration packages are needed, but that also means that developers have to do a lot of the work themselves. The applications must agree on file naming conventions and the directories they appear in. The writer of a file must implement a strategy to keep the filenames unique. The applications must agree on which one will delete old files, and that application will have to know when a file is old and no longer needed. The applications will need to implement a locking mechanism or follow a timing convention to ensure that one application is not trying to read the file while another is still writing it. If all of the applications do not have access to the same disk, then some application must take responsibility for transferring the file from one disk to another. One of the most obvious issues with File Transfer is that updates tend to occur infrequently, as a result systems can get out of synchronization. A customer management system can process a change of address and produce an extract file each night, but the billing system may send out the bill to old address on the same day. Sometimes lack of synchronization isn't a big deal. People often expect a certain lag in getting information around, even with computers. At other times the result of using stale information is a disaster. When deciding on when to produce files, you have to take the freshness needs of consumers into account. In fact, the biggest problem with staleness is often on the software development staff themselves, who often have to live with data that isn't quite right. This can lead to inconsistencies that are difficult to resolve. If a customer changes his address on the same day with two different systems, but one of them makes an error and gets the wrong street name, you'll have two inconsistent addresses for a customer. You'll need some way to figure out how to resolve this. The longer the period between file transfer, the more likely and more painful this problem will become.
+Each of the patterns has the same problem statement—the need to integrate applications—and very similar contexts. What differentiates them is different forces searching for a more elegant solution. Each pattern builds on the last, looking for a more sophisticated approach to address the shortcomings of its predecessors. Thus the pattern order reflects an increasing order of sophistication.
+
+The trick is not to choose the one style to use always, but to choose the best style for a particular integration opportunity. Each style has its advantages and disadvantages. Two applications may integrate using multiple styles such that each point of integration takes advantage of the style that suits it best. Likewise, an application may use different styles to integrate with different applications, so as to choose the style that works best for the other application. Some integration approaches can best be viewed as a hybrid of multiple styles. An integration product or EAI middleware may employ a combination of styles, all of which are effectively hidden in the product’s implementation.
+
+The remainder of this book will expand on the Messaging pattern. We focus on messaging in part because we believe it is often the best style for solving many integration opportunities. It is also the least well understood of the integration styles and a technology ripe with patterns that quickly explain how to make good use of it. Finally, messaging is the basis for many EAI products, so explaining how to use messaging well also goes a long way in teaching you how to use those products.
+
+Familiarize yourself with these patterns to better understand the issues involved with application integration, and to better understand how messaging fits into the mix.
+
+#### File Transfer (By Martin Fowler)
+
+An enterprise has multiple applications that are being built independently, with different languages and platforms.
+
+##### How can I integrate multiple applications so that they work together and can exchange information?
+
+In an ideal world, you might imagine an organization operating from a single cohesive piece of software, designed from the beginning to work in a unified and coherent way. Of course even the smallest operations don't work like that. Multiple pieces of software handle different aspects of the enterprise.
+
+This is due to a host of reasons.
+
+- People buy packages that are developed by outside organizations
+- Different system are built at different times, leading to different technology choices
+- Different systems are built by different people, whose experience and preferences lead them to different approaches to building applications
+- Getting an application out and delivering value is more important than ensuring that integration is addressed, especially when that integration isn't adding any value to the application under development.
+
+As a result, any organization has to worry about sharing information between very divergent applications. These can be written in different languages, based on different platforms, and with some different assumptions about how the business operates.
+
+Tying such applications together requires a lot of knowledge of understanding how to link together applications on both a business level and a technical level. To have any chance of getting your head around it, you must minimize what you need to know about how each application works.
+
+What is needed is a common data transfer mechanism that can be used by a variety of languages and platforms, yet seems natural to each. It should require a minimal amount of specialized hardware and software, making use of that the enterprise already has available.
+
+Files are a universal storage mechanism, built in to any enterprise operating system, available from any enterprise language. The simplest approach would be to somehow integrate the applications using files.
+
+Have each application produce files containing information that other applications need to consume. Integrators take the responsibility of transforming files into different formats. Produce the files at regular intervals according to the nature of the business.
+
+`Diagram: Shared Data File`
+
+An important decision with files is what format to use. Very rarely will the output of one application be exactly what's needed for another, so you'll have to do a fair bit of processing of files along the way. Not just do all the applications that use a file have to read it, you also have to be able to use processing tools on it. As a result, standard file formats have grown up over time. Mainframe systems commonly use data feeds based on the file system formats of COBOL. Unix systems use text based files. The modern fashion is to use XML. An industry of readers, writers, and transformation tools has built up around each of these formats.
+
+Another issue with files is when to produce them and consume them. Since there's a certain amount of effort required to produce and process a file, you usually don't want to work with them too frequently. Typically you have some regular business cycle that drives the decision: nightly, weekly, quarterly, etc. Applications get used to when a new file is available and processes it at its time. The great advantage of files is that integrators need no knowledge of the internals of an application. The application team itself usually provides the file. The file's contents and format are negotiated with integrators, although if a package is used there's often limited choices. The integrators then deal with the transformations required for other applications, or they leave it up the consuming applications to decide how they want to manipulate and read the file.
+
+As a result the different applications are quite nicely decoupled from each other. Each application can make internal changes freely without affecting other applications, providing they still produce the same data in the files in the same format. The files effectively become the interface of each application.
+
+Part of what makes File Transfer simple is that no extra tools or integration packages are needed, but that also means that developers have to do a lot of the work themselves. The applications must agree on file naming conventions and the directories they appear in. The writer of a file must implement a strategy to keep the filenames unique. The applications must agree on which one will delete old files, and that application will have to know when a file is old and no longer needed. The applications will need to implement a locking mechanism or follow a timing convention to ensure that one application is not trying to read the file while another is still writing it. If all of the applications do not have access to the same disk, then some application must take responsibility for transferring the file from one disk to another.
+
+One of the most obvious issues with File Transfer is that updates tend to occur infrequently, as a result systems can get out of synchronization. A customer management system can process a change of address and produce an extract file each night, but the billing system may send out the bill to old address on the same day. Sometimes lack of synchronization isn't a big deal. People often expect a certain lag in getting information around, even with computers. At other times the result of using stale information is a disaster. When deciding on when to produce files, you have to take the freshness needs of consumers into account.
+
+In fact, the biggest problem with staleness is often on the software development staff themselves, who often have to live with data that isn't quite right. This can lead to inconsistencies that are difficult to resolve. If a customer changes his address on the same day with two different systems, but one of them makes an error and gets the wrong street name, you'll have two inconsistent addresses for a customer. You'll need some way to figure out how to resolve this. The longer the period between file transfer, the more likely and more painful this problem will become.
+
+Of course, there's no reason that you can't produce files more frequently. Indeed you can think of Messaging as File Transfer where you produce a file with every change in an application. The problem then is managing all the files that get produced, ensuring they are all read and none get lost. This goes beyond what file system based approaches can do, particularly since there are expensive resource costs with processing a file, which get prohibitive if you want to produce lots of files quickly. As a result, once you get to fine grained files like this, it's easier to think of them as Messaging.
+
+To make data available more quickly and enforce an agreed-upon set of data formats, use a Shared Database. To integrate applications' functionality rather than their data, use Remote Procedure Invocation. To enable frequent exchanges of small amounts of data, perhaps used to invoke remote functionality, use Messaging.
+
+`Related patterns: Remote Procedure Invocation, Messaging, Shared Database`
 
 ### Shared Database
 
-Of course, there's no reason that you can't produce files more frequently. Indeed you can think of Messaging as File Transfer where you produce a file with every change in an application. The problem then is managing all the files that get produced, ensuring they are all read and none get lost. This goes beyond what file system based approaches can do, particularly since there are expensive resource costs with processing a file, which get prohibitive if you want to produce lots of files quickly. As a result, once you get to fine grained files like this, it's easier to think of them as Messaging. To make data available more quickly and enforce an agreed-upon set of data formats, use a Shared Database. To integrate applications' functionality rather than their data, use Remote Procedure Invocation. To enable frequent exchanges of small amounts of data, perhaps used to invoke remote functionality, use Messaging. Related patterns: Remote Procedure Invocation, Messaging, Shared Database Shared Database An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs information to be shared rapidly and consistently. How can I integrate multiple applications so that they work together and can exchange information? File Transfer enables applications to share data, but can lack timeliness, yet timeliness of integration is often a critical issue. If changes do not work their way quickly through a family of applications, you are likely to do incorrect things due to the staleness of data. For modern businesses, you want everyone to have the latest data as much as possible. Not just does this reduce errors, it also increases people's trust in the data. Rapid updates also allow inconsistencies to be handled better. The more frequently you synchronize, the less likely you are to get inconsistencies and the less effort they are to deal with. But however rapid the changes, there's still going to be problems. If an address is updated inconsistently in rapid succession, how do I decide which one is the true address? I can take each piece of data and say that one application is the master source for that data, but then I have to remember who is the master for what data. File Transfer also may not enforce data format sufficiently. Many of the problems in integration come from incompatible ways of looking at the data. Often these represent subtle business issues that can have a huge effect. A geological database may define an oil well as a single drilled hole, which may or may not produce oil. A production database may define a well as multiple holes covered by a single piece of equipment. These cases of semantic dissonance are much harder to deal with than inconsistent data formats. (For a much deeper discussion of these issues, it's really worth reading Data and Reality [Kent].)
+Shared Database An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs information to be shared rapidly and consistently.
 
-What is needed is a central, agreed-upon datastore that all of the applications share, so that any of them have access to any of the shared data whenever they need it. Integrate applications by having them store their data in a single Shared Database.
+#### How can I integrate multiple applications so that they work together and can exchange information?
 
-If a family of integrated applications all rely on the same database, then you can be pretty sure that they are always consistent all of the time. If you do get simultaneous updates to a single piece of data from different sources, then you have transaction management systems that handle that about as gracefully as it ever can be managed. Since the time between updates is so small, any errors are much easier to find and fix. Shared Database is made much easier by the widespread use of SQL-based relational databases. Pretty much all application development platforms can work with SQL, often with quite sophisticated tools. So you don't have to worry about multiple file formats. Since any application pretty much has to use SQL anyway this avoid adding another technology for everyone to master. Since everyone is using the same database, this forces out problems in semantic dissonance. Rather than leaving these problems to fester until they are difficult to solve with transforms, you are forced to confront them and deal with them before the software goes live and you collect large amounts of incompatible data. One of the biggest difficulties with Shared Database is coming up with a suitable design for the shared database. Coming up with a unified schema that can meet the needs of multiple applications is a very difficult exercise, often resulting in a schema that application programmers find difficult to work with. If the technical difficulties of designing a unified schema aren't enough, there are also severe political difficulties. If a critical application is likely to suffer delays in order to work with a unified schema, then often there is irresistable pressure to separate. Human conflicts between departments often exacerbate this problem. Another, harder limit to Shared Database is external packages. Often they won't work with a schema other than their own. Even if there is some room for adaptation, it's likely to be much more limited than integrators would like. This problem also extends to integration after
+`File Transfer` enables applications to share data, but can lack timeliness, yet timeliness of integration is often a critical issue. If changes do not work their way quickly through a family of applications, you are likely to do incorrect things due to the staleness of data. For modern businesses, you want everyone to have the latest data as much as possible. Not just does this reduce errors, it also increases people's trust in the data.
 
-### Remote Procedure Invocation
+Rapid updates also allow inconsistencies to be handled better. The more frequently you synchronize, the less likely you are to get inconsistencies and the less effort they are to deal with. But however rapid the changes, there's still going to be problems. If an address is updated inconsistently in rapid succession, how do I decide which one is the true address? I can take each piece of data and say that one application is the master source for that data, but then I have to remember who is the master for what data.
 
-development. Even if you can organize all your applications, you still have an integration problem should a merger of companies occur. Multiple applications using a Shared Database to frequently read and modify the same data can cause performance bottlenecks and even deadlocks as each application locks others out of the data. When the applications are distributed across multiple computers, the database must be distributed as well so that each application can access the database locally, which confuses the issue of which computer the data should be stored on. A distributed database with locking conflicts can easily become a performance nightmare. To integrate applications' functionality rather than their data, use Remote Procedure Invocation. To enable frequent exchanges of small amounts of data, using a format per datatype rather than one universal schema, use Messaging. Related patterns: Remote Procedure Invocation, File Transfer, Messaging Remote Procedure Invocation (By Martin Fowler) An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs to share data and processes in a responsive way. How can I integrate multiple applications so that they work together and can exchange information? File Transfer and Shared Database enable applications to share their data, which is an important part of application integration, but just sharing data is often not enough. Often changes in data lead to things that have to be done across different applications. Changing an address may be a simple change in data, or it may trigger registration and legal processes to take into account different rules in different legal jurisdictions. Having one application to invoke such processes in other would require applications to know far too much about the internals of other applications. This problem mirrors classic problems in application design. One of the most powerful structuring mechanisms in application design is that of encapsulation--where modules hide their data through a function call interface. In this way, they can intercept changes in data to carry out the various actions they need to do when the data is changed. Shared Database provides a large, unencapsulated data structure, which makes it much harder to do this. File Transfer allows an application to react to changes as it processes the file, but the process is delayed. The fact that Shared Database has unencapsulated data also makes it more difficult to maintain a family of integrated applications. Many changes in any application can trigger a change in the database, and database changes have a considerable ripple effect through every application. As a result, systems that use Shared Database are often very reluctant to change the database, which
+`File Transfer` also may not enforce data format sufficiently. Many of the problems in integration come from incompatible ways of looking at the data. Often these represent subtle business issues that can have a huge effect. A geological database may define an oil well as a single drilled hole, which may or may not produce oil. A production database may define a well as multiple holes covered by a single piece of equipment. These cases of semantic dissonance are much harder to deal with than inconsistent data formats. (For a much deeper discussion of these issues, it's really worth reading Data and Reality [Kent].)
 
-means that the application development work is much less responsive to the changing needs of the business. What is needed is a mechanism for one application to invoke a function in another application, passing the data that needs to be shared and invoking the function that tells the receiver application how to process the data. Develop each application as a large-scale object or component with encapsulated data. Provide an interface to allow other applications to interact with the running application.
+What is needed is a central, agreed-upon datastore that all of the applications share, so that any of them have access to any of the shared data whenever they need it.
 
-applies the principle of encapsulation to integrating applications. If an application needs some information that is owned by another application, it asks that application directly. If one application needs to modify the data of another, then it does so by making a call to the other application. Each application can maintain the integrity of the data it owns. Furthermore, each application can alter its internal data without having every other application be affected. There are a number of Remote Procedure Call (RPC) approaches: CORBA, COM, .NET Remoting, Java RMI, etc. These vary as to how many systems support them and their ease of use. Often these environments add additional capabilities, such as transactions. For sheer ubiquity, the current fashionable favorite is Web Services using standards such as SOAP and XML. A particularly valuable feature of web services is that they work easily with HTTP, which is easy to get through firewalls. The fact that there are methods that wrap the data make it easier to deal with semantic dissonance. Applications can provide multiple interfaces to the same data, allowing some clients to see one style and others another. Even updates can use multiple interfaces. This provides a lot more ability to support multiple points of view than relational views. However, it is awkward for integrators to add transformation components, so each application has to negotiate its interface with its neighbors. Since software developers are used to procedure calls, Remote Procedure Invocation fits in nicely with what they are already used to. Actually, this is more of a disadvantage than it is an advantage. There are big differences in performance and reliability between remote and local procedure calls. If people don't understand these, then Remote Procedure Invocation can lead to slow and unreliable systems (see [Waldo]).
+`Diagram: Integrate applications by having them store their data in a single Shared Database.`
+
+If a family of integrated applications all rely on the same database, then you can be pretty sure that they are always consistent all of the time. If you do get simultaneous updates to a single piece of data from different sources, then you have transaction management systems that handle that about as gracefully as it ever can be managed. Since the time between updates is so small, any errors are much easier to find and fix.
+
+`Shared Database` is made much easier by the widespread use of SQL-based relational databases. Pretty much all application development platforms can work with SQL, often with quite sophisticated tools. So you don't have to worry about multiple file formats. Since any application pretty much has to use SQL anyway this avoid adding another technology for everyone to master.
+
+Since everyone is using the same database, this forces out problems in semantic dissonance. Rather than leaving these problems to fester until they are difficult to solve with transforms, you are forced to confront them and deal with them before the software goes live and you collect large amounts of incompatible data.
+
+One of the biggest difficulties with Shared Database is coming up with a suitable design for the shared database. Coming up with a unified schema that can meet the needs of multiple applications is a very difficult exercise, often resulting in a schema that application programmers find difficult to work with.
+
+If the technical difficulties of designing a unified schema aren't enough, there are also severe political difficulties. If a critical application is likely to suffer delays in order to work with a unified schema, then often there is irresistable pressure to separate. Human conflicts between departments often exacerbate this problem.
+
+Another, harder limit to Shared Database is external packages. Often they won't work with a schema other than their own. Even if there is some room for adaptation, it's likely to be much more limited than integrators would like. This problem also extends to integration after development. Even if you can organize all your applications, you still have an integration problem should a merger of companies occur.
+
+Multiple applications using a Shared Database to frequently read and modify the same data can cause performance bottlenecks and even deadlocks as each application locks others out of the data. When the applications are distributed across multiple computers, the database must be distributed as well so that each application can access the database locally, which confuses the issue of which computer the data should be stored on. A distributed database with locking conflicts can easily become a performance nightmare.
+
+To integrate applications' functionality rather than their data, use Remote Procedure Invocation. To enable frequent exchanges of small amounts of data, using a format per datatype rather than one universal schema, use Messaging.
+
+`Related patterns: Remote Procedure Invocation, File Transfer, Messaging`
+
+### Remote Procedure Invocation (By Martin Fowler)
+
+An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs to share data and processes in a responsive way.
+
+#### How can I integrate multiple applications so that they work together and can exchange information?
+
+`File Transfer` and `Shared Database` enable applications to share their data, which is an important part of application integration, but just sharing data is often not enough. Often changes in data lead to things that have to be done across different applications. Changing an address may be a simple change in data, or it may trigger registration and legal processes to take into account different rules in different legal jurisdictions. Having one application to invoke such processes in other would require applications to know far too much about the internals of other applications.
+
+This problem mirrors classic problems in application design. One of the most powerful structuring mechanisms in application design is that of encapsulation--where modules hide their data through a function call interface. In this way, they can intercept changes in data to carry out the various actions they need to do when the data is changed. Shared Database provides a large, unencapsulated data structure, which makes it much harder to do this. File Transfer allows an application to react to changes as it processes the file, but the process is delayed.
+
+The fact that Shared Database has unencapsulated data also makes it more difficult to maintain a family of integrated applications. Many changes in any application can trigger a change in the database, and database changes have a considerable ripple effect through every application. As a result, systems that use Shared Database are often very reluctant to change the database, which means that the application development work is much less responsive to the changing needs of the business.
+
+What is needed is a mechanism for one application to invoke a function in another application, passing the data that needs to be shared and invoking the function that tells the receiver application how to process the data.
+
+`Diagram: Develop each application as a large-scale object or component with encapsulated data. Provide an interface to allow other applications to interact with the running application.`
+
+`Remote Procedure Invocation` applies the principle of encapsulation to integrating applications. If an application needs some information that is owned by another application, it asks that application directly. If one application needs to modify the data of another, then it does so by making a call to the other application. Each application can maintain the integrity of the data it owns. Furthermore, each application can alter its internal data without having every other application be affected.
+
+There are a number of Remote Procedure Call (RPC) approaches: CORBA, COM, .NET Remoting, Java RMI, etc. These vary as to how many systems support them and their ease of use. Often these environments add additional capabilities, such as transactions.
+
+For sheer ubiquity, the current fashionable favorite is Web Services using standards such as SOAP and XML. A particularly valuable feature of web services is that they work easily with HTTP, which is easy to get through firewalls.
+
+The fact that there are methods that wrap the data make it easier to deal with semantic dissonance. Applications can provide multiple interfaces to the same data, allowing some clients to see one style and others another. Even updates can use multiple interfaces. This provides a lot more ability to support multiple points of view than relational views. However, it is awkward for integrators to add transformation components, so each application has to negotiate its interface with its neighbors.
+
+Since software developers are used to procedure calls, Remote Procedure Invocation fits in nicely with what they are already used to. Actually, this is more of a disadvantage than it is an advantage. There are big differences in performance and reliability between remote and local procedure calls. If people don't understand these, then Remote Procedure Invocation can lead to slow and unreliable systems (see [Waldo]).
+
+Although the encapsulation helps reduce the coupling of the applications, by eliminating a large shared data structure, the applications are still fairly tightly coupled together. The remote calls each system supports tends to tie the different systems into a growing knot. In particular, sequencing--doing certain things in a particular order--can make it difficult to change systems independently. Often these become problems because issues that aren't significant within a single application become so when integrating applications. People often design the integration the way they would design a single application, unaware that the rules change.
+
+To enable frequent exchanges of small amounts of data, perhaps used to invoke remote functionality, use Messaging.
+
+`Related patterns: File Transfer, Messaging, Shared Database`
 
 ### Messaging
 
-Although the encapsulation helps reduce the coupling of the applications, by eliminating a large shared data structure, the applications are still fairly tightly coupled together. The remote calls each system supports tends to tie the different systems into a growing knot. In particular, sequencing--doing certain things in a particular order--can make it difficult to change systems independently. Often these become problems because issues that aren't significant within a single application become so when integrating applications. People often design the integration the way they would design a single application, unaware that the rules change. To enable frequent exchanges of small amounts of data, perhaps used to invoke remote functionality, use Messaging. Related patterns: File Transfer, Messaging, Shared Database Messaging An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs to share data and processes in a responsive way. How can I integrate multiple applications so that they work together and can exchange information? File Transfer and Shared Database enable applications to share their data, but not their functionality. Remote Procedure Invocation enables applications to share functionality, but tightly couples them in the process. Often the challenge of integration is about making collaboration between separate systems as timely as possible, without coupling systems together in such a way that makes them unreliable, either in terms of application execution or application development. File Transfer allows you keep the applications very well decoupled, but at the cost of timeliness. Systems just can't keep up with each other. Collaborative behavior is way too slow. Shared Database keeps data together in a responsive way, but at the cost of coupling everything to the database. It also fails to handle collaborative behavior. Faced with these problems, Remote Procedure Invocation seems an appealing choice. But extending a model used for a single application to application integration runs into plenty of other weaknesses. These weaknesses start with the essential problems of distributed development. Despite the fact that remote procedure calls look like local calls, they don't act the same. Remote calls are slower, and can fail. With multiple applications communicating across an enterprise, you don't want one application's failure to bring down all of the other applications. Also, you don't want to design a system assuming that calls are fast and you don't want each application knowing details of other applications, even if it's only details about their interfaces. What we need is something like File Transfer where lots of little data packets can be produced quickly, transferred easily, and the receiver application is automatically notified when a new packet is available for consumption. The transfer needs a retry mechanism to make sure it
+An enterprise has multiple applications that are being built independently, with different languages and platforms. The enterprise needs to share data and processes in a responsive way.
 
-succeeds. The details of any disk structure or database for storing the data needs to be hidden from the applications so that, unlike Shared Database, the storage schema and details can be easily changed to reflect the changing needs of the enterprise. One application should be able to send a packet of data to another application to invoke behavior in the other application, like Remote Procedure Invocation, but without being prone to failure. The data transfer should be asynchronous so that the sender does not need to wait on the receiver, especially when retry is necessary. Use Messaging to transfer packets of data frequently, immediately, reliably, and asynchronously, using customizable formats.
+#### How can I integrate multiple applications so that they work together and can exchange information?
 
-Asynchronous messaging is fundamentally a pragmatic reaction to the problems of distributed systems. Sending a message does not require both systems to be up and ready at the same time. Furthermore, thinking about the communication in an asynchronous manner forces developers to recognize that working with a remote application is slower, which encourages design of components with high cohesion (lots of work locally) and low adhesion (selective work remotely). Messaging systems also allow much of the decoupling you get when using File Transfer. Messages can be transformed in transit without either the sender or receiver knowing about the transformation. Indeed the decoupling allows integrators to broadcast messages to multiple receivers, support choosing one of many potential receivers, and other topologies that allow integration to be separated from the development of the applications. Since human issues tend to separate application development from application integration, this approach works with human nature rather than against it. The transformation means that separate applications can have quite different conceptual models. Of course this means that semantic dissonance will occur, but the messaging viewpoint is the measure that Shared Database takes to avoid semantic dissonance are too complicated to work in practice, and can't be done after the fact with packages or in enterprise merges. By sending small messages frequently, you also allow applications to collaborate behaviorally as well as share data. If a process needs to be launched once an insurance claim is received, it can be done immediately as a message when a single claim comes in. Information can be requested and a reply made rapidly. While such collaboration isn't going to be as fast as Remote Procedure Invocation, the caller needn't stop while the message is being processed and the response returned. And messaging isn't as slow as many people think -- many messaging solutions originated in the financial services industry where thousands of stock quotes or trades have to pass through a messaging system every second.
+`File Transfer` and `Shared Database` enable applications to share their data, but not their functionality. `Remote Procedure Invocation` enables applications to share functionality, but tightly couples them in the process. Often the challenge of integration is about making collaboration between separate systems as timely as possible, without coupling systems together in such a way that makes them unreliable, either in terms of application execution or application development.
 
-This book is about Messaging, so you can therefore assume that we consider Messaging to be generally the best approach to enterprise application integration. But you shouldn't assume that we think it's free of problems. The high frequency of messages in Messaging reduces many of the inconsistency problems that bedevil File Transfer, but it doesn't entirely remove them. There is still going to be some lag problems with systems not being updated quite simultaneously. Asynchronous design is not the way most software people are taught, and as a result there's a whole host of different rules and techniques in place. The messaging context makes this a bit easier than programming in a asynchronous application environment like X windows, but asynchrony still has a learning curve. Testing and debugging are also harder in this environment. The ability to transform messages has the nice benefit of allowing applications to be much more decoupled from each other than in Remote Procedure Invocation and File Transfer. But this independence does mean that integrators are often left with writing a lot of messy glue code to fit everything together. Once you decide that you want to use Messaging for system integration, there are a number of new issues to consider and practices you can employ. How do you transfer packets of data? A sender sends data to a receiver by sending a Message via a Message Channel that connects the sender and receiver. How do you know where to send the data? If the sender does not know where to address the data to, it can send the data to a Message Router, which will direct the data to the proper receiver. How do you know what data format to use? If the sender and receiver do not agree on the data format, the sender can direct the data to a Message Translator that will convert the data to the receiver's format and then forward the data to the receiver. If you're an application developer, how do you connect your application to the messaging system? An application that wishes to use messaging will implement Message Endpoints to perform the actual sending and receiving. Related patterns: Remote Procedure Invocation, File Transfer, Message, Message Channel, Message Endpoint, Message Router, Message Translator, Shared Database
+`File Transfer` allows you keep the applications very well decoupled, but at the cost of timeliness. Systems just can't keep up with each other. Collaborative behavior is way too slow. `Shared Database` keeps data together in a responsive way, but at the cost of coupling everything to the database. It also fails to handle collaborative behavior.
+
+Faced with these problems, `Remote Procedure Invocation` seems an appealing choice. But extending a model used for a single application to application integration runs into plenty of other weaknesses. These weaknesses start with the essential problems of distributed development. Despite the fact that remote procedure calls look like local calls, they don't act the same. Remote calls are slower, and can fail. With multiple applications communicating across an enterprise, you don't want one application's failure to bring down all of the other applications. Also, you don't want to design a system assuming that calls are fast and you don't want each application knowing details of other applications, even if it's only details about their interfaces.
+
+What we need is something like `File Transfer` where lots of little data packets can be produced quickly, transferred easily, and the receiver application is automatically notified when a new packet is available for consumption. The transfer needs a retry mechanism to make sure it succeeds. The details of any disk structure or database for storing the data needs to be hidden from the applications so that, unlike `Shared Database`, the storage schema and details can be easily changed to reflect the changing needs of the enterprise. One application should be able to send a packet of data to another application to invoke behavior in the other application, like `Remote Procedure Invocation`, but without being prone to failure. The data transfer should be asynchronous so that the sender does not need to wait on the receiver, especially when retry is necessary.
+
+`Diagram: Use Messaging to transfer packets of data frequently, immediately, reliably, and asynchronously, using customizable formats.`
+
+Asynchronous messaging is fundamentally a pragmatic reaction to the problems of distributed systems. Sending a message does not require both systems to be up and ready at the same time. Furthermore, thinking about the communication in an asynchronous manner forces developers to recognize that working with a remote application is slower, which encourages design of components with high cohesion (lots of work locally) and low adhesion (selective work remotely).
+
+Messaging systems also allow much of the decoupling you get when using `File Transfer`. Messages can be transformed in transit without either the sender or receiver knowing about the transformation. Indeed the decoupling allows integrators to broadcast messages to multiple receivers, support choosing one of many potential receivers, and other topologies that allow integration to be separated from the development of the applications. Since human issues tend to separate application development from application integration, this approach works with human nature rather than against it.
+
+The transformation means that separate applications can have quite different conceptual models. Of course this means that semantic dissonance will occur, but the messaging viewpoint is the measure that `Shared Database` takes to avoid semantic dissonance are too complicated to work in practice, and can't be done after the fact with packages or in enterprise merges.
+
+By sending small messages frequently, you also allow applications to collaborate behaviorally as well as share data. If a process needs to be launched once an insurance claim is received, it can be done immediately as a message when a single claim comes in. Information can be requested and a reply made rapidly. While such collaboration isn't going to be as fast as `Remote Procedure Invocation`, the caller needn't stop while the message is being processed and the response returned. And messaging isn't as slow as many people think -- many messaging solutions originated in the financial services industry where thousands of stock quotes or trades have to pass through a messaging system every second.
+
+This book is about Messaging, so you can therefore assume that we consider Messaging to be generally the best approach to enterprise application integration. But you shouldn't assume that we think it's free of problems.
+
+The high frequency of messages in Messaging reduces many of the inconsistency problems that bedevil `File Transfer`, but it doesn't entirely remove them. There is still going to be some lag problems with systems not being updated quite simultaneously.
+
+Asynchronous design is not the way most software people are taught, and as a result there's a whole host of different rules and techniques in place. The messaging context makes this a bit easier than programming in a asynchronous application environment like X windows, but asynchrony still has a learning curve. Testing and debugging are also harder in this environment.
+
+The ability to transform messages has the nice benefit of allowing applications to be much more decoupled from each other than in `Remote Procedure Invocation` and `File Transfer`. But this independence does mean that integrators are often left with writing a lot of messy glue code to fit everything together.
+
+Once you decide that you want to use Messaging for system integration, there are a number of new issues to consider and practices you can employ. How do you transfer packets of data? A sender sends data to a receiver by sending a `Message` via a `Message Channel` that connects the sender and receiver. How do you know where to send the data? If the sender does not know where to address the data to, it can send the data to a `Message Router`, which will direct the data to the proper receiver. How do you know what data format to use? If the sender and receiver do not agree on the data format, the sender can direct the data to a `Message Translator` that will convert the data to the receiver's format and then forward the data to the receiver. If you're an application developer, how do you connect your application to the messaging system? An application that wishes to use messaging will implement `Message Endpoints` to perform the actual sending and receiving.
+
+`Related patterns: Remote Procedure Invocation, File Transfer, Message, Message Channel, Message Endpoint, Message Router, Message Translator, Shared Database`
 
 ## 3. Messaging Systems
 
 ### Introduction
 
-In Introduction to Integration Styles, we discussed the various options for connecting applications with one another, including Messaging. Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the applications can focus on what data they need to share but not worry so much about how to share it.
+In `Introduction to Integration Styles`, we discussed the various options for connecting applications with one another, including `Messaging`. Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the applications can focus on what data they need to share but not worry so much about how to share it.
 
 #### Basic Messaging Concepts
 
-Like most technologies, Messaging involves certain basic concepts. Once you understand these concepts, you can make sense of the technology even before you understand all of the details about how to use it. These basic messaging concepts are: Channels — Messaging applications transmit data through a Message Channel, a virtual pipe that connects a sender to a receiver. A newly installed messaging system doesn’t contain any channels; you must determine how your applications need to communicate and then create the channels to facilitate it. Messages — A Message is an atomic packet of data that can be transmitted on a channel. Thus to transmit data, an application must break the data into one or more packets, wrap each packet as a message, and then send the message on a channel. Likewise, a receiver application receives a message and must extract the data from the message to process it. The message system will try repeatedly to deliver the message (e.g., transmit it from the sender to the receiver) until it succeeds. Multi-step delivery — In the simplest case, the message system delivers a message directly from the sender’s computer to the receiver’s computer. However, actions often need to be performed on the message after it is sent by its original sender but before it is received by its final receiver. For example, the message may have to be validated or transformed because the receiver expects a different message format than the sender. A Pipes and Filters architecture describes how multiple processing steps can be chained together using channels. Routing — In a large enterprise with numerous applications and channels to connect them, a message may have to go through several channels to reach its final destination. The route a message must follow may be so complex that the original sender does not know what channel will get the message to the final receiver. Instead, the original sender sends the message to a Message Router, an application component and filter in the pipes-and-filters architecture, which
+Like most technologies, `Messaging` involves certain basic concepts. Once you understand these concepts, you can make sense of the technology even before you understand all of the details about how to use it. These basic messaging concepts are:
 
-### Message Channel
+`Channels` — Messaging applications transmit data through a Message Channel, a virtual pipe that connects a sender to a receiver. A newly installed messaging system doesn’t contain any channels; you must determine how your applications need to communicate and then create the channels to facilitate it.
 
-will determine how to navigate the channel topology and direct the message to the final receiver, or at least to the next router. Transformation — Various applications may not agree on the format for the same conceptual data; the sender formats the message one way, yet the receiver expects it to be formatted another way. To reconcile this, the message must go through an intermediate filter, a Message Translator, that converts the message from one format to another. Endpoints — An application does not have some built-in capability to interface with a messaging system. Rather, it must contain a layer of code that knows both how the application works and how the messaging system works, bridging the two so that they work together. This bridge code is a set of coordinated Message Endpoints that enable the application to send and receive messages.
+`Messages` — A `Message` is an atomic packet of data that can be transmitted on a channel. Thus to transmit data, an application must break the data into one or more packets, wrap each packet as a message, and then send the message on a channel. Likewise, a receiver application receives a message and must extract the data from the message to process it. The message system will try repeatedly to deliver the message (e.g., transmit it from the sender to the receiver) until it succeeds.
+
+`Multi-step delivery` — In the simplest case, the message system delivers a message directly from the sender’s computer to the receiver’s computer. However, actions often need to be performed on the message after it is sent by its original sender but before it is received by its final receiver. For example, the message may have to be validated or transformed because the receiver expects a different message format than the sender. A `Pipes and Filters` architecture describes how multiple processing steps can be chained together using channels.
+
+`Routing` — In a large enterprise with numerous applications and channels to connect them, a message may have to go through several channels to reach its final destination. The route a message must follow may be so complex that the original sender does not know what channel will get the message to the final receiver. Instead, the original sender sends the message to a `Message Router`, an application component and filter in the pipes-and-filters architecture, which will determine how to navigate the channel topology and direct the message to the final receiver, or at least to the next router.
+
+`Transformation` — Various applications may not agree on the format for the same conceptual data; the sender formats the message one way, yet the receiver expects it to be formatted another way. To reconcile this, the message must go through an intermediate filter, a Message Translator, that converts the message from one format to another.
+
+`Endpoints` — An application does not have some built-in capability to interface with a messaging system. Rather, it must contain a layer of code that knows both how the application works and how the messaging system works, bridging the two so that they work together. This bridge code is a set of coordinated `Message Endpoints` that enable the application to send and receive messages.
 
 #### Book Organization
 
 The patterns in this chapter provide you with the basic vocabulary and understanding of how to achieve enterprise integration using Messaging. All subsequent chapters build upon the base patterns in this chapter.
 
-#### Relationship of Root Patterns and Chapters
+`Diagram: Relationship of Root Patterns and Chapters`
 
-This chapter provides a broad overview of Messaging by introducing the main messaging topics. For more details about one of these topics, skip ahead to the chapter that contains more patterns which cover that topic in greater depth. An enterprise has two separate applications that need to communicate, preferably by using Messaging.
+This chapter provides a broad overview of `Messaging` by introducing the main messaging topics. For more details about one of these topics, skip ahead to the chapter that contains more patterns which cover that topic in greater depth.
 
-How does one application communicate with another using messaging? Once a group of applications have a messaging system available, it's tempting to think that any application can communicate with any other application any time desired. Yet the messaging system does not magically connect all of the applications.
+#### Message Channel
 
-#### Applications Magically Connected
+An enterprise has two separate applications that need to communicate, preferably by using `Messaging`.
 
-Likewise, it's not like an application just randomly throws information out into the messaging system while other applications just randomly grab whatever information they run across. (Even if this would work, it'd be very inefficient.) Rather, the application sending out the information knows what sort of information it is, and the applications that would like to receive information aren't looking for just any information, but for particular sorts of information they can use. So the messaging system isn't a big bucket that applications throw information into and pull information out of. It's a set of connections that enable applications to communicate by transmitting information in predetermined, predictable ways. Connect the applications using a Message Channel, where one application writes information to the channel and the other one reads that information from the channel.
+#### How does one application communicate with another using messaging?
 
-When an application has information to communicate, it doesn't just fling the information into the messaging system, it adds the information to a particular Message Channel. An application receiving information doesn't just pick it up at random from the messaging system; it retrieves the information from a particular Message Channel.
+Once a group of applications have a messaging system available, it's tempting to think that any application can communicate with any other application any time desired. Yet the messaging system does not magically connect all of the applications.
 
-The application adding info doesn't necessarily know what particular application will end up retrieving the info, but it can be assured that whatever application retrieves the info, that application will be interested in the info. This is because the messaging system has different Message Channels for different types of information the applications want to communicate. When an application sends information, it doesn't randomly add the info to any channel available; it adds the info to a channel whose specific purpose is to communicate that sort of information. Likewise, an application that wants to receive particular information doesn't pull info off some random channel; it selects what channel to get information from based on what type of information it wants. Channels are logical addresses in the messaging system; how they're actually implemented depends on the messaging system product and its implementation. Perhaps every Message Endpoint has a direct connection to every other endpoint, or perhaps they're all connected through a central hub. Perhaps several separate logical channels are configured as one physical channel that nevertheless keeps straight which messages are intended for which destination. The set of defined logical channels hides these configuration details from the applications. A messaging system doesn't automatically come preconfigured with all of the message channels the applications need to communicate. Rather, the developers designing the applications and the communication between them have to decide what channels will be needed for the communication. Then the system administrator who installs the messaging system software must also configure it to set up the channels that the applications expect. While some messaging system implementations support creating new channels while the applications are running, this isn't very useful because other applications besides the one that creates the channel have to know about the new channel so that they can start using it too. Thus the number and purpose of channels available tend to be fixed at deployment time. (There are exceptions to this rule; see Introduction to Messaging Channels.) Something that often fools developers when they first get started with using a messaging system is what exactly needs to be done to create a channel. A developer can write JMS code that includes calling the method createQueue, or .NET code that includes new MessageQueue, but neither of these bits of code actually allocates a new queue resource in the messaging system. Rather, these pieces of code provide access to a resource that already exists in the messaging system and was already created in the messaging system separately using its administration tools. Another issue to keep in mind when designing the channels for a messaging system: Channels are cheap, but they're not free. Applications need multiple channels for transmitting different types of information and transmitting the same information to lots of other applications. Each channel requires memory to represent the messages; persistent channels require disk space as well. Even if an enterprise system has unlimited memory and disk space, any messaging system implementation usually has some hard or practical limit to how many channels it can service consistently. So plan on creating new channels as your application needs them, but if it needs thousands of channels, or needs to scale in ways that may require thousands of channels, you'll need to choose a highly scalable messaging system implementation and test that scalability to
+`Diagram: Applications Magically Connected`
 
-make sure it meets your needs. Datatype Channel helps you determine when you need another channel. Selective Consumer makes one physical channel act logically like multiple channels.
+Likewise, it's not like an application just randomly throws information out into the messaging system while other applications just randomly grab whatever information they run across. (Even if this would work, it'd be very inefficient.) Rather, the application sending out the information knows what sort of information it is, and the applications that would like to receive information aren't looking for just any information, but for particular sorts of information they can use.
+
+So the messaging system isn't a big bucket that applications throw information into and pull information out of. It's a set of connections that enable applications to communicate by transmitting information in predetermined, predictable ways.
+
+`Diagram: Connect the applications using a Message Channel, where one application writes information to the channel and the other one reads that information from the channel.`
+
+When an application has information to communicate, it doesn't just fling the information into the messaging system, it adds the information to a particular `Message Channel`. An application receiving information doesn't just pick it up at random from the messaging system; it retrieves the information from a particular `Message Channel`.
+
+The application adding info doesn't necessarily know what particular application will end up retrieving the info, but it can be assured that whatever application retrieves the info, that application will be interested in the info. This is because the messaging system has different Message Channels for different types of information the applications want to communicate. When an application sends information, it doesn't randomly add the info to any channel available; it adds the info to a channel whose specific purpose is to communicate that sort of information. Likewise, an application that wants to receive particular information doesn't pull info off some random channel; it selects what channel to get information from based on what type of information it wants.
+
+Channels are logical addresses in the messaging system; how they're actually implemented depends on the messaging system product and its implementation. Perhaps every `Message Endpoint` has a direct connection to every other endpoint, or perhaps they're all connected through a central hub. Perhaps several separate logical channels are configured as one physical channel that nevertheless keeps straight which messages are intended for which destination. The set of defined logical channels hides these configuration details from the applications.
+
+A messaging system doesn't automatically come preconfigured with all of the message channels the applications need to communicate. Rather, the developers designing the applications and the communication between them have to decide what channels will be needed for the communication. Then the system administrator who installs the messaging system software must also configure it to set up the channels that the applications expect. While some messaging system implementations support creating new channels while the applications are running, this isn't very useful because other applications besides the one that creates the channel have to know about the new channel so that they can start using it too. Thus the number and purpose of channels available tend to be fixed at deployment time. (There are exceptions to this rule; see `Introduction to Messaging Channels.`)
+
+Something that often fools developers when they first get started with using a messaging system is what exactly needs to be done to create a channel. A developer can write JMS code that includes calling the method createQueue, or .NET code that includes new MessageQueue, but neither of these bits of code actually allocates a new queue resource in the messaging system. Rather, these pieces of code provide access to a resource that already exists in the messaging system and was already created in the messaging system separately using its administration tools.
+
+Another issue to keep in mind when designing the channels for a messaging system: Channels are cheap, but they're not free. Applications need multiple channels for transmitting different types of information and transmitting the same information to lots of other applications. Each channel requires memory to represent the messages; persistent channels require disk space as well. Even if an enterprise system has unlimited memory and disk space, any messaging system implementation usually has some hard or practical limit to how many channels it can service consistently. So plan on creating new channels as your application needs them, but if it needs thousands of channels, or needs to scale in ways that may require thousands of channels, you'll need to choose a highly scalable messaging system implementation and test that scalability to make sure it meets your needs. `Datatype Channel` helps you determine when you need another channel. `Selective Consumer` makes one physical channel act logically like multiple channels.
 
 #### A Little Bit of Messaging Vocabulary
 
+```
 So what do we call the applications that communicate via a Message Channel? There are a number of terms out there that are largely equivalent. The most generic terms are probably Sender and Receiver — an application sends a message to a Message Channel to be received by another application. Another popular term is Producer and Consumer. Equally popular is Publisher and Subscriber — they are more geared towards Publish-Subscribe Channels, but are often times used in generic form. Sometimes we also say that an application listens on a channel that another application talks to. In the world of Web services, we generally talk about a Requester and Provider. These terms usually imply that the requester sends a message to the provider and receives a response back. In the old days we called these Client and Server — the terms are equivalent, but saying client and server is less cool. Now it gets gets confusing: when dealing with Web services, sometimes the application that sends a message to the provider is considered a Consumer of the service. We can think of it in such a way that consumer sends a message to the provider and then consumes the response. Luckily, usage of the term in this way occurs only in RPC scenarios. An application that sends or receives messages may be called a Client of the messaging system; a more specific term is Endpoint or Message Endpoint.
+```
 
 #### Channel Names
 
-If channels are logical addresses, what do these addresses look like? Like in so many cases, the detailed answer depends on the implementation of the messaging system. Nevertheless, in most cases channels are referenced by an alphanumeric name, such as MyChannel. Many messaging systems support a hierarchical channel naming scheme, which enables you to organize channels in a way that is similar to a file system with folders and subfolders. For example, MyCorp/Prod/OrderProcessing/NewOrders would indicate a channel that is used in a production application at MyCorp and contains new orders. There are two different kinds of message channels, Point-to-Point Channels and Publish-Subscribe Channels. Mixing different data types on the same channel causes a lot of confusion; to avoid this confusion, use separate Datatype Channels. Applications that use messaging often benefit from a special channel for invalid messages, an Invalid Message Channel. Applications that wish to use Messaging but do not have access to a messaging client can still connect to the messaging system using Channel Adapters. A well designed set of channels forms a Message Bus that acts like a messaging API for a whole group of applications. Example: Stock Trading When a stock trading application makes a trade, it puts the request on a Message Channel for trade requests. Another application that processes trade requests will look for ones to process on that same message channel. If the requesting application needs to request a stock quote, it will probably use a different message channel, one designed for stock quotes, so that the quote requests stay separate from the trade requests. Example: J2EE JMS Reference Implementation Let's look at how to create a Message Channel in JMS. The J2EE SDK ships with a reference implementation of the J2EE services, including JMS. The reference server can be started with the
+```
+If channels are logical addresses, what do these addresses look like? Like in so many cases, the detailed answer depends on the implementation of the messaging system. Nevertheless, in most cases channels are referenced by an alphanumeric name, such as MyChannel. Many messaging systems support a hierarchical channel naming scheme, which enables you to organize channels in a way that is similar to a file system with folders and subfolders. For example, MyCorp/Prod/OrderProcessing/NewOrders would indicate a channel that is used in a production application at MyCorp and contains new orders.
+```
 
-j2ee command. Message channels have to be configured using the j2eeadmin tool. This tool can configure both queues and topics: j2eeadmin -addJmsDestination jms/mytopic topic j2eeadmin -addJmsDestination jms/myqueue queue Once the channels have been administered (created), they can then be accessed by JMS client code: Context jndiContext = new InitialContext(); Queue myQueue = (Queue) jndiContext.lookup("jms/myqueue"); Topic myTopic = (Topic) jndiContext.lookup("jms/mytopic"); The JNDI lookup doesn't create the queue (or topic); it was already created by the j2eeadmin command. The JNDI loookup simply creates a Queue instance in Java that models and provides access to the queue structure in the messaging system. Example: IBM WebSphere MQ If your messaging system implementation is IBM's WebSphere MQ for Java, which implements JMS, you'll use the WebSphere MQ JMS administration tool to create destinations. This will create a queue named “myQueue”: DEFINE Q(myQueue) Once that queue exists in WebSphere MQ, an application can then access the queue. WebSphere MQ, without the full WebSphere Application Server, does not include a JNDI implementation, so we cannot use JNDI to lookup the queue as we did in the J2EE example. Rather, we must access the queue via a JMS session, like this: Session session = // create the session Queue queue = session.createQueue("myQueue"); Example: Microsoft MSMQ MSMQ provides a number of different ways to create a message channel, called a queue. You can create a queue using the Microsoft Message Queue Explorer or the Computer Management console (see picture). From here you can set queue properties or delete queues.
+There are two different kinds of message channels, `Point-to-Point Channels` and `Publish-Subscribe Channels`. Mixing different data types on the same channel causes a lot of confusion; to avoid this confusion, use separate `Datatype Channels`. Applications that use messaging often benefit from a special channel for invalid messages, an `Invalid Message Channel`. Applications that wish to use `Messaging` but do not have access to a messaging client can still connect to the messaging system using `Channel Adapters`. A well designed set of channels forms a `Message Bus` that acts like a messaging API for a whole group of applications.
+
+#### Example: Stock Trading
+
+When a stock trading application makes a trade, it puts the request on a Message Channel for trade requests. Another application that processes trade requests will look for ones to process on that same message channel. If the requesting application needs to request a stock quote, it will probably use a different message channel, one designed for stock quotes, so that the quote requests stay separate from the trade requests.
+
+#### Example: J2EE JMS Reference Implementation
+
+Let's look at how to create a Message Channel in JMS. The J2EE SDK ships with a reference implementation of the J2EE services, including JMS. The reference server can be started with the
+
+j2ee command. Message channels have to be configured using the j2eeadmin tool. This tool can configure both queues and topics:
+
+```
+j2eeadmin -addJmsDestination jms/mytopic topic
+j2eeadmin -addJmsDestination jms/myqueue queue
+```
+
+Once the channels have been administered (created), they can then be accessed by JMS client code:
+
+```
+Context jndiContext = new InitialContext();
+Queue myQueue = (Queue) jndiContext.lookup("jms/myqueue");
+Topic myTopic = (Topic) jndiContext.lookup("jms/mytopic");
+```
+
+The JNDI lookup doesn't create the queue (or topic); it was already created by the j2eeadmin command. The JNDI loookup simply creates a Queue instance in Java that models and provides access to the queue structure in the messaging system.
+
+Example: IBM WebSphere MQ If your messaging system implementation is IBM's WebSphere MQ for Java, which implements JMS, you'll use the WebSphere MQ JMS administration tool to create destinations. This will create a queue named “myQueue”:
+
+```
+DEFINE Q(myQueue)
+```
+
+Once that queue exists in WebSphere MQ, an application can then access the queue.
+
+WebSphere MQ, without the full WebSphere Application Server, does not include a JNDI implementation, so we cannot use JNDI to lookup the queue as we did in the J2EE example. Rather, we must access the queue via a JMS session, like this:
+
+```
+Session session = // create the session
+Queue queue = session.createQueue("myQueue");
+```
+
+#### Example: Microsoft MSMQ
+
+MSMQ provides a number of different ways to create a message channel, called a queue. You can create a queue using the Microsoft Message Queue Explorer or the Computer Management console (see picture). From here you can set queue properties or delete queues.
+
+`Diagram: Computer Management -> Message Queuing`
+
+Alternatively, you can create the queue using code:
+
+```
+using System.Messaging;
+...
+MessageQueue.Create("MyQueue");
+```
+
+Once the queue is created, an application can access it by creating a MessageQueue instance:
+
+```
+MessageQueue mq = new MessageQueue("MyQueue");
+```
+
+Related patterns: Channel Adapter, Datatype Channel, Invalid Message Channel, Message Bus, Message Endpoint, Selective Consumer, Messaging, Introduction to Messaging Channels, Point-to-Point Channel, Publish-Subscribe Channel
 
 ### Message
 
-Alternatively, you can create the queue using code: using System.Messaging; ... MessageQueue.Create("MyQueue"); Once the queue is created, an application can access it by creating a MessageQueue instance: MessageQueue mq = new MessageQueue("MyQueue"); Related patterns: Channel Adapter, Datatype Channel, Invalid Message Channel, Message Bus, Message Endpoint, Selective Consumer, Messaging, Introduction to Messaging Channels, Point-to-Point Channel, Publish-Subscribe Channel Message An enterprise has two separate applications that are communicating via Messaging, using a Message Channel that connects them. How can two applications connected by a message channel exchange a piece of information? A Message Channel can often be thought of as a pipe, a conduit from one application to another. It might stand to reason then that data could be shoved in one end, like water, and it would come flowing out the other end. But data isn't one continuous stream; it is units, such as records, objects, database rows, and the like. So a channel must transmit units of data.
+An enterprise has two separate applications that are communicating via `Messaging`, using a `Message Channel` that connects them.
 
-What does it mean to "transmit" data? In a function call, the caller can pass a parameter by reference by passing a pointer to the data's address in memory; this works because both the caller and the function share the same memory heap. Similarly, two threads in the same process can pass a record or object by passing a pointer, since they both share the same memory space. Two separate processes passing a piece of data have more work to do. Since they each have their own memory space, they have to copy the data from one memory space to the other. The data is usually transmitted as a byte stream, the most basic form of data, which means that the first process must marshal the data into byte form, copy it from the first process to the second one, which will then unmarshal the data back into its original form, a copy of the original data in the first process. Marshalling is how an RPC sends arguments to the remote process, and how the process returns the result. So messaging transmits discrete units of data, and does so by marshalling the data from the sender and unmarshalling it in the receiver so that the receiver has its own local copy. What would be helpful would be a simple way to wrap a unit of data such that it is appropriate to transmit the data on a messaging channel. Package the information into a Message, a data record that the messaging system can transmit through a message channel.
+#### How can two applications connected by a message channel exchange a piece of information?
 
-Thus any data that is to be transmitted via a messaging system must be converted into one or more messages that can be sent through messaging channels. A message consists of two basic parts: 1. Header – Information used by the messaging system that describes the data being transmitted, its origin, its destination, and so on. 2. Body – The data being transmitted; generally ignored by the messaging system and simply transmitted as-is. This concept is not unique to messaging. Both postal service mail and e-mail send data as discrete mail messages. An Ethernet network transmits data as packets, as does the IP part of TCP/IP such as the Internet. Streaming media on the Internet is actually a series of packets. To the messaging system, all messages are the same: Some body of data to be transmitted as described by the header. However, to the applications programmer, there are different types of messages, i.e., different application styles of use. Use a Command Message to invoke a procedure in another application. Use a Document Message to pass a set of data to another application. Use
+A `Message Channel` can often be thought of as a pipe, a conduit from one application to another. It might stand to reason then that data could be shoved in one end, like water, and it would come flowing out the other end. But data isn't one continuous stream; it is units, such as records, objects, database rows, and the like. So a channel must transmit units of data.
 
-an Event Message to notify another application of a change in this application. If the other application should send a reply back, use Request-Reply. If an application wishes to send more information than one message can hold, break the data into smaller parts and send the parts as a Message Sequence. If the data is only useful for a limited amount of time, specify this use-by time as a Message Expiration. Since all the various senders and receivers of messages must agree on the format of the data in the messages, specify the format as a Canonical Data Model. Example: JMS Message In JMS, a message is represented by the type Message, which has several subtypes. In each subtype, the header structure is the same; it's the body format that varies by type.
+What does it mean to "transmit" data? In a function call, the caller can pass a parameter by reference by passing a pointer to the data's address in memory; this works because both the caller and the function share the same memory heap. Similarly, two threads in the same process can pass a record or object by passing a pointer, since they both share the same memory space.
+
+Two separate processes passing a piece of data have more work to do. Since they each have their own memory space, they have to copy the data from one memory space to the other. The data is usually transmitted as a byte stream, the most basic form of data, which means that the first process must marshal the data into byte form, copy it from the first process to the second one, which will then unmarshal the data back into its original form, a copy of the original data in the first process. Marshalling is how an RPC sends arguments to the remote process, and how the process returns the result.
+
+So messaging transmits discrete units of data, and does so by marshalling the data from the sender and unmarshalling it in the receiver so that the receiver has its own local copy. What would be helpful would be a simple way to wrap a unit of data such that it is appropriate to transmit the data on a messaging channel.
+
+`Diagram: Package the information into a Message, a data record that the messaging system can transmit through a message channel.`
+
+Thus any data that is to be transmitted via a messaging system must be converted into one or more messages that can be sent through messaging channels.
+
+A message consists of two basic parts:
+
+1. `Header` – Information used by the messaging system that describes the data being transmitted, its origin, its destination, and so on.
+2. `Body` – The data being transmitted; generally ignored by the messaging system and simply transmitted as-is.
+
+This concept is not unique to messaging. Both postal service mail and e-mail send data as discrete mail messages. An Ethernet network transmits data as packets, as does the IP part of TCP/IP such as the Internet. Streaming media on the Internet is actually a series of packets.
+
+To the messaging system, all messages are the same: Some body of data to be transmitted as described by the header. However, to the applications programmer, there are different types of messages, i.e., different application styles of use. Use a `Command Message` to invoke a procedure in another application. Use a `Document Message` to pass a set of data to another application. Use an `Event Message` to notify another application of a change in this application. If the other application should send a reply back, use `Request-Reply`.
+
+If an application wishes to send more information than one message can hold, break the data into smaller parts and send the parts as a `Message Sequence`. If the data is only useful for a limited amount of time, specify this use-by time as a `Message Expiration`. Since all the various senders and receivers of messages must agree on the format of the data in the messages, specify the format as a `Canonical Data Model`.
+
+#### Example: JMS Message
+
+In JMS, a message is represented by the type Message, which has several subtypes. In each subtype, the header structure is the same; it's the body format that varies by type.
 
 - TextMessage – The most common type of message. The body is a String, such as a text file or an XML document. textMessage.getText() returns a String.
 - BytesMessage – The simplest, most universal type of message. The body is a byte array. bytesMessage.readBytes(byteArray) copies the contents into the specified byte array.
 - ObjectMessage – The body is a single Java object, specifically one that implements java.io.Serializable, which enables the object to be marshaled and unmarshaled. objectMessage.getObject() returns the Serializable.
 - StreamMessage – The body is a stream of Java primitives. The receiver uses methods like readBoolean(), readChar(), and readDouble() to read the data from the message.
-- MapMessage – The body acts like a java.util.Map, where the keys are Strings. The receiver uses methods like getBoolean("isEnabled") and getInt("numberOfItems") to read the data from the message. Example: .NET Message In .NET, the Message class implements the message type. It has a property, Body, which contains the contents of the message as an Object; BodyStream stores the contents as a Stream. Another property, BodyType, is an int that specifies the type of data the body contains, such as a string, a date, a currency, or a number. Example: SOAP Message In the SOAP protocol [SOAP 1.1], a SOAP message is an example of this Message pattern. A SOAP message is an XML document that is an envelope (a root SOAP-ENV:Envelope element) that contains an optional header (a SOAP-ENV:Header element) and required body (a SOAP-ENV:Body element). This XML document is an atomic data record that can be transmitted (typically the transmission protocol is HTTP) so it is a message.
+- MapMessage – The body acts like a java.util.Map, where the keys are Strings. The receiver uses methods like getBoolean("isEnabled") and getInt("numberOfItems") to read the data from the message.
 
-### Pipes and Filters
+#### Example: .NET Message
 
-Here is an example of a SOAP message from the SOAP spec that shows an envelope containing a header and a body: <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/> <SOAP-ENV:Header> <t:Transaction xmlns:t="some-URI" SOAP-ENV:mustUnderstand="1"> </t:Transaction> </SOAP-ENV:Header> <SOAP-ENV:Body> <m:GetLastTradePrice xmlns:m="Some-URI"> <symbol>DEF</symbol> </m:GetLastTradePrice> </SOAP-ENV:Body> </SOAP-ENV:Envelope> SOAP also demonstrates the recurssive nature of messages, because a SOAP message can be transmitted via a messaging system, which means that a messaging system message (such as javax.jms.Message or System.Messaging.Message) contains the SOAP message (the XML SOAP-ENV:Envelope document). In this scenario, the transport protocol isn't HTTP, it's the messaging system (which in turn may be using HTTP or some other network protocol to transmit the data, but the messaging system makes the transmission reliable). Related patterns: Canonical Data Model, Command Message, Document Message, Event Message, Message Channel, Message Expiration, Message Sequence, Messaging, Request-Reply Pipes and Filters In many enterprise integration scenarios, a single event triggers a sequence of processing steps, each performing a specific function. For example, let's assume a new order arrives in our enterprise in the form of a message. One requirement may be that the message is encrypted to prevent eavesdroppers from spying on a customer's order. A second requirement is that the messages contain authentication information in the form of a digital certificate to ensure that orders are placed only by trusted customers. In addition, duplicate messages could be sent from external parties (remember all the warnings on the popular shopping sites to click the 'Order Now' button only once?). To avoid duplicate shipments and unhappy customers, we need to eliminate duplicate messages before subsequent order processing steps are initiated. To meet these requirements, we need to transform a stream of possibly duplicated, encrypted messages containing extra authentication data into a stream of unique, simple plain-text order messages without the extraneous data fields.
+In .NET, the Message class implements the message type. It has a property, Body, which contains the contents of the message as an Object; BodyStream stores the contents as a Stream. Another property, BodyType, is an int that specifies the type of data the body contains, such as a string, a date, a currency, or a number.
 
-How can we perform complex processing on a message while maintaining independence and flexibility? One possible solution would be to write a comprehensive 'incoming message massaging module' that performs all the necessary functions. However, such an approach would be inflexible and difficult to test. What if we need to add a step or remove one? For example, what if orders can be placed by large customers who are on a private network and do not require encryption? Implementing all functions inside a single component also reduces opportunities for reuse. Creating smaller, well-defined components allows us to reuse them in other processes. For example, order status messages may be encrypted but do not need to be de-duped because duplicate status requests are generally not harmful. Separating the decryption function into a separate modules allows us to reuse the decryption function for other messages. Integration solutions are typically a collection of heterogeneous systems. As a result, different processing steps may need to execute on different physical machines, for example because individual processing steps can only execute on a specific systems. For example, it is possible that the private key required to decrypt incoming messages is only available on a designated machine and cannot be accessed from any other machine for security reasons. This means that the decryption component has to execute on this designated machine while the other steps may execute on other machines. Likewise, different processing steps may be implemented using different programming languages or technologies that prevent them from running inside the same process or even on the same computer. Implementing each function in a separate component can still introduce dependencies between components. For example, if the decryption component calls the authentication component with the results of the decryption, we cannot use the decryption function without the authentication function. We could resolve these dependencies if we could 'compose' existing components into a sequence of processing steps in such a way that each component is independent from the other components in the system. This would imply that components expose generic external interfaces so that they are interchangeable. If we use asynchronous messaging we should take advantage of the asynchronous aspects of sending messages from one component to another. For example, a component can send a message to another component for further processing without waiting for the results. Using this technique, we could process multiple messages in parallel, on inside each component. Use the Pipes and Filters architectural style to divide a larger processing task into a sequence of smaller, independent processing steps (Filters) that are connected by channels (Pipes).
+#### Example: SOAP Message
 
-Each filter exposes a very simple interface: it receives messages on the inbound pipe, processes the message, and publishes the results to the outbound pipe. The pipe connects one filter to the next, sending output messages from one filter to the next. Because all component use the same external interface they can be composed into different solutions by connecting the components to different pipes. We can add new filters, omit existing ones or rearrange them into a new sequence -- all without having to change the filters themselves. The connection between filter and pipe is sometimes called port. In the basic form, each filter component has one input port and one output port. When applied to our example problem, the Pipes and Filters architecture results in three filters, connected by two pipes (see picture). We need one additional pipe to send messages to the decryption component and one to send the clear-text order messages from the de-duper to the order management system. This makes for a total of four pipes. Pipes and Filters describe a fundamental architectural style for messaging systems: individual processing steps ("filters") are chained together through the messaging channels ("pipes"). Many patterns in this and the following sections, e.g. routing and transformation patterns, are based on this Pipes and Filters architectural style. This allows us to easily combine individual patterns into larger solutions. The Pipes and Filters style uses abstract pipes to decouple components from each other. The pipe allows one component to send a message into the pipe so that it can be consumed later by another process that is unknown to the component. The obvious implementation for such a pipe is the Message Channel we just described at the beginning of this chapter. Most Message Channels provide language, platform and location independence between the filters. This affords us the flexibility to move a processing step to a different machine for dependency, maintenance or performance reasons. However, a Message Channel provided by a messaging infrastructure can be quite heavyweight if all components can in fact reside on the same machine. Using a simple in-memory queue to implement the pipes would be much more efficient. Therefore, it is useful to design the components so that they communicate with an abstract pipe interface. The implementation of that interface can then be swapped out to use a Message Channel or an alternative implementation such as an in-memory queue. The Messaging Gateway describes how to design components for this flexibility. One of the potential downsides of a Pipes and Filters architecture is the larger number of required channels. First, channels may not be an unlimited resource as channels provide buffering and other functions that consume memory and CPU cycles. Also, publishing a message to a channel involves a certain amount of overhead because the data has to be translated from the application-internal format into the messaging infrastructure's own format. At the receiving end this process has to be reversed. If we are using a long chain of filters, we are paying for the gain in flexibility with potentially lower performance due to repeated message data conversion. The pure form of Pipes and Filters allows each filter to have only a single input port and a single output port. When dealing with Messaging we can relax this property somewhat. A component may consume messages off more than one channel and also output messages to more than one
+In the SOAP protocol [SOAP 1.1], a SOAP message is an example of this Message pattern. A SOAP message is an XML document that is an envelope (a root SOAP-ENV:Envelope element) that contains an optional header (a SOAP-ENV:Header element) and required body (a SOAP-ENV:Body element). This XML document is an atomic data record that can be transmitted (typically the transmission protocol is HTTP) so it is a message.
 
-channel (for example, a Message Router). Likewise, multiple filter components can consume messages off a single Message Channel. A Point-to-Point Channel ensures that only one filter component consumes each message. Using Pipes and Filters also improves testability, an often overlooked benefit. We can test each individual processing steps by passing a Test Message to the component and comparing the results to the expected outcome. It is more efficient to test and debug each core function in isolation because we can tailor the test mechanism to the specific function. For example, to test the encryption / decryption function we can pass in a large number of messages containing random data. After we encrypt and decrypt each message we compare it with the original. On the other hand, to test authentication, we need to supply messages with specific authentication codes that match known users in the system.
+Here is an example of a SOAP message from the SOAP spec that shows an envelope containing a header and a body:
+
+```
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <SOAP-ENV:Header>
+            <t:Transaction xmlns:t="some-URI" SOAP-ENV:mustUnderstand="1">
+            </t:Transaction>
+        </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <m:GetLastTradePrice xmlns:m="Some-URI">
+            <symbol>DEF</symbol>
+        </m:GetLastTradePrice>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
+SOAP also demonstrates the recurssive nature of messages, because a SOAP message can be transmitted via a messaging system, which means that a messaging system message (such as javax.jms.Message or System.Messaging.Message) contains the SOAP message (the XML SOAP-ENV:Envelope document). In this scenario, the transport protocol isn't HTTP, it's the messaging system (which in turn may be using HTTP or some other network protocol to transmit the data, but the messaging system makes the transmission reliable).
+
+`Related patterns: Canonical Data Model, Command Message, Document Message, Event Message, Message Channel, Message Expiration, Message Sequence, Messaging, Request-Reply`
+
+#### Pipes and Filters
+
+In many enterprise integration scenarios, a single event triggers a sequence of processing steps, each performing a specific function. For example, let's assume a new order arrives in our enterprise in the form of a message. One requirement may be that the message is encrypted to prevent eavesdroppers from spying on a customer's order. A second requirement is that the messages contain authentication information in the form of a digital certificate to ensure that orders are placed only by trusted customers. In addition, duplicate messages could be sent from external parties (remember all the warnings on the popular shopping sites to click the 'Order Now' button only once?). To avoid duplicate shipments and unhappy customers, we need to eliminate duplicate messages before subsequent order processing steps are initiated. To meet these requirements, we need to transform a stream of possibly duplicated, encrypted messages containing extra authentication data into a stream of unique, simple plain-text order messages without the extraneous data fields.
+
+#### How can we perform complex processing on a message while maintaining independence and flexibility?
+
+One possible solution would be to write a comprehensive 'incoming message massaging module' that performs all the necessary functions. However, such an approach would be inflexible and difficult to test. What if we need to add a step or remove one? For example, what if orders can be placed by large customers who are on a private network and do not require encryption?
+
+Implementing all functions inside a single component also reduces opportunities for reuse. Creating smaller, well-defined components allows us to reuse them in other processes. For example, order status messages may be encrypted but do not need to be de-duped because duplicate status requests are generally not harmful. Separating the decryption function into a separate modules allows us to reuse the decryption function for other messages.
+
+Integration solutions are typically a collection of heterogeneous systems. As a result, different processing steps may need to execute on different physical machines, for example because individual processing steps can only execute on a specific systems. For example, it is possible that the private key required to decrypt incoming messages is only available on a designated machine and cannot be accessed from any other machine for security reasons. This means that the decryption component has to execute on this designated machine while the other steps may execute on other machines. Likewise, different processing steps may be implemented using different programming languages or technologies that prevent them from running inside the same process or even on the same computer.
+
+Implementing each function in a separate component can still introduce dependencies between components. For example, if the decryption component calls the authentication component with the results of the decryption, we cannot use the decryption function without the authentication function. We could resolve these dependencies if we could 'compose' existing components into a sequence of processing steps in such a way that each component is independent from the other components in the system. This would imply that components expose generic external interfaces so that they are interchangeable.
+
+If we use asynchronous messaging we should take advantage of the asynchronous aspects of sending messages from one component to another. For example, a component can send a message to another component for further processing without waiting for the results. Using this technique, we could process multiple messages in parallel, on inside each component.
+
+`Diagram: Use the Pipes and Filters architectural style to divide a larger processing task into a sequence of smaller, independent processing steps (Filters) that are connected by channels (Pipes).`
+
+Each filter exposes a very simple interface: it receives messages on the inbound pipe, processes the message, and publishes the results to the outbound pipe. The pipe connects one filter to the next, sending output messages from one filter to the next. Because all component use the same external interface they can be composed into different solutions by connecting the components to different pipes. We can add new filters, omit existing ones or rearrange them into a new sequence -- all without having to change the filters themselves. The connection between filter and pipe is sometimes called port. In the basic form, each filter component has one input port and one output port.
+
+When applied to our example problem, the Pipes and Filters architecture results in three filters, connected by two pipes (see picture). We need one additional pipe to send messages to the decryption component and one to send the clear-text order messages from the de-duper to the order management system. This makes for a total of four pipes.
+
+Pipes and Filters describe a fundamental architectural style for messaging systems: individual processing steps ("filters") are chained together through the messaging channels ("pipes"). Many patterns in this and the following sections, e.g. routing and transformation patterns, are based on this Pipes and Filters architectural style. This allows us to easily combine individual patterns into larger solutions.
+
+The Pipes and Filters style uses abstract pipes to decouple components from each other. The pipe allows one component to send a message into the pipe so that it can be consumed later by another process that is unknown to the component. The obvious implementation for such a pipe is the `Message Channel` we just described at the beginning of this chapter. Most `Message Channels` provide language, platform and location independence between the filters. This affords us the flexibility to move a processing step to a different machine for dependency, maintenance or performance reasons. However, a `Message Channel` provided by a messaging infrastructure can be quite heavyweight if all components can in fact reside on the same machine. Using a simple in-memory queue to implement the pipes would be much more efficient. Therefore, it is useful to design the components so that they communicate with an abstract pipe interface. The implementation of that interface can then be swapped out to use a `Message Channel` or an alternative implementation such as an in-memory queue. The `Messaging Gateway` describes how to design components for this flexibility.
+
+One of the potential downsides of a Pipes and Filters architecture is the larger number of required channels. First, channels may not be an unlimited resource as channels provide buffering and other functions that consume memory and CPU cycles. Also, publishing a message to a channel involves a certain amount of overhead because the data has to be translated from the application-internal format into the messaging infrastructure's own format. At the receiving end this process has to be reversed. If we are using a long chain of filters, we are paying for the gain in flexibility with potentially lower performance due to repeated message data conversion.
+
+The pure form of Pipes and Filters allows each filter to have only a single input port and a single output port. When dealing with `Messaging` we can relax this property somewhat. A component may consume messages off more than one channel and also output messages to more than one channel (for example, a `Message Router`). Likewise, multiple filter components can consume messages off a single `Message Channel`. A `Point-to-Point Channel` ensures that only one filter component consumes each message.
+
+Using Pipes and Filters also improves testability, an often overlooked benefit. We can test each individual processing steps by passing a `Test Message` to the component and comparing the results to the expected outcome. It is more efficient to test and debug each core function in isolation because we can tailor the test mechanism to the specific function. For example, to test the encryption / decryption function we can pass in a large number of messages containing random data. After we encrypt and decrypt each message we compare it with the original. On the other hand, to test authentication, we need to supply messages with specific authentication codes that match known users in the system.
 
 #### Pipeline Processing
 
-Connecting components with asynchronous Message Channels allows each unit in the chain to operate in its own thread or its own process. When a unit has completed processing one message it can send the message to the output channel and immediately start processing another message. It does not have to wait for the subsequent components to read and process the message. This allows multiple messages to be processed concurrently as they pass through the individual stages. For example, after the first message has been decrypted, it can be passed on to the authentication component. At the same time, the next message can already be decrypted (see picture). We call such a configuration a processing pipeline because messages flow through the filters like liquid flows through a pipe. When compared to strictly sequential processing, a processing pipeline can significantly increase system throughput.
+Connecting components with asynchronous `Message Channels` allows each unit in the chain to operate in its own thread or its own process. When a unit has completed processing one message it can send the message to the output channel and immediately start processing another message. It does not have to wait for the subsequent components to read and process the message. This allows multiple messages to be processed concurrently as they pass through the individual stages. For example, after the first message has been decrypted, it can be passed on to the authentication component. At the same time, the next message can already be decrypted (see picture). We call such a configuration a processing pipeline because messages flow through the filters like liquid flows through a pipe. When compared to strictly sequential processing, a processing pipeline can significantly increase system throughput.
 
-Pipeline Processing with Pipes-and-Filters
+`Diagram: Pipeline Processing with Pipes-and-Filters`
 
 #### Parallel Processing
 
-However, the overall system throughput is limited by the slowest process in the chain. To improve throughput we can deploy multiple parallel instances of that process to improve throughput. In this scenario, a Point-to-Point Channel with Competing Consumers is needed to guarantee that each message on the channel is consumed by exactly one of N available processors. This allows us to speed up the most time-intensive process and improve overall throughput. However, this configuration can cause messages to be processed out of order. If the sequence of messages is critical, we can only run one instance of each component or use a Resequencer.
+However, the overall system throughput is limited by the slowest process in the chain. To improve throughput we can deploy multiple parallel instances of that process to improve throughput. In this scenario, a `Point-to-Point Channel` with `Competing Consumers` is needed to guarantee that each message on the channel is consumed by exactly one of N available processors. This allows us to speed up the most time-intensive process and improve overall throughput. However, this configuration can cause messages to be processed out of order. If the sequence of messages is critical, we can only run one instance of each component or use a `Resequencer`.
+
+`Diagram: Parallel Processing`
 
 For example, if we assume that decrypting a message is much slower than authenticating it, we can use the above configuration (see picture), running three parallel instances of the decryption component. Parallelizing filters works best if each filter is stateless, i.e. it returns to the previous state after a message has been processed. This means that we cannot easily run multiple parallel de-dup components because the component maintains a history of all messages that it already received and is therefore not stateless.
 
 #### History of Pipes-and-Filters
 
-Pipes and Filters architectures are by no means a new concept. The simple elegance of this architecture combined with the flexibility and high throughput makes it easy to understand the popularity of Pipes and Filters architectures. The simple semantics also allow formal methods to be used to describe the architecture. Kahn described Kahn Process Networks in 1974 as a set of parallel processes that are connected by unbounded FIFO (First-In, First-Out) channels [Kahn]. [Garlan] contains a good chapter on different architectural styles, including Pipes and Filters. [Monroe] gives a detailed treatment of the relationships between architectural styles and design patterns. [PLOPD1] contains Regine Meunier's "The Pipes and Filters Architecture" which formed the basis for the Pipes and Filters pattern included in [POSA]. Almost all integration-related implementations of Pipes and Filters follow the 'Scenario IV' presented in [POSA], using active filters that pull, process and push independently from and to queuing pipes. The pattern described by Buschmann assumes that each element undergoes the same processing steps as it is passed from filter to filter. This is generally not the case in an integration scenario. In many instances, messages have to be routed
+Pipes and Filters architectures are by no means a new concept. The simple elegance of this architecture combined with the flexibility and high throughput makes it easy to understand the popularity of Pipes and Filters architectures. The simple semantics also allow formal methods to be used to describe the architecture.
 
-dynamically based on message content or external control. In fact, routing is such a common occurrence in enterprise integration that it warrants its own patterns, the Message Router. Pipes and Filters share some similarities with the concept of Communicating Sequential Processes (CSPs). Introduced by Hoare in 1978 [CSP], CSPs provide a simple model to describe synchronization problems that occur in parallel processing systems. The basic mechanism underlying CSPs is the synchronization of two processes via input-output (I/O). I/O occurs when process A indicates that it is ready to output to process B, and process B states that it is ready to input from process A. If one of these happens without the other being true, the process is put on a wait queue until the other process is ready. CSPs are different from integration solutions in that they are not as loosely coupled, nor do the "pipes" provide any queuing mechanisms. Nevertheless, we can benefit from the extensive treatment of CSPs in the academic world.
+Kahn described Kahn Process Networks in 1974 as a set of parallel processes that are connected by unbounded FIFO (First-In, First-Out) channels [Kahn]. [Garlan] contains a good chapter on different architectural styles, including Pipes and Filters. [Monroe] gives a detailed treatment of the relationships between architectural styles and design patterns. [PLOPD1] contains Regine Meunier's "The Pipes and Filters Architecture" which formed the basis for the Pipes and Filters pattern included in [POSA]. Almost all integration-related implementations of Pipes and Filters follow the 'Scenario IV' presented in [POSA], using active filters that pull, process and push independently from and to queuing pipes. The pattern described by Buschmann assumes that each element undergoes the same processing steps as it is passed from filter to filter. This is generally not the case in an integration scenario. In many instances, messages have to be routed dynamically based on message content or external control. In fact, routing is such a common occurrence in enterprise integration that it warrants its own patterns, the `Message Router`.
+
+Pipes and Filters share some similarities with the concept of Communicating Sequential Processes (CSPs). Introduced by Hoare in 1978 [CSP], CSPs provide a simple model to describe synchronization problems that occur in parallel processing systems. The basic mechanism underlying CSPs is the synchronization of two processes via input-output (I/O). I/O occurs when process A indicates that it is ready to output to process B, and process B states that it is ready to input from process A. If one of these happens without the other being true, the process is put on a wait queue until the other process is ready. CSPs are different from integration solutions in that they are not as loosely coupled, nor do the "pipes" provide any queuing mechanisms. Nevertheless, we can benefit from the extensive treatment of CSPs in the academic world.
 
 #### Vocabulary
 
-When discussing Pipes and Filters architectures we need to be cautious with the term 'filter'. We later define two additional patterns, the Message Filter and the Content Filter. While both of these are special cases of a generic filter, so are many other patterns in this pattern language. In other words, a pattern does not have to involve a filtering function (e.g. eliminating fields or messages) in order to be a filter in the sense of Pipes and Filters. We could have avoided this confusion be renaming the Pipes and Filters architectural style. However, we felt that Pipes and Filters are such an important and widely discussed concept that it would be even more confusing if we gave it a new name. We are trying to use the word 'filter' cautiously throughout these patterns and try to make it clear whether we are talking about a generic filter a la Pipes and Filters or a Message Filter / Content Filter to filter messages. In places where we felt that there is still room for confusion, we generally termed the generic filter as 'component' which is a generic enough (and often enough abused) term that should not get us into trouble. Example: Simple Filter in C# and MSMQ The following code snippet shows a generic base class for a filter with one input port and one output port. The base implementation simply prints the body of the received message and sends it to the output port. A more interesting filter would subclass the Processor class and override the ProcessMessage method to perform additional actions on the message, e.g. transform the message content or route it to different output channels. You notice that the Processor requires references to an input and output channel in order to be instantiated. The class is not tied to specific channels nor any other filter. This allows us to instantiate multiple filters and chain them together in arbitrary configurations. using System; using System.Messaging;
+```
+When discussing Pipes and Filters architectures we need to be cautious with the term 'filter'. We later define two additional patterns, the Message Filter and the Content Filter. While both of these are special cases of a generic filter, so are many other patterns in this pattern language. In other words, a pattern does not have to involve a filtering function (e.g. eliminating fields or messages) in order to be a filter in the sense of Pipes and Filters. We could have avoided this confusion be renaming the Pipes and Filters architectural style. However, we felt that Pipes and Filters are such an important and widely discussed concept that it would be even more confusing if we gave it a new name. We are trying to use the word 'filter' cautiously throughout these patterns and try to make it clear whether we are talking about a generic filter a la Pipes and Filters or a Message Filter / Content Filter to filter messages. In places where we felt that there is still room for confusion, we generally termed the generic filter as 'component' which is a generic enough (and often enough abused) term that should not get us into trouble.
+```
 
-namespace PipesAndFilters { public class Processor { protected MessageQueue inputQueue;
+#### Example: Simple Filter in C# and MSMQ
 
-```java
-protected MessageQueue outputQueue;
+The following code snippet shows a generic base class for a filter with one input port and one output port. The base implementation simply prints the body of the received message and sends it to the output port. A more interesting filter would subclass the Processor class and override the ProcessMessage method to perform additional actions on the message, e.g. transform the message content or route it to different output channels.
 
-public Processor (MessageQueue inputQueue, MessageQueue outputQueue) { this.inputQueue = inputQueue; this.outputQueue = outputQueue; }
+You notice that the Processor requires references to an input and output channel in order to be instantiated. The class is not tied to specific channels nor any other filter. This allows us to instantiate multiple filters and chain them together in arbitrary configurations. using System; using System.Messaging; namespace PipesAndFilters { public class Processor { protected MessageQueue inputQueue;
 
-public void Process() { inputQueue.ReceiveCompleted += new ReceiveCompletedEventHandler(OnReceiveCompleted); inputQueue.BeginReceive(); }
+```C#
+using System;
+using System.Messaging;
+namespace PipesAndFilters {
+public class Processor
+    {
+        protected MessageQueue inputQueue;
+        protected MessageQueue outputQueue;
 
-private void OnReceiveCompleted(Object source, ReceiveCompletedEventArgs asyncResult) { MessageQueue mq = (MessageQueue)source;
+        public Processor (MessageQueue inputQueue, MessageQueue outputQueue) {
+            this.inputQueue = inputQueue;
+            this.outputQueue = outputQueue;
+        }
 
-Message inputMessage = mq.EndReceive(asyncResult.AsyncResult); inputMessage.Formatter =  new System.Messaging.XmlMessageFormatter(new String[] {"System.String,mscorlib"});
+        public void Process() {
+            inputQueue.ReceiveCompleted += new ReceiveCompletedEventHandler(OnReceiveCompleted);
+            inputQueue.BeginReceive();
+        }
 
-Message outputMessage = ProcessMessage(inputMessage);
+        private void OnReceiveCompleted(Object source, ReceiveCompletedEventArgs asyncResult) {
+            MessageQueue mq = (MessageQueue)source;
+            Message inputMessage = mq.EndReceive(asyncResult.AsyncResult);
+            inputMessage.Formatter =  new System.Messaging.XmlMessageFormatter(new String[] {"System.String,mscorlib"});
+            Message outputMessage = ProcessMessage(inputMessage);
+            outputQueue.Send(outputMessage);
+            mq.BeginReceive();
+        }
 
-outputQueue.Send(outputMessage);
-
-mq.BeginReceive(); }
-
-protected virtual Message ProcessMessage(Message m) { Console.WriteLine("Received Message: " + m.Body); return (m); } } } This implementation is a Event-Driven Consumer. The Process method registers for incoming messages and instructs the messaging system to invoke the method OnReceiveCompleted every time a message arrives. This method extracts the message data from the incoming event object and calls the virtual method ProcessMessage.
+        protected virtual Message ProcessMessage(Message m) {
+            Console.WriteLine("Received Message: " + m.Body);
+            return (m);
+        }
+    }
+}
 
 ```
 
+This implementation is a `Event-Driven Consumer`. The Process method registers for incoming messages and instructs the messaging system to invoke the method OnReceiveCompleted every time a message arrives. This method extracts the message data from the incoming event object and calls the virtual method ProcessMessage.
+
+This simple filter example is not transactional. If an error occurs while processing the message (before it is sent to the output channel) the message is lost. This is generally not desirable in a production environment. See `Transactional Client` for a solution to this problem.
+
+`Related patterns: Competing Consumers, Content Filter, Event-Driven Consumer, Message Filter, Message Channel, Message Router, Messaging, Messaging Gateway, Point-to-Point Channel, Resequencer, Test Message, Transactional Client`
+
 ### Message Router
 
-This simple filter example is not transactional. If an error occurs while processing the message (before it is sent to the output channel) the message is lost. This is generally not desirable in a production environment. See Transactional Client for a solution to this problem. Related patterns: Competing Consumers, Content Filter, Event-Driven Consumer, Message Filter, Message Channel, Message Router, Messaging, Messaging Gateway, Point-to-Point Channel, Resequencer, Test Message, Transactional Client Message Router Multiple processing steps in a Pipes and Filters chain are connected by Message Channels. How can you decouple individual processing steps so that messages can be passed to different filters depending on a set of conditions? The Pipes and Filters architectural style connects filters directly to one another with fixed pipes. This makes sense because many applications of the Pipes and Filters pattern (e.g., [POSA]) are based on a large set of data items, each of which undergoes the same, sequential processing steps. For example, a compiler will always execute the lexical analysis first, the syntactic analysis second and the semantic analysis least. Message-based integration solutions, on the other hand, deal with individual messages which are not necessarily associated with a single, larger data set. As a result, individual messages are more likely to require a different series of processing steps. A Message Channel decouples the sender and the receiver of a Message. This means that multiple applications can publish Messages to a Message Channel. As a result, a message channel can contain messages from different sources that may have to be treated differently based on the type of the message or other criteria. You could create a separate Message Channel for each message type (a concept explained in more detail later as a Datatype Channel) and connect each channel to the required processing steps for that message type. However, this would require the message originators to be aware of the selection criteria for different processing steps, so that they can publish the message to the correct channel. It could also lead to an explosion of the number of Message Channels. Also, the decision on which steps the message undergoes may not just depend on the origin of the message. For example, we could imagine a situation where the destination of a message changes by the number of messages that have passed through the channel so far. No single originator would know this number and would therefore be unable to send the message to the correct channel. Channels provide a very basic form of routing capabilities. An application publishes a Message to a Message Channel and has no further knowledge of that Message's destination. Therefore, the path of the Message can change depending on which component subscribes to the Message Channel. However, this type of 'routing' does not take into account the properties of individual messages. Once a components subscribes to a Message Channel it will by default consume all messages from that channel regardless of the individual messages' specific properties. This behavior is similar to the use of the pipe symbol in Unix. It allows you to
+Multiple processing steps in a `Pipes and Filters` chain are connected by `Message Channels`.
 
-compose processes into a Pipes and Filters chain but for the lifetime of the chain all lines of text undergo the same steps. We could solve this problem by making the receiving component itself responsible for determining whether it should process the message or not. This is problematic, though, because once the message is consumed and the component determines that it does not want the message it can't just put the message back on the channel for another component to check out. Some messaging systems allow receivers to inspect message properties without removing the message from the channel so that it can decide whether to consume the message or not. However, this is not a general solution and will also tie the consuming component to a specific type of message because the logic for message selection is now built right into the component. This would reduce the potential for reuse of that component and eliminate the composability that is the key strength of the Pipes and Filters model. Many of these alternatives assume that we can modify the participating components. In most integration solutions, however, the building blocks ('components') are large applications which in most cases cannot be modified at all, for example because they are packaged applications or legacy applications. This makes it uneconomical or even impossible to adjust the message producing or consuming applications to the needs of the messaging system or other applications. An advantage of the Pipes and Filters is the composability of the individual components. It allows us to insert additional steps into the chain without having to change existing components. This opens up the option of decoupling two filters by inserting another filter in between that determines what step to execute next. Insert a special filter, a Message Router, which consumes a Message from one Message Channel and republishes it to a different Message Channel channel depending on a set of conditions.
+#### How can you decouple individual processing steps so that messages can be passed to different filters depending on a set of conditions?
 
-The Message Router differs from the most basic notion of Pipes and Filters in that it connects to multiple output channels. Thanks to the Pipes and Filters architecture the components surrounding the Message Router are completely unaware of the existence of a Message Router. A key property of the Message Router is that it does not modify the message contents. It only concerns itself with the destination of the message. The key benefit of using a Message Router is that the decision criteria for the destination of a message are maintained in a single location. If new message types are defined, new processing components are added, or the routing rules change, we need to change only the Message Router
+The `Pipes and Filters` architectural style connects filters directly to one another with fixed pipes. This makes sense because many applications of the `Pipes and Filters` pattern (e.g., [POSA]) are based on a large set of data items, each of which undergoes the same, sequential processing steps. For example, a compiler will always execute the lexical analysis first, the syntactic analysis second and the semantic analysis least. Message-based integration solutions, on the other hand, deal with individual messages which are not necessarily associated with a single, larger data set. As a result, individual messages are more likely to require a different series of processing steps.
 
-logic and all other components remain unaffected. Also, since all messages pass through a single Message Router, incoming messages are guaranteed to be processed one-by-one in the correct order. While the intent of a Message Router is to decouple filters, using a Message Router can actually cause the opposite effect. The Message Router needs to have knowledge of all possible message destinations in order to send the message to the correct channel. In some situations, the list of possible destinations may change frequently and turn the Message Router into a maintenance bottleneck. In those cases, it would be better to let the individual recipients decide which messages they are interested in. You can accomplish this by using a Publish-Subscribe Channel and an array of Message Filters. We contrast these two alternatives by calling them predictive routing and reactive filtering (for more detail see Message Filter). Because a Message Router requires the insertion of an additional processing step it can degrade performance. Many message-based systems have to decode the message from one channel before it can be placed on another channel, which causes computational overhead if the message itself does not really change. This overhead can turn a Message Router, into a performance bottleneck. By using multiple routers in parallel or adding additional hardware, this effect can be minimized. As a result, the message throughput (number of messages processed per time unit) may not be impacted, but the latency (time for one message to travel through the system) will almost certainly increase. Deliberate use of Message Routers can turn the advantage of loose coupling into a disadvantage. Loosely coupled systems can make it difficult to understand the "big picture" of the solution, i.e. the overall flow of messages through the system. This is a common problem with messaging solutions and the use of routers can exacerbate the problem. If everything is loosely coupled to everything else it becomes impossible to understand which way messages actually flow. This can complicate testing and debugging and maintenance. A number of tools can help alleviate this problem. First, we can use the Message History to inspect messages at runtime and see which components they traversed. Alternatively, we can compile a list of all channels that each component in the system subscribes or publishes to. With this knowledge we can draw a graph of all possible message flows across components. Many EAI packages maintain channel subscription information in a central repository, making this type of static analysis easier.
+A `Message Channel` decouples the sender and the receiver of a `Message`. This means that multiple applications can publish `Messages` to a `Message Channel`. As a result, a message channel can contain messages from different sources that may have to be treated differently based on the type of the message or other criteria. You could create a separate `Message Channel` for each message type (a concept explained in more detail later as a `Datatype Channel`) and connect each channel to the required processing steps for that message type. However, this would require the message originators to be aware of the selection criteria for different processing steps, so that they can publish the message to the correct channel. It could also lead to an explosion of the number of `Message Channels`. Also, the decision on which steps the message undergoes may not just depend on the origin of the message. For example, we could imagine a situation where the destination of a message changes by the number of messages that have passed through the channel so far. No single originator would know this number and would therefore be unable to send the message to the correct channel.
 
-#### Variants
+`Message Channels` provide a very basic form of routing capabilities. An application publishes a `Message` to a `Message Channel` and has no further knowledge of that `Message`'s destination. Therefore, the path of the `Message` can change depending on which component subscribes to the `Message Channel`. However, this type of 'routing' does not take into account the properties of individual messages. Once a components subscribes to a `Message Channel` it will by default consume all messages from that channel regardless of the individual messages' specific properties. This behavior is similar to the use of the pipe symbol in Unix. It allows you to compose processes into a `Pipes and Filters` chain but for the lifetime of the chain all lines of text undergo the same steps.
 
-A Message Router can use any number of criteria to determine the output channel for an incoming message. The most trivial case is a fixed router. In this case, only a single input channel and a single output channel are defined. The fixed router consumes one message off the input channel and publishes it to the output channel. Why would we ever use such a brainless router? A fixed router may be useful to intentionally decouple subsystems. Or we may be relaying messages between multiple integration solutions. In most cases, a fixed router will be combined with a Message Translator or a Channel Adapter to transform the message content or send the message over a different channel type.
+We could solve this problem by making the receiving component itself responsible for determining whether it should process the message or not. This is problematic, though, because once the message is consumed and the component determines that it does not want the message it can't just put the message back on the channel for another component to check out. Some messaging systems allow receivers to inspect message properties without removing the message from the channel so that it can decide whether to consume the message or not. However, this is not a general solution and will also tie the consuming component to a specific type of message because the logic for message selection is now built right into the component. This would reduce the potential for reuse of that component and eliminate the composability that is the key strength of the `Pipes and Filters` model.
 
-Many Message Routers decide the message destination only on properties of the message itself, for example the message type or the values of specific message fields. We call such a router a Content-Based Router. This type of router is so common that the Content-Based Router pattern describes it in more detail. Other Message Routers decide the message's destination based on environment conditions. We call these routers Context-Based Routers. Such routers are commonly used to perform load balancing, test or failover functionality. For example, if a processing component fails, the Context-Based Router can re-route message to another processing component and thus provide fail-over capability. Other routers split messages evenly across multiple channels to achieve parallel processing similar to a load balancer. A Message Channel already provides basic load balancing capabilities without the use of a Message Router because multiple competing consumers can each consume messages off the same channel as fast as they can. However, a Message Router can have additional built-in intelligence to route the messages as opposed to a simple round-robin implemented by the channel. Many Message Routers are stateless, i.e. they only look at one message at a time to make the routing decision. Other routers take the content of previous messages into account when making a routing decision. For example, we can envision a router that eliminates duplicate messages by keeping a list of all messages it already received. These routers are stateful. Most Message Routers contain hard-coded logic for the routing decision. However, some variants connect to a Control Bus so that the middleware solution can change the decision criteria without having to make any code changes or interrupting the flow of messages. For example, the Control Bus can propagate the value of a global variable to all Message Routers in the system. This can be very useful for testing to allow the messaging system to switch from 'test' to 'production' mode. The Dynamic Router configures itself dynamically based on control messages from each potential recipient. Chapter Introduction to Message Routing introduces further variants of the Message Router.
+Many of these alternatives assume that we can modify the participating components. In most integration solutions, however, the building blocks ('components') are large applications which in most cases cannot be modified at all, for example because they are packaged applications or legacy applications. This makes it uneconomical or even impossible to adjust the message producing or consuming applications to the needs of the messaging system or other applications.
+
+An advantage of the `Pipes and Filters` is the composability of the individual components. It allows us to insert additional steps into the chain without having to change existing components. This opens up the option of decoupling two filters by inserting another filter in between that determines what step to execute next.
+
+`Diagram: Insert a special filter, a Message Router, which consumes a Message from one Message Channel and republishes it to a different Message Channel channel depending on a set of conditions.`
+
+The Message Router differs from the most basic notion of `Pipes and Filters` in that it connects to multiple output channels. Thanks to the Pipes and Filters architecture the components surrounding the Message Router are completely unaware of the existence of a Message Router. A key property of the Message Router is that it does not modify the message contents. It only concerns itself with the destination of the message.
+
+The key benefit of using a Message Router is that the decision criteria for the destination of a message are maintained in a single location. If new message types are defined, new processing components are added, or the routing rules change, we need to change only the Message Router logic and all other components remain unaffected. Also, since all messages pass through a single Message Router, incoming messages are guaranteed to be processed one-by-one in the correct order.
+
+While the intent of a Message Router is to decouple filters, using a Message Router can actually cause the opposite effect. The Message Router needs to have knowledge of all possible message destinations in order to send the message to the correct channel. In some situations, the list of possible destinations may change frequently and turn the Message Router into a maintenance bottleneck. In those cases, it would be better to let the individual recipients decide which messages they are interested in. You can accomplish this by using a `Publish-Subscribe Channel` and an array of `Message Filters`. We contrast these two alternatives by calling them `predictive routing` and `reactive filtering` (for more detail see `Message Filter`).
+
+Because a Message Router requires the insertion of an additional processing step it can degrade performance. Many message-based systems have to decode the message from one channel before it can be placed on another channel, which causes computational overhead if the message itself does not really change. This overhead can turn a Message Router, into a performance bottleneck. By using multiple routers in parallel or adding additional hardware, this effect can be minimized. As a result, the message throughput (number of messages processed per time unit) may not be impacted, but the latency (time for one message to travel through the system) will almost certainly increase.
+
+Deliberate use of `Message Routers` can turn the advantage of loose coupling into a disadvantage. Loosely coupled systems can make it difficult to understand the "big picture" of the solution, i.e. the overall flow of messages through the system. This is a common problem with messaging solutions and the use of routers can exacerbate the problem. If everything is loosely coupled to everything else it becomes impossible to understand which way messages actually flow. This can complicate testing and debugging and maintenance. A number of tools can help alleviate this problem. First, we can use the `Message History` to inspect messages at runtime and see which components they traversed. Alternatively, we can compile a list of all channels that each component in the system subscribes or publishes to. With this knowledge we can draw a graph of all possible message flows across components. Many EAI packages maintain channel subscription information in a central repository, making this type of static analysis easier.
+
+#### Message Router Variants
+
+A Message Router can use any number of criteria to determine the output channel for an incoming message. The most trivial case is a fixed router. In this case, only a single input channel and a single output channel are defined. The fixed router consumes one message off the input channel and publishes it to the output channel. Why would we ever use such a brainless router? A fixed router may be useful to intentionally decouple subsystems. Or we may be relaying messages between multiple integration solutions. In most cases, a fixed router will be combined with a `Message Translator` or a `Channel Adapter` to transform the message content or send the message over a different channel type.
+
+Many `Message Routers` decide the message destination only on properties of the message itself, for example the message type or the values of specific message fields. We call such a router a `Content-Based Router`. This type of router is so common that the `Content-Based Router` pattern describes it in more detail.
+
+Other Message Routers decide the message's destination based on environment conditions. We call these routers Context-Based Routers. Such routers are commonly used to perform load balancing, test or failover functionality. For example, if a processing component fails, the Context-Based Router can re-route message to another processing component and thus provide fail-over capability. Other routers split messages evenly across multiple channels to achieve parallel processing similar to a load balancer. A Message Channel already provides basic load balancing capabilities without the use of a Message Router because multiple competing consumers can each consume messages off the same channel as fast as they can. However, a Message Router can have additional built-in intelligence to route the messages as opposed to a simple round-robin implemented by the channel.
+
+Many Message Routers are stateless, i.e. they only look at one message at a time to make the routing decision. Other routers take the content of previous messages into account when making a routing decision. For example, we can envision a router that eliminates duplicate messages by keeping a list of all messages it already received. These routers are stateful.
+
+Most Message Routers contain hard-coded logic for the routing decision. However, some variants connect to a `Control Bus` so that the middleware solution can change the decision criteria without having to make any code changes or interrupting the flow of messages. For example, the `Control Bus` can propagate the value of a global variable to all Message Routers in the system. This can be very useful for testing to allow the messaging system to switch from 'test' to 'production' mode. The `Dynamic Router` configures itself dynamically based on control messages from each potential recipient.
+
+Chapter `Introduction to Message Routing` introduces further variants of the Message Router.
 
 #### Example: Commercial EAI Tools
 
 The notion of a Message Router is central to the concept of a Message Broker, implemented in virtually all commercial EAI tools. These tools accept incoming messages, validate them, transform them and route them to the correct destination. This architecture alleviates the participating applications from having to be aware of other applications altogether because the message broker brokers between the applications. This is a key function in EAI because most applications to be connected are packaged or legacy applications and the integration has to happen non-intrusively, i.e. without changing the application code. This requires the middleware to incorporate all routing logic so the applications do not have to. The Message Broker is the integration equivalent of a Mediator presented in [GoF].
 
-Example: Simple Router with C# and MSMQ
+#### Example: Simple Router with C# and MSMQ
 
 This code example demonstrates a very simple router that routes an incoming message to one of two possible output channels. class SimpleRouter { protected MessageQueue inQueue; protected MessageQueue outQueue1; protected MessageQueue outQueue2;
 
-```java
-public SimpleRouter(MessageQueue inQueue, MessageQueue outQueue1, MessageQueue outQueue2) { this.inQueue = inQueue; this.outQueue1 = outQueue1; this.outQueue2 = outQueue2;
+```C#
+class SimpleRouter
+{
+    protected MessageQueue inQueue;
+    protected MessageQueue outQueue1;
+    protected MessageQueue outQueue2;
+    public SimpleRouter(MessageQueue inQueue, MessageQueue outQueue1, MessageQueue outQueue2) {
+      this.inQueue = inQueue;
+      this.outQueue1 = outQueue1;
+      this.outQueue2 = outQueue2;
+      inQueue.ReceiveCompleted += new ReceiveCompletedEventHandler(OnMessage);
+      inQueue.BeginReceive();
+    }
 
-```
+    private void OnMessage(Object source, ReceiveCompletedEventArgs asyncResult) {
+      MessageQueue mq = (MessageQueue)source;
+      Message message = mq.EndReceive(asyncResult.AsyncResult);
+      if (IsConditionFulfilled())
+        outQueue1.Send(message);
+      else
+        outQueue2.Send(message);
+      mq.BeginReceive();
+    }
 
-inQueue.ReceiveCompleted += new ReceiveCompletedEventHandler(OnMessage); inQueue.BeginReceive(); }
+    protected bool toggle = false;
 
-```java
-private void OnMessage(Object source, ReceiveCompletedEventArgs asyncResult) { MessageQueue mq = (MessageQueue)source; Message message = mq.EndReceive(asyncResult.AsyncResult);
-
-if (IsConditionFulfilled()) outQueue1.Send(message); else outQueue2.Send(message);
-
-mq.BeginReceive(); }
-
-protected bool toggle = false;
-
-protected bool IsConditionFulfilled () { toggle = !toggle; return toggle; }
-
-```
+    protected bool IsConditionFulfilled () {
+      toggle = !toggle;
+      return toggle;
+    }
 
 }
+```
+
+The code is relatively straightforward. The example implements an event-driven consumer of messages using C# delegates. The constructor registers the method OnMessage as the handler for messages arriving on the inQueue. This causes the .NET framework to invoke the method OnMessage for every message that arrives on the inQueue. OnMessage figures out where to route the message by calling the method IsConditionFulfilled. In this trivial example IsConditionFulfilled simply toggles between the two channels, dividing the messages evenly between outQueue1 and outQueue2. In order to keep the code to a minimum, this simple router is not transactional, i.e. if the router crashes after it consumed a message from the input channel and before it published it to the output channel, we would lose a message. Later chapters will explain how to make endpoints transactional (see Transactional Client).
+
+`Related patterns: Channel Adapter, Content-Based Router, Control Bus, Datatype Channel, Dynamic Router, Message Filter, Message, Message Channel, Message History, Introduction to Message Routing, Message Translator, Pipes and Filters, Publish-Subscribe Channel, Transactional Client`
 
 ### Message Translator
 
-The code is relatively straightforward. The example implements an event-driven consumer of messages using C# delegates. The constructor registers the method OnMessage as the handler for messages arriving on the inQueue. This causes the .NET framework to invoke the method OnMessage for every message that arrives on the inQueue. OnMessage figures out where to route the message by calling the method IsConditionFulfilled. In this trivial example IsConditionFulfilled simply toggles between the two channels, dividing the messages evenly between outQueue1 and outQueue2. In order to keep the code to a minimum, this simple router is not transactional, i.e. if the router crashes after it consumed a message from the input channel and before it published it to the output channel, we would lose a message. Later chapters will explain how to make endpoints transactional (see Transactional Client). Related patterns: Channel Adapter, Content-Based Router, Control Bus, Datatype Channel, Dynamic Router, Message Filter, Message, Message Channel, Message History, Introduction to Message Routing, Message Translator, Pipes and Filters, Publish-Subscribe Channel, Transactional Client Message Translator The previous patterns describe how to construct messages and how to route them to the correct destination. In many cases, enterprise integration solutions route messages between existing applications such as legacy systems, packaged applications, homegrown custom applications, or applications operated by external partners. Each of these applications is usually built around a proprietary data model. Each application may have a slightly different notion of the Customer entity , the attributes that define a Customer and which other entities a Customer is related to. For example, the accounting system may be more interested in the customer's tax payer ID numbers while the customer-relationship management (CRM) system stores phone numbers and addresses. The application’s underlying data model usually drives the design of the physical database schema, an interface file format or a programming interface (API) -- those entities that an integration solution has to interface with. As a result, the applications expect to receive messages that mimic the application's internal data format. In addition to the proprietary data models and data formats incorporated in the various applications, integration solutions often times interact with standardized data formats that seek to be independent from specific applications. There are a number of consortia and standards bodies that define these protocols, such as RosettaNet, ebXML, OAGIS and many other, industry specific consortia. In many cases, the integration solution needs to be able to communicate with external parties using the ‘official’ data formats while the internal systems are based on proprietary formats. How can systems using different data formats communicate with each other using messaging? We could avoid having to transform messages if we could modify all applications to use a common data format. This turns out to be difficult for a number of reasons (see Shared Database). First, changing an application’s data format is risky, difficult, and requires a lot of changes to inherent business functionality. For most legacy applications, data format changes are simply not
+The previous patterns describe how to construct messages and how to route them to the correct destination. In many cases, enterprise integration solutions route messages between existing applications such as legacy systems, packaged applications, homegrown custom applications, or applications operated by external partners. Each of these applications is usually built around a proprietary data model. Each application may have a slightly different notion of the Customer entity , the attributes that define a Customer and which other entities a Customer is related to. For example, the accounting system may be more interested in the customer's tax payer ID numbers while the customer-relationship management (CRM) system stores phone numbers and addresses. The application’s underlying data model usually drives the design of the physical database schema, an interface file format or a programming interface (API) -- those entities that an integration solution has to interface with. As a result, the applications expect to receive messages that mimic the application's internal data format.
 
-economically feasible. We may all remember the effort related to the Y2K retrofits where the scope of the change was limited to the size of a single field! Also, while we may get multiple applications to use the same data field names and maybe even the same data types, the physical representation may still be quite different. One application may use XML documents, while the other application uses COBOL copybooks. Furthermore, if we adjust the data format of one application to match that of another application we are tying the two applications more tightly to each other. One of the key architectural principles in enterprise integration is loose coupling between applications (see Canonical Data Model). Modifying one application to match another application's data format would violate this principle because it makes two applications directly dependent on each other's internal representation. This eliminates the possibility of replacing or changing one application without affecting the other application, a scenario that is fairly common in enterprise integration. We could incorporate the data format translation directly into the Message Endpoint. This way, all applications would publish and consume messages in a common format as opposed to the application internal data format. However, this approach requires access to the endpoint code, which is usually not the case for packaged applications. In addition, hard-coding the format translation to the endpoint would reduce the opportunities for code reuse. Use a special filter, a Message Translator, between other filters or applications to translate one data format into another.
+In addition to the proprietary data models and data formats incorporated in the various applications, integration solutions often times interact with standardized data formats that seek to be independent from specific applications. There are a number of consortia and standards bodies that define these protocols, such as RosettaNet, ebXML, OAGIS and many other, industry specific consortia. In many cases, the integration solution needs to be able to communicate with external parties using the ‘official’ data formats while the internal systems are based on proprietary formats.
+
+#### How can systems using different data formats communicate with each other using messaging?
+
+We could avoid having to transform messages if we could modify all applications to use a common data format. This turns out to be difficult for a number of reasons (see `Shared Database`). First, changing an application’s data format is risky, difficult, and requires a lot of changes to inherent business functionality. For most legacy applications, data format changes are simply not economically feasible. We may all remember the effort related to the Y2K retrofits where the scope of the change was limited to the size of a single field!
+
+Also, while we may get multiple applications to use the same data field names and maybe even the same data types, the physical representation may still be quite different. One application may use XML documents, while the other application uses COBOL copybooks.
+
+Furthermore, if we adjust the data format of one application to match that of another application we are tying the two applications more tightly to each other. One of the key architectural principles in enterprise integration is loose coupling between applications (see `Canonical Data Model`). Modifying one application to match another application's data format would violate this principle because it makes two applications directly dependent on each other's internal representation. This eliminates the possibility of replacing or changing one application without affecting the other application, a scenario that is fairly common in enterprise integration.
+
+We could incorporate the data format translation directly into the Message Endpoint. This way, all applications would publish and consume messages in a common format as opposed to the application internal data format. However, this approach requires access to the endpoint code, which is usually not the case for packaged applications. In addition, hard-coding the format translation to the endpoint would reduce the opportunities for code reuse.
+
+`Diagram: Use a special filter, a Message Translator, between other filters or applications to translate one data format into another.`
 
 The Message Translator is the messaging equivalent of the Adapter pattern described in [GoF]. An adapter converts the interface of a component into a another interface so it can be used in a different context.
 
@@ -1212,59 +1622,205 @@ The Message Translator is the messaging equivalent of the Adapter pattern descri
 
 Message translation may need to occur at a number of different levels. For example, data elements may share the same name and data types, but may be used in different representations (e.g. XML file vs. comma-separated values vs. fixed-length fields). Or, all data elements may be represented in XML format, but use different tag names. To summarize the different kinds of translation, we can divide it into multiple layers (loosely borrowing from the OSI Reference Model model):
 
-Layer Deals With Transformation Needs (Example) Tools / Techniques Data Structures (Application Layer) Entities, associations, cardinality Condense many-to-many relationship into aggregation. Structural Mapping Patterns Custom code Data Types Field names, data types, value domains, constraints, code values Convert zip code from numeric to string. Concatenate first name and last name fields to single name field. Replace US state name with two character code. EAI visual transformation editors XSL Database lookups Custom code Data Representation Data formats (XML, name-value pairs, fixed-length data fields etc., EAI vendor formats) Character sets (ASCII, UniCode, EBCDIC) Encryption / compression Parse data representation and render in a different format. Decrypt/ encrypt as necessary. XML Parsers, EAI parser / renderer tools Custom APIs Transport Communications Protocols:TCP/IP sockets, http, SOAP, JMS, TIBCO RendezVous Move data across protocols without affecting message content. EAI adapters The Transport Layer at the bottom of the “stack” provides data transfer between the different systems. It is responsible for complete and reliable data transfer across different network segments and deals with lost data packets and other network errors. Some EAI vendors provide their own transport protocols (e.g. TIBCO RendezVous) while other integration technologies leverage TCP/IP protocols (e.g. SOAP). Translation between different transport layers can be provided by the Channel Adapter pattern. The Data Representation layer is also referred to as the “syntax layer”. This layer defines the representation of data that is transported. This translation is necessary because the Transport Layer can only transport character or byte streams. This means that complex data structures have to be converted into a character string. Common formats include XML, fixed-length fields (e.g. EDI records) or proprietary formats. In many cases, data is also compressed or encrypted, carries check digits or digital certificates. In order to interface systems with different data representations, data may have to be decrypted, uncompressed and parsed, then the new data format rendered, and possibly compressed and encrypted as well. The Data Types layer defines the application data types that the application (domain) model is based on. Here we deal with decisions whether date fields are represented as strings or as native date structures, whether dates carry a time-of-day component, which time zone they are based on, etc. We may also consider whether the field Postal Code denotes only a US ZIP code or can contain Canadian postal codes. In case of a US ZIP code, do we include a ZIP+4; is it mandatory? Is it stored in one field or two? Many of these questions are usually addressed in so-called Data Dictionaries. The issues related to Data Types go beyond whether a field is of type string or integer.
+| Layer                               | Deals With                                                                                                                                                | Transformation Needs (Example)                                                                                                                            | Tools / Techniques                                                    |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Data Structures (Application Layer) | Entities, associations, cardinality                                                                                                                       | Condense many-to-many relationship into aggregation.                                                                                                      | Structural Mapping Patterns; Custom code                              |
+| Data Types                          | Field names, data types, value domains, constraints, code values                                                                                          | Convert zip code from numeric to string. Concatenate first name and last name fields to single name field. Replace US state name with two character code. | EAI visual transformation editors; XSL; Database lookups; Custom code |
+| Data Representation                 | Data formats (XML, name-value pairs, fixed-length data fields, etc., EAI vendor formats); Character sets (ASCII, Unicode, EBCDIC); Encryption/compression | Parse data representation and render in a different format. Decrypt/encrypt as necessary.                                                                 | XML Parsers, EAI parser/renderer tools; Custom APIs                   |
+| Transport                           | Communications Protocols: TCP/IP sockets, HTTP, SOAP, JMS, TIBCO RendezVous                                                                               | Move data across protocols without affecting message content.                                                                                             | EAI adapters                                                          |
 
-Consider sales data that is organized by region. The application used by one department may divide the country into 4 regions: Western, Central, Southern and Eastern, identified by the letters ‘W”, ‘C’, ‘S’ and ‘E’. Another department may differentiate the Pacific Region from the Mountain Region and distinguishes the Northeast from the Southeast. Each region is identifies by a unique two-digit number. What number does the letter ‘E’ correspond to? The Data Structures describes the data at the level of the application domain model. It is therefore also referred to as the Application Layer. This layer defines the logical entities that the application deals with, such as Customer, Address or Account. It also defines the relationships between these entities: Can one customer have multiple accounts? Can a customer have multiple addresses? Can customers share and address? Can multiple customers share an account? Is the address part of the account or the customer? This is the domain of entity-relationship diagrams and class diagrams.
+The `Transport Layer` at the bottom of the “stack” provides data transfer between the different systems. It is responsible for complete and reliable data transfer across different network segments and deals with lost data packets and other network errors. Some EAI vendors provide their own transport protocols (e.g. TIBCO RendezVous) while other integration technologies leverage TCP/IP protocols (e.g. SOAP). Translation between different transport layers can be provided by the `Channel Adapter` pattern.
+
+The `Data Representation` layer is also referred to as the “syntax layer”. This layer defines the representation of data that is transported. This translation is necessary because the Transport Layer can only transport character or byte streams. This means that complex data structures have to be converted into a character string. Common formats include XML, fixed-length fields (e.g. EDI records) or proprietary formats. In many cases, data is also compressed or encrypted, carries check digits or digital certificates. In order to interface systems with different data representations, data may have to be decrypted, uncompressed and parsed, then the new data format rendered, and possibly compressed and encrypted as well.
+
+The `Data Types` layer defines the application data types that the application (domain) model is based on. Here we deal with decisions whether date fields are represented as strings or as native date structures, whether dates carry a time-of-day component, which time zone they are based on, etc. We may also consider whether the field Postal Code denotes only a US ZIP code or can contain Canadian postal codes. In case of a US ZIP code, do we include a ZIP+4; is it mandatory? Is it stored in one field or two? Many of these questions are usually addressed in so-called `Data Dictionaries`. The issues related to Data Types go beyond whether a field is of type `string` or `integer`.
+
+Consider sales data that is organized by region. The application used by one department may divide the country into 4 regions: Western, Central, Southern and Eastern, identified by the letters ‘W”, ‘C’, ‘S’ and ‘E’. Another department may differentiate the Pacific Region from the Mountain Region and distinguishes the Northeast from the Southeast. Each region is identifies by a unique two-digit number. What number does the letter ‘E’ correspond to?
+
+The `Data Structures` describes the data at the level of the application domain model. It is therefore also referred to as the Application Layer. This layer defines the logical entities that the application deals with, such as `Customer`, `Address` or `Account`. It also defines the relationships between these entities: Can one customer have multiple accounts? Can a customer have multiple addresses? Can customers share and address? Can multiple customers share an account? Is the address part of the account or the customer? This is the domain of entity-relationship diagrams and class diagrams.
 
 #### Levels of Decoupling
 
-Many of the design trade-offs in integration are driven by the need to decouple components or applications. Decoupling is an essential tool to enable the management of change. Integration typically connects existing applications and has to accommodate changes to these applications. Message Channels decouple applications from having to know each other's location. A Message Router can even decouple applications from having to agree on a common Message Router. However, this form of decoupling only achieves limited independence between applications if they depend on each other's data formats. A Message Translator can help remove this level of dependency.
+Many of the design trade-offs in integration are driven by the need to decouple components or applications. Decoupling is an essential tool to enable the management of change. Integration typically connects existing applications and has to accommodate changes to these applications. `Message Channels` decouple applications from having to know each other's location. A `Message Router` can even decouple applications from having to agree on a common `Message Router`. However, this form of decoupling only achieves limited independence between applications if they depend on each other's data formats. A `Message Translator` can help remove this level of dependency.
 
 #### Chaining Transformations
 
 Many business scenarios require transformations at more than one layer. For example, let's assume an EDI 850 Purchase Order record represented as a fixed-format file has to be translated to an XML document sent over http to the order management system which uses a different definition of the Order object. The required transformation spans all four levels: the transport changes from a file to HTTP, the data format changes from fixed-format to XML, data types and data formats have to be converted to comply with the Order object defined by the order management system. The beauty of a layered model is that we can treat one layer without regard to the lower layers and therefore can choose to work at different levels of abstraction. Correspondingly, we can talk about transformation at each layer of abstraction (see picture).
 
-Chaining multiple Message Translator units using Pipes and Filters results in the following architecture (see picture). Creating one Message Translator for each layer allows us to reuse these components in other scenarios. For example, the Channel Adapter and the EDI-to-XML Message Translator can be generic enough to deal with any incoming EDI document.
+`Diagram: Layer of Abstraction`
 
-This approach also makes individual layers interchangeable. You could use the same structural transformation mechanisms, but instead of converting the data representation into a fixed format you could convert it into a comma-separated file by swapping out the data representation transformation. There are many specializations and variations of the Message Translator pattern. A Content Enricher augments the information inside a message while the Content Filter removes information. The Claim Check removes information but stores it for later retrieval. The Normalizer can convert a number of different message formats into a consistent format. Lastly, the Canonical Data Model shows how to leverage multiple Message Translators to achieve data format decoupling. Inside each of those patterns, complex structural transformations can occur (e.g. mapping a many-to-many relationship into a one-to-one relationship). The Messaging Bridge performs a translation of the transport layer by connecting multiple messaging systems to each other.
+Chaining multiple Message Translator units using `Pipes and Filters` results in the following architecture (see picture). Creating one Message Translator for each layer allows us to reuse these components in other scenarios. For example, the `Channel Adapter` and the `EDI-to-XML Message Translator` can be generic enough to deal with any incoming EDI document.
+
+`Diagram: EDI-to-XML Message Translater`
+
+This approach also makes individual layers interchangeable. You could use the same structural transformation mechanisms, but instead of converting the data representation into a fixed format you could convert it into a comma-separated file by swapping out the data representation transformation.
+
+There are many specializations and variations of the Message Translator pattern. A `Content Enricher` augments the information inside a message while the `Content Filter` removes information. The Claim Check removes information but stores it for later retrieval. The `Normalizer` can convert a number of different message formats into a consistent format. Lastly, the `Canonical Data Model` shows how to leverage multiple `Message Translators` to achieve data format decoupling. Inside each of those patterns, complex structural transformations can occur (e.g. mapping a many-to-many relationship into a one-to-one relationship). The `Messaging Bridge` performs a translation of the transport layer by connecting multiple messaging systems to each other.
 
 #### Example: Structural Transformation with XSL
 
-Transformation is such a common need that the W3C defined a standard language for the transformation of XML documents, the Extensible Stylesheet Language (XSL). Part of XSL is the XSL Transformation (XSLT) language, a rules-based language that translates one XML document into a different format. Since this is a book on integration and not on XSLT, we just show a simple example (for all the gory detail see the spec [XSLT 1.0] or to learn by reviewing code examples
+Transformation is such a common need that the W3C defined a standard language for the transformation of XML documents, the Extensible Stylesheet Language (XSL). Part of XSL is the XSL Transformation (XSLT) language, a rules-based language that translates one XML document into a different format. Since this is a book on integration and not on XSLT, we just show a simple example (for all the gory detail see the spec [XSLT 1.0] or to learn by reviewing code examples see [Tennison]). In order to keep things simple, we explain the required transformation by showing example XML documents as opposed to XML schemas.
 
-see [Tennison]). In order to keep things simple, we explain the required transformation by showing example XML documents as opposed to XML schemas. For example, let's assume we have an incoming XML document and need to pass it to the accounting system. If both systems use XML, the Data Representation layer is identical and we need to cover any differences in field names, data types and structure. Let's assume the incoming document looks like this: <data> <customer> <firstname>Joe</firstname> <lastname>Doe</lastname> <address type="primary"> <ref id="55355"/> </address> <address type="secondary"> <ref id="77889"/> </address> </customer> <address id="55355"> <street>123 Main</street> <city>San Francisco</city> <state>CA</state> <postalcode>94123</postalcode> <country>USA</country> <phone type="cell"> <area>415</area> <prefix>555</prefix> <number>1234</number> </phone> <phone type="home"> <area>415</area> <prefix>555</prefix> <number>5678</number> </phone> </address> <address id="77889"> <company>ThoughtWorks</company> <street>410 Townsend</street> <city>San Francisco</city> <state>CA</state> <postalcode>94107</postalcode> <country>USA</country> </address> </data>
+For example, let's assume we have an incoming XML document and need to pass it to the accounting system. If both systems use XML, the Data Representation layer is identical and we need to cover any differences in field names, data types and structure. Let's assume the incoming document looks like this:
 
-This XML document contains customer data. Each customer can be associated with multiple addresses, each of which can contain multiple phone numbers. The XML represents addresses as independent entities so that multiple customers could share an address. Let's assume the accounting system needs the following representation. If you think that the German tag names are bit far fetched, keep in mind that one of the most popular pieces of enterprise software is famous for its German field names! <Kunde> <Name>Joe Doe</Name> <Adresse> <Strasse>123 Main</Strasse> <Ort>San Francisco</Ort> <Telefon>415-555-1234</Telefon> </Adresse> </Kunde> The resulting document has a much simpler structure. Tag names are different and some fields are merged into a single field. Since there is room for only one address and phone numbers, we need to pick one from the original document based on business rules. The following XSLT program transforms the original document into the desired format. It does so by matching elements of the incoming document and translating them into the desired document format. <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> <xsl:output method="xml" indent="yes"/> <xsl:key name="addrlookup" match="/data/address" use="@id"/> <xsl:template match="data"> <xsl:apply-templates select="customer"/> </xsl:template> <xsl:template match="customer"> <Kunde> <Name> <xsl:value-of select="concat(firstname, ' ', lastname)"/> </Name> <Adresse> <xsl:variable name="id" select="./address[@type='primary']/ref/@id"/> <xsl:call-template name="getaddr"> <xsl:with-param name="addr" select="key('addrlookup', $id)"/> </xsl:call-template> </Adresse> </Kunde> </xsl:template> <xsl:template name="getaddr"> <xsl:param name="addr"/> <Strasse>
+```XML
+<data>
+  <customer>
+    <firstname>Joe</firstname>
+    <lastname>Doe</lastname>
+    <address type="primary">
+      <ref id="55355"/>
+    </address>
+    <address type="secondary">
+      <ref id="77889"/>
+    </address>
+  </customer>
+  <address id="55355">
+    <street>123 Main</street>
+    <city>San Francisco</city>
+    <state>CA</state>
+    <postalcode>94123</postalcode>
+    <country>USA</country>
+    <phone type="cell">
+      <area>415</area>
+      <prefix>555</prefix>
+      <number>1234</number>
+    </phone>
+    <phone type="home">
+      <area>415</area>
+      <prefix>555</prefix>
+      <number>5678</number>
+    </phone>
+  </address>
+  <address id="77889">
+    <company>ThoughtWorks</company>
+    <street>410 Townsend</street>
+    <city>San Francisco</city>
+    <state>CA</state>
+    <postalcode>94107</postalcode>
+    <country>USA</country>
+  </address>
+</data>
+```
 
-<xsl:value-of select="$addr/street"/> </Strasse> <Ort> <xsl:value-of select="$addr/city"/> </Ort> <Telefon> <xsl:choose> <xsl:when test="$addr/phone[@type='cell']"> <xsl:apply-templates select="$addr/phone[@type='cell']" mode="getphone"/> </xsl:when> <xsl:otherwise> <xsl:apply-templates select="$addr/phone[@type='home']" mode="getphone"/> </xsl:otherwise> </xsl:choose> </Telefon> </xsl:template> <xsl:template match="phone" mode="getphone"> <xsl:value-of select="concat(area, '-', prefix, '-', number)"/> </xsl:template> <xsl:template match="\*"/> </xsl:stylesheet> XSL is based on pattern matching and can be a bit hairy to read if you are used to procedural programming like most of us. In a nutshell, the <xsl:template> are called whenever an element in the incoming XML document matches the expression specified in the match attribute. For example, the line <xsl:template match="customer"> causes the subsequent lines to be executed for each <customer> element in the source document. The next statements concatenate first and last name and output it inside the <Name> element. Getting the address is a little trickier. The XSL code looks up the correct instance of the <address> element and calls the "subroutine" getaddr. getaddr extracts the address and phone number from the original <address> element. It uses the cell cell phone number if one is present and the home phone number otherwise.
+This XML document contains customer data. Each customer can be associated with multiple addresses, each of which can contain multiple phone numbers. The XML represents addresses as independent entities so that multiple customers could share an address.
+
+Let's assume the accounting system needs the following representation. If you think that the German tag names are bit far fetched, keep in mind that one of the most popular pieces of enterprise software is famous for its German field names!
+
+```XML
+<Kunde>
+  <Name>Joe Doe</Name>
+  <Adresse>
+    <Strasse>123 Main</Strasse>
+    <Ort>San Francisco</Ort>
+    <Telefon>415-555-1234</Telefon>
+  </Adresse>
+</Kunde>
+```
+
+The resulting document has a much simpler structure. Tag names are different and some fields are merged into a single field. Since there is room for only one address and phone numbers, we need to pick one from the original document based on business rules. The following XSLT program transforms the original document into the desired format. It does so by matching elements of the incoming document and translating them into the desired document format.
+
+```XML
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="xml" indent="yes"/>
+  <xsl:key name="addrlookup" match="/data/address" use="@id"/>
+  <xsl:template match="data"> <xsl:apply-templates select="customer"/></xsl:template>
+  <xsl:template match="customer">
+    <Kunde>
+      <Name>
+        <xsl:value-of select="concat(firstname, ' ', lastname)"/>
+      </Name>
+      <Adresse>
+        <xsl:variable name="id" select="./address[@type='primary']/ref/@id"/>
+        <xsl:call-template name="getaddr">
+          <xsl:with-param name="addr" select="key('addrlookup', $id)"/>
+        </xsl:call-template>
+      </Adresse>
+    </Kunde>
+  </xsl:template>
+  <xsl:template name="getaddr">
+  <xsl:param name="addr"/>
+    <Strasse>
+      <xsl:value-of select="$addr/street"/>
+    </Strasse>
+    <Ort>
+      <xsl:value-of select="$addr/city"/>
+    </Ort>
+    <Telefon>
+      <xsl:choose>
+        <xsl:when test="$addr/phone[@type='cell']">
+          <xsl:apply-templates select="$addr/phone[@type='cell']" mode="getphone"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$addr/phone[@type='home']" mode="getphone"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </Telefon>
+  </xsl:template>
+  <xsl:template match="phone" mode="getphone">
+    <xsl:value-of select="concat(area, '-', prefix, '-', number)"/>
+  </xsl:template>
+  <xsl:template match="\*"/>
+</xsl:stylesheet>
+```
+
+XSL is based on pattern matching and can be a bit hairy to read if you are used to procedural programming like most of us. In a nutshell, the <xsl:template> are called whenever an element in the incoming XML document matches the expression specified in the match attribute. For example, the line
+
+```XML
+<xsl:template match="customer">
+```
+
+causes the subsequent lines to be executed for each <customer> element in the source document. The next statements concatenate first and last name and output it inside the <Name> element. Getting the address is a little trickier. The XSL code looks up the correct instance of the <address> element and calls the "subroutine" getaddr. getaddr extracts the address and phone number from the original <address> element. It uses the cell cell phone number if one is present and the home phone number otherwise.
 
 #### Example: Visual Transformation Tools
 
-If you find XSL programming a bit cryptic, you are in good company. Therefore, most integration vendors provide visual transformation editors that displays the structure of the two document formats on the left-hand side and right-hand side of the screen, respectively. The users can then drag and drop between the two sides to associate elements between the formats. This can be a lot
+If you find XSL programming a bit cryptic, you are in good company. Therefore, most integration vendors provide visual transformation editors that displays the structure of the two document formats on the left-hand side and right-hand side of the screen, respectively. The users can then drag and drop between the two sides to associate elements between the formats. This can be a lot simpler than coding XSL. Some vendors specialize entirely in transformation tools, for example Contivo, Inc..
 
-simpler than coding XSL. Some vendors specialize entirely in transformation tools, for example Contivo, Inc.. The following screen shots shows the Microsoft BizTalk Mapper editor that is integrated into Visual Studio. The diagram shows the mapping between individual elements more clearly than the XSL script. On the other hand, some of the details (e.g., how the address is chosen) are hidden underneath the functoid icons.
+The following screen shots shows the Microsoft BizTalk Mapper editor that is integrated into Visual Studio. The diagram shows the mapping between individual elements more clearly than the XSL script. On the other hand, some of the details (e.g., how the address is chosen) are hidden underneath the functoid icons.
 
-#### Creating Transformations the Drag-Drop Style
+`Diagram: Creating Transformations the Drag-Drop Style`
 
-Being able to drag and drop transformations shortens the learning curve for developing a Message Translator dramatically.As so often though, visual tools can also become a liability when it comes to debugging or when you need to create complex solutions. Therefore, many tools let you switch back and forth between XSL and the visual tool. Related patterns: Canonical Data Model, Channel Adapter, Content Filter, Content Enricher, Message Channel, Message Endpoint, Message Router, Message Translator, Messaging Bridge, Normalizer, Pipes and Filters, Shared Database, Claim Check
+Being able to drag and drop transformations shortens the learning curve for developing a Message Translator dramatically.As so often though, visual tools can also become a liability when it comes to debugging or when you need to create complex solutions. Therefore, many tools let you switch back and forth between XSL and the visual tool.
+
+`Related patterns: Canonical Data Model, Channel Adapter, Content Filter, Content Enricher, Message Channel, Message Endpoint, Message Router, Message Translator, Messaging Bridge, Normalizer, Pipes and Filters, Shared Database, Claim Check`
 
 ### Message Endpoint
 
-Applications are communicating by sending Messages to each other via Message Channels. How does an application connect to a messaging channel to send and receive messages? The application and the messaging system are two separate sets of software. The application provides functionally for some type of user, whereas the messaging system manages messaging channels for transmitting messages for communication. Even if the messaging system is incorporated as a fundamental part of the application, it is still a separate, specialized provider of functionality much like a database management system or a web server. Because the application and the messaging system are separate, they must have a way to connect and work together.
+Applications are communicating by sending `Messages` to each other via `Message Channels`.
 
-#### Applications disconnected from a message channel
+#### How does an application connect to a messaging channel to send and receive messages?
 
-A messaging system is a type of server, capable of taking requests and responding to them. Like a database accepting and retrieving data, a messaging server accepts and delivers messages. A messaging system is a messaging server. A server needs clients, and an application that uses messaging is a client of the messaging server. But applications do not necessarily know how to be messaging clients, any more than they know how to be database clients. The messaging server, like a database server, has a client API that the application can use to interact with the server. The API is not application-specific; it is domain-specific, where messaging is the domain. The application must contain a set of code that connects and unites the messaging domain with the application to allow the application to perform messaging. Connect an application to a messaging channel using a Message Endpoint, a client of the messaging system that the application can then use to send or receive messages.
+The application and the messaging system are two separate sets of software. The application provides functionally for some type of user, whereas the messaging system manages messaging channels for transmitting messages for communication. Even if the messaging system is incorporated as a fundamental part of the application, it is still a separate, specialized provider of functionality much like a database management system or a web server. Because the application and the messaging system are separate, they must have a way to connect and work together.
 
-code is custom to both the application and the messaging system’s client API. The rest of the application knows little about message formats, messaging channels, or any of the other details of communicating with other applications via messaging. It just knows that it has a request or piece of data to send to another application, or is expecting those from another application. It is the messaging endpoint code that takes that command or data, makes it into a message, and sends it on a particular messaging channel. It is the endpoint that receives a message, extracts the contents, and gives them to the application in a meaningful way. The Message Endpoint encapsulates the messaging system from the rest of the application, and customizes a general messaging API for a specific application and task. If an application using a particular messaging API were to switch to another, developers would have to rewrite the message endpoint code, but the rest of the application should remain the same. If a new version of a messaging system changes the messaging API, this should only affect the message endpoint code. If the application decides to communicate with others via some means other than messaging, developers should ideally be able to rewrite the message endpoint code as something else, but leave the rest of the application unchanged. A Message Endpoint can be used to send messages or receive them, but one instance does not do both. An endpoint is channel-specific, so a single application would use multiple endpoints to interface with multiple channels. An application may use more than one endpoint to interface to a single channel, usually to support multiple concurrent threads. A Message Endpoint is a specialized Channel Adapter, one that has been custom developed for and integrated into its application. A Message Endpoint should be designed as a Messaging Gateway to encapsulate the messaging code and hide the message system from the rest of the application. It can employ a Messaging Mapper to transfer data between domain objects and messages. It can be structured as a Service Activator to provide asynchronous message access to a synchronous service or function call. An endpoint can explicitly control transactions with the messaging system as a Transactional Client. Sending messages is pretty easy, so many endpoint patterns concern different approaches for receiving messages. A message receiver can be a Polling Consumer or an Event-Driven Consumer. Multiple consumers can receive messages from the same channel either as Competing Consumers or via a Message Dispatcher. It can decide which messages to consume or ignore using a Selective Consumer . It can use a Durable Subscriber to make sure a subscriber does not miss messages published while the endpoint is disconnected. And the consumer can be an Idempotent Receiver that correctly detects and handles duplicate messages.
+`Diagram: Applications disconnected from a message channel`
+
+A messaging system is a type of server, capable of taking requests and responding to them. Like a database accepting and retrieving data, a messaging server accepts and delivers messages. A messaging system is a messaging server.
+
+A server needs clients, and an application that uses messaging is a client of the messaging server. But applications do not necessarily know how to be messaging clients, any more than they know how to be database clients. The messaging server, like a database server, has a client API that the application can use to interact with the server. The API is not application-specific; it is domain-specific, where messaging is the domain.
+
+The application must contain a set of code that connects and unites the messaging domain with the application to allow the application to perform messaging.
+
+`Diagram: Connect an application to a messaging channel using a Message Endpoint, a client of the messaging system that the application can then use to send or receive messages.`
+
+`Message Endpoint` code is custom to both the application and the messaging system’s client API. The rest of the application knows little about message formats, messaging channels, or any of the other details of communicating with other applications via messaging. It just knows that it has a request or piece of data to send to another application, or is expecting those from another application. It is the messaging endpoint code that takes that command or data, makes it into a message, and sends it on a particular messaging channel. It is the endpoint that receives a message, extracts the contents, and gives them to the application in a meaningful way.
+
+The `Message Endpoint` encapsulates the messaging system from the rest of the application, and customizes a general messaging API for a specific application and task. If an application using a particular messaging API were to switch to another, developers would have to rewrite the message endpoint code, but the rest of the application should remain the same. If a new version of a messaging system changes the messaging API, this should only affect the message endpoint code. If the application decides to communicate with others via some means other than messaging, developers should ideally be able to rewrite the message endpoint code as something else, but leave the rest of the application unchanged.
+
+A `Message Endpoint` can be used to send messages or receive them, but one instance does not do both. An endpoint is channel-specific, so a single application would use multiple endpoints to interface with multiple channels. An application may use more than one endpoint to interface to a single channel, usually to support multiple concurrent threads.
+
+A `Message Endpoint` is a specialized `Channel Adapter`, one that has been custom developed for and integrated into its application. A Message Endpoint should be designed as a `Messaging Gateway` to encapsulate the messaging code and hide the message system from the rest of the application. It can employ a `Messaging Mapper` to transfer data between domain objects and messages. It can be structured as a `Service Activator` to provide asynchronous message access to a synchronous service or function call. An endpoint can explicitly control transactions with the messaging system as a `Transactional Client`.
+
+Sending messages is pretty easy, so many endpoint patterns concern different approaches for receiving messages. A message receiver can be a `Polling Consumer` or an `Event-Driven Consumer`. Multiple consumers can receive messages from the same channel either as Competing Consumers or via a `Message Dispatcher`. It can decide which messages to consume or ignore using a `Selective Consumer`. It can use a `Durable Subscriber` to make sure a subscriber does not miss messages published while the endpoint is disconnected. And the consumer can be an `Idempotent Receiver` that correctly detects and handles duplicate messages.
 
 #### Example: JMS Producer and Consumer
 
-In JMS, the two main endpoint types are MessageProducer, for sending messages, and MessageConsumer, for receiving messages. A Message Endpoint uses an instance of one of these types to either send or receive messages to/from a particular channel.
+In JMS, the two main endpoint types are `MessageProducer`, for sending messages, and `MessageConsumer`, for receiving messages. A `Message Endpoint` uses an instance of one of these types to either send or receive messages to/from a particular channel.
 
 #### Example: .NET MessageQueue
 
-In .NET, the main endpoint class is the same as the main Message Channel class, MessageQueue. A Message Endpoint uses an instance of MessageQueue to send or receive messages to/from a particular channel. Related patterns: Channel Adapter, Competing Consumers, Durable Subscriber, Event-Driven Consumer, Idempotent Receiver, Message, Message Channel, Message Dispatcher, Selective Consumer, Service Activator, Messaging Gateway, Messaging Mapper, Polling Consumer, Transactional Client
+In .NET, the main endpoint class is the same as the main `Message Channel` class, `MessageQueue`. A `Message Endpoint` uses an instance of `MessageQueue` to send or receive messages to/from a particular channel.
+
+`Related patterns: Channel Adapter, Competing Consumers, Durable Subscriber, Event-Driven Consumer, Idempotent Receiver, Message, Message Channel, Message Dispatcher, Selective Consumer, Service Activator, Messaging Gateway, Messaging Mapper, Polling Consumer, Transactional Client`
 
 ## 4. Messaging Channels
 
